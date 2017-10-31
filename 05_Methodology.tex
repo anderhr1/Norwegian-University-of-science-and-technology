@@ -69,7 +69,6 @@ Often one would choose other distributions due to the fact that financial
 series often have fat tails. One option would be to use the Student-t
 distribution distribution or a skewed version of it. This paper assumes that returns are having a normal distribution. 
 
-To forecast returns we will try to fit an auto regressive moving average return model (ARMA) of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$).
 \subsection*{The Conditional Mean Equation, ARMA($w$,$x$)}
 
 For modeling data series we used two common concepts of conditional mean: the auto regressive (AR) process and the moving average (MA) process. Together the two processes constitute the conditional mean equation. 
@@ -93,7 +92,7 @@ The combination of both the AR-process and MA-process, gives us the ARMA process
 As financial data time series have volatility clustering a model dealing with
 conditional heteroskedasticity must be used. We use the GARCH model introduced by (Bollerslev, 1986),which is a generalization of the ARCH model that was originally developed by (Engle, 1982). The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
 
-\subsection*{The Conditional Variance Equation, GARCH($y$,$z$)}
+\subsection*{The Conditional Variance Equation, GARCH($y,z$)}
 
 The GARCH($y$,$z$) has the conditional volatility equation given by:
 
@@ -128,7 +127,7 @@ with respect to all the parameters. To do this we solve the conditional mean equ
 \end{align}
 Finally we insert the above equation (\ref{ConditionalMeanEquationOnEpsilon}) and the conditional volatility equation (\ref{ConditionalVolatilityEquation}) into the maximum likelihood function (\ref{MaximumLike}):
 \begin{align} 
-    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln\Big(\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2\Big)+\Big(\frac{(r_t-\sum_{j=1}^x\kappa_j r_{t-j}-\sum_{i=j}^x\mu_j \epsilon_{t-j}-c)^2}{\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2}\Big)  
+    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln\Big(\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2\Big)+\Big(\frac{(r_t-\sum_{j=1}^x\kappa_j r_{t-j}-\sum_{i=j}^x\mu_j \epsilon_{t-j}-c)^2}{\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2}\Big)   \label{fullMaximumLike}
 \end{align}
 The parameter constraints are:
 \begin{align} 
@@ -136,6 +135,12 @@ The parameter constraints are:
 \end{align}
 In this paper we will try to avoid imposing any constraints on the parameter estimation routine. If it is necessary to impose any constraints on the optimization then this indicates that the model is inappropriate for the sample data and a different GARCH model should be used.
 
+\subsubsection*{Implementation of the ARMA($w,x$) GARCH($1,1$)}
+To forecast returns we will try to fit an auto regressive moving average return model (ARMA) of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$).
+
+Equation (\ref{fullMaximumLike}) is solved using R. There is no guarantee that the maximum likelihood will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{ConditionalMeanEquation}) and not ARMA GARCH (\ref{ConditionalVolatilityEquation}). The plain vanilla ARMA is also calculated using maximum likelihood. This calculation will always converge because it is linear. 
+
+To increase forecasting performance even further, the parameters, $w$ and $x$, in the conditional mean equation (\ref{ConditionalMeanEquation}) are found based on the best AIC. All combination of $w$ and $x$ are tested, where $w$ and $x$ take on values from zero to four.
 \subsection*{Return Forecasting}
 
 After the maximization of this expression, we have optimal values for all the parameters. To forecast the the one day ahead return, we need to take the conditional expected return of the conditional mean equation (\ref{ConditionalMeanEquation}):
