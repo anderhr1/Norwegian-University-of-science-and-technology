@@ -98,7 +98,7 @@ conditional heteroskedasticity must be used. We use the GARCH model introduced b
 The GARCH($y$,$z$) has the conditional volatility equation given by:
 
 \begin{align}
-    \sigma_t^2 &= \omega + \sum_{j=1}^y\alpha_j(\epsilon_{t-j})^2+\sum_{j=1}^z\beta_j^{A-GARCH}\sigma_{t-j}^2,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalVolatilityEquation}
+    \sigma_t^2 &= \omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalVolatilityEquation}
 \end{align}
 
 The GARCH error parameter $\alpha$ measures the reaction of conditional volatility to market shocks. When $\alpha$ is realtively large, above 0.1, the volatility is very sensitive to market events.
@@ -110,29 +110,29 @@ correlation between asset returns and volatility of returns.
 
 \subsection*{Long term volatility}
 
-In the absence of market shocks the A-GARCH variance will eventually settle down to a steady state value. This is the value $\bar{\sigma}^2$ such that ${\sigma_t^2} = \bar{\sigma}^2$ for all t. We call $\bar{\sigma}^2$ the unconditional variance of the A-GARCH model. It corresponds to a long term average value of the conditional variance. The theoretical value of the A-GARCH long term or unconditional variance is not the same as the unconditional variance in a moving average volatility model. The moving average unconditional variance is called the i.i.d. variance because it is based on the i.i.d. returns assumption. The theoretical value of the unconditional variance in a A-GARCH model is clearly not based on the i.i.d. returns assumption. In fact, the A-GARCH unconditional variance differs depending on the A-GARCH model. The long term or unconditional variance is found by substituting ${\sigma_t^2} = {\sigma_{t-1}^2} = \bar{\sigma}^2$ into the A-GARCH conditional variance equation.We also use the fact that $E(\epsilon_{t-1}^2)=\sigma_{t-1}^2$. This yields the following formula for the long term variance of the A-GARCH model:
+In the absence of market shocks the A-GARCH variance will eventually settle down to a steady state value. This is the value $\bar{\sigma}^2$ such that ${\sigma_t^2} = \bar{\sigma}^2$ for all t. We call $\bar{\sigma}^2$ the unconditional variance of the GARCH model. It corresponds to a long term average value of the conditional variance. The theoretical value of the GARCH long term or unconditional variance is not the same as the unconditional variance in a moving average volatility model. The moving average unconditional variance is called the i.i.d. variance because it is based on the i.i.d. returns assumption. The theoretical value of the unconditional variance in a GARCH model is clearly not based on the i.i.d. returns assumption. In fact, the GARCH unconditional variance differs depending on the GARCH model. The long term or unconditional variance is found by substituting ${\sigma_t^2} = {\sigma_{t-1}^2} = \bar{\sigma}^2$ into the GARCH conditional variance equation.We also use the fact that $E(\epsilon_{t-1}^2)=\sigma_{t-1}^2$. This yields the following formula for the long term variance of the GARCH model:
 
 \begin{align}
-    %Utledning A-GARCH long term volatility
+    \bar{\sigma}^2=\frac{\omega}{1-(\sum_{j=1}^y\alpha_j+\sum_{j=1}^z\beta_j)} \label{longTermVolatilityGARCH}
 \end{align}
 
 \subsection*{Parameter Estimation}
 
-GARCH parameters are estimated by maximizing the value of the log likelihood function. In this paper we assume that the distribution of the error process is normal with expectation 0 and variance ${\sigma_t^2}$. With this assumption we can use the normal log likelihood function. Hence, maximizing the asymmetric normal A-GARCH likelihood reduces to the problem of maximizing:
+The ARMA GARCH parameters are estimated by maximizing the value of the log likelihood function. As mentioned earlier, in this paper we assume that the distribution of the error process is normal with expectation 0 and variance ${\sigma_t^2}$. With this assumption we can use the normal log likelihood function. Hence, maximizing the asymmetric normal ARMA GARCH likelihood reduces to the problem of maximizing:
 \begin{align} 
     ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln(\sigma_t^2)+(\frac{\epsilon_t}{\sigma_t})^2  \label{MaximumLike}
 \end{align}
-We then solve the conditional mean equation (\ref{ConditionalMeanEquation}) on $\epsilon_t$:
+with respect to all the parameters. To do this we solve the conditional mean equation (\ref{ConditionalMeanEquation}) on $\epsilon_t$:
 \begin{align}
-    \epsilon_t=r_t-\sum_{j=1}^x\kappa_j r_{t-j}-c \label{ConditionalMeanEquationOnEpsilon}
+    \epsilon_t=r_t-\sum_{j=1}^x\kappa_j r_{t-j}-\sum_{i=j}^x\mu_j \epsilon_{t-j}-c \label{ConditionalMeanEquationOnEpsilon}
 \end{align}
 Finally we insert the above equation (\ref{ConditionalMeanEquationOnEpsilon}) and the conditional volatility equation (\ref{ConditionalVolatilityEquation}) into the maximum likelihood function (\ref{MaximumLike}):
 \begin{align} 
-    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln\Big(\omega + \sum_{j=1}^y\big(\alpha_j(\epsilon_{t-j}-\lambda)^2\big)+\sum_{j=1}^z(\beta_j^{A-GARCH}\sigma_{t-j}^2)\Big)+\Big(\frac{(r_t-\sum_{j=1}^x\kappa_j r_{t-j}-c)^2}{\omega + \sum_{j=1}^y\alpha_j(\epsilon_{t-j}-\lambda)^2+\sum_{j=1}^z\beta_j^{A-GARCH}\sigma_{t-j}^2}\Big)  
+    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln\Big(\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2\Big)+\Big(\frac{(r_t-\sum_{j=1}^x\kappa_j r_{t-j}-\sum_{i=j}^x\mu_j \epsilon_{t-j}-c)^2}{\omega + \sum_{j=1}^y\alpha_j\epsilon_{t-j}^2+\sum_{j=1}^z\beta_j\sigma_{t-j}^2}\Big)  
 \end{align}
 The parameter constraints are:
 \begin{align} 
-    \omega>0,\quad\quad \alpha,\beta_i^{A-GARCH}\geq0,\quad\quad \alpha+\beta<1, \quad\quad \lambda\in R
+    \omega>0,\quad\quad \alpha_j,\beta_j\geq0,\quad\quad \alpha_j+\beta_j<1
 \end{align}
 In this paper we will try to avoid imposing any constraints on the parameter estimation routine. If it is necessary to impose any constraints on the optimization then this indicates that the model is inappropriate for the sample data and a different GARCH model should be used.
 
