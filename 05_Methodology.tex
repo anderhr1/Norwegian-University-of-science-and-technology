@@ -1,0 +1,169 @@
+\chapter{Methodology}
+
+FRA ANNEN TEKST, men liker det som står:
+
+The sample considered in this study covered 58 stocks traded on the BOVESPA (Bolsa de Valores de São Paulo) between July 2005 and December 2010. This sample included all the stocks traded during this period, following the criterion employed by Fu (2009), which requires that each stock be traded for a minimum of 15 days during each month of the sample period. For the sake of convenience, the research considered only those shares that were present in all months of the sample period. In addition, following other studies that adopted the Fama and French model (Fama & French, 1993), such as Malaga and Securato (2004) and Rogers and Securato (2009), the research excluded financial firm stocks from the sample as they are usually highly leveraged – as is the norm in this sector – which affects the book-to-market ratio. Furthermore, in accordance with these studies' methodologies, the present research excluded firms that had negative shareholder equity on the 31st of December of at least one of the years between 2004 and 2009.
+
+This paper will use continuously compounded returns, $r_c$, defined as: 
+    \begin{align} 
+        e^{r_{c,t} &= \frac{s_{t}}{s_{t-1}}} \\
+        r_c &= ln\frac{s_{t}}{s_{t-1}}
+    \end{align}
+Continuously compounded returns are easier to do calculations with as:
+   \begin{align} 
+        \prod_{t=1}^{T} e^{r_{c,t}} \\
+        e^{\sum_{t=1}^{T}r_{c,t}}
+    \end{align}
+
+\section*{Calculate the idiosyncratic volatility (IV) for the companies on the OSEAX} For each company on the OSEAX, we wish to calculate the IV over the time period. We will calculate the IV as the unexplained variance, after using the Fama And French Three Factor Model (1993). The Fama and French Three Factor Model incorporates the empirical fact that value and small-cap stocks have a tendency to outperform markets on a regular basis. We therefore regress the return of each stock, i, on the three factor model using the following multivariate linear regression:
+    
+\begin{align} 
+    r_i - r_f= \alpha_i + \beta_{1,i}(r_m - r_f) + \beta_{2,i}r_{SMB} + \beta_{3,i}r_{HML} + \epsilon_i
+\end{align}
+
+Firstly, to calculate the return of the market by using the formula: 
+\begin{align}
+    r_{m,t} = \sum_{i=1}^{N} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{N} MC_{s,t}}, \quad \quad \quad  \forall t \in T
+\end{align}
+
+In order to calculate the SMB returns, the return of small cap stocks minus big cap stocks, we use the following formula: 
+\begin{align}
+    r_{SMB,t} = \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s={\frac{N}{2}+1}}^{N} MC_{s,t}}, \quad \quad \quad  \forall t \in T
+\end{align}
+
+Where the first $\frac{N}{2}$ companies have market capitalization below average, while the rest have above.
+
+As for the HML returns, the return of companies with high $\frac{B}{M}$ ratio minis low $\frac{B}{M}$ ratio stocks, we calculate using the formula: 
+\begin{align}
+    r_{HML,t} = \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s=\frac{N}{2}+1}^{N} MC_{s,t}} \quad \quad \quad  \forall t \in T
+\end{align}
+Where the first $\frac{N}{2}$ companies have $\frac{B}{M}$ ratio above average, while the rest have below.
+
+As described by \cite{zenios}, we also assume that the security returns are correlated only through their response to the common factors. Hence, the following assumptions apply: 
+\begin{itemize}
+    \item The covariance of the security-specific residual term with the factors is zero
+    \item The covariance of the risk factors is zero
+    \item The covariance of the residuals is zero
+\end{itemize}
+
+Having calculated the $\beta$´s of the Fama French Three factor model, we will calculate the IV for each company by the following formula:
+ \begin{align}
+    IV_i &= \sqrt{\sigma_i^{2} - cov(r_i,r_m) - cov(r_i,r_{SMB}) - cov(r_i,r_{HML})} \\
+    &= \sqrt{\sigma_i^{2} - \beta_{1,i} \sigma_m^{2}- \beta_{2,i} \sigma_m^{2}- \beta_{3,i} \sigma_m^{2}}
+\end{align}
+
+\textbf{Segment the given companies by value IV:} After calculating the IV values for all the selected companies, we segment them into a number of buckets, by their increasing proportion of IV. 
+
+We believe it will be positive to try the segmentation for a range of different buckets, as it might effect the end result.
+
+\section*{Build a return forecasting model} 
+
+Financial returns are often modelled as auto-regressive moving average (ARMA) time series with random disturbances having conditional heteroscedastic variances. The conditional mean and conditional variance will change at every point in time because it depends on the history of returns up to that point. That is, we account for the dynamic properties of returns by regarding their distribution at any point in time as being conditional on all the information up to that point. The distribution of a return at time t regards all the past returns up to and including time $t-1$ as being non-stochastic. We denote the information set, which is the set containing all the past returns up to and including time $t-1$, by $I_{t-1}$. The information set contains all the prices and returns that we can observe, like the filtration set in continuous time. 
+
+We write $\sigma_t^2$ to denote the conditional variance at time $t$. This is the variance at time $t$, conditional on the information set. That is, we assume that everything in the information set is not random because we have an observation on it. When the conditional distributions of returns at every point in time are all normal we write:
+\begin{align}
+    r_t | I_{t-1} \sim N(0,{\sigma_t^2})
+\end{align}
+
+Often one would choose other distributions due to the fact that financial
+series often have fat tails. One option would be to use the Student-t
+distribution distribution or a skewed version of it. This paper assumes that returns are having a normal distribution. 
+
+To forecast returns we will try to fit an auto regressive moving average return model (ARMA) of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$).
+\subsection*{The Conditional Mean Equation, ARMA($w$,$x$)}
+
+For modeling data series we used two common concepts of conditional mean: the auto regressive (AR) process and the moving average (MA) process. Together the two processes constitute the conditional mean equation. 
+
+The AR process is given by:
+\begin{align}
+    r_t=c + \sum_{i=j}^x\kappa_j r_{t-j} + \epsilon_t,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalMeanEquation}
+\end{align}
+where $\kappa_j$ is the lag parameter of the observed variable, $r_t$ is the random observed variable at time $t$ dending on the previously realized values of $r_{t-j}$, $c$ is the mean constant and $\epsilon_t$ the white noise.
+
+The MA process is given by:
+\begin{align}
+    r_t=c + \sum_{i=j}^x\mu_j \epsilon_{t-j} + \epsilon_t,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalMeanEquation}
+\end{align}
+where $\mu_j$ is the lag parameter of the observed variable, $r_t$ is the random observed variable at time $t$ depending on the previously realized values of $\epsilon_{t-j}$, $c$ is the mean constant and $\epsilon_t$ the white noise.
+
+The combination of both the AR-process and MA-process, gives us the ARMA process described by:
+\begin{align}
+    r_t=c +  \sum_{i=j}^x\kappa_j r_{t-j}+ \sum_{i=j}^x\mu_j \epsilon_{t-j} + \epsilon_t,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalMeanEquation}
+\end{align}
+As financial data time series have volatility clustering a model dealing with
+conditional heteroskedasticity must be used. We use the GARCH model introduced by (Bollerslev, 1986),which is a generalization of the ARCH model that was originally developed by (Engle, 1982). The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
+
+\subsection*{The Conditional Variance Equation, GARCH($y$,$z$)}
+
+The GARCH($y$,$z$) has the conditional volatility equation given by:
+
+\begin{align}
+    \sigma_t^2 &= \omega + \sum_{j=1}^y\alpha_j(\epsilon_{t-j})^2+\sum_{j=1}^z\beta_j^{A-GARCH}\sigma_{t-j}^2,\quad\quad\quad \epsilon_t | I_{t-1} \sim N(0,{\sigma_t^2}) \label{ConditionalVolatilityEquation}
+\end{align}
+
+The GARCH error parameter $\alpha$ measures the reaction of conditional volatility to market shocks. When $\alpha$ is realtively large, above 0.1, the volatility is very sensitive to market events.
+
+The GARCH lag parameter $\beta$ measures the persistence in conditional volatility irrespective of anything happening in the market. When $\beta$ is relatively large, above 0.9, then volatility takes a long time to die out.
+
+GARCH model is able to deal with common financial data time series characteristics such as thick tails and volatility clustering, as pointed out by (Mandelbrot, 1963) and (Mandelbrot, 1967). There are, however, some characteristics of financial time series that the GARCH model is not able to deal with. The main disadvantage of the GARCH model is that conditional variance depends on the squared value of $\epsilon_t$, which in turn means that the model is sensitive only to the absolute magnitude of the variable but not to its sign leading to a presence of a leverage effect (Black, 1976), which represents a negative
+correlation between asset returns and volatility of returns.
+
+\subsection*{Long term volatility}
+
+In the absence of market shocks the A-GARCH variance will eventually settle down to a steady state value. This is the value $\bar{\sigma}^2$ such that ${\sigma_t^2} = \bar{\sigma}^2$ for all t. We call $\bar{\sigma}^2$ the unconditional variance of the A-GARCH model. It corresponds to a long term average value of the conditional variance. The theoretical value of the A-GARCH long term or unconditional variance is not the same as the unconditional variance in a moving average volatility model. The moving average unconditional variance is called the i.i.d. variance because it is based on the i.i.d. returns assumption. The theoretical value of the unconditional variance in a A-GARCH model is clearly not based on the i.i.d. returns assumption. In fact, the A-GARCH unconditional variance differs depending on the A-GARCH model. The long term or unconditional variance is found by substituting ${\sigma_t^2} = {\sigma_{t-1}^2} = \bar{\sigma}^2$ into the A-GARCH conditional variance equation.We also use the fact that $E(\epsilon_{t-1}^2)=\sigma_{t-1}^2$. This yields the following formula for the long term variance of the A-GARCH model:
+
+\begin{align}
+    %Utledning A-GARCH long term volatility
+\end{align}
+
+\subsection*{Parameter Estimation}
+
+GARCH parameters are estimated by maximizing the value of the log likelihood function. In this paper we assume that the distribution of the error process is normal with expectation 0 and variance ${\sigma_t^2}$. With this assumption we can use the normal log likelihood function. Hence, maximizing the asymmetric normal A-GARCH likelihood reduces to the problem of maximizing:
+\begin{align} 
+    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln(\sigma_t^2)+(\frac{\epsilon_t}{\sigma_t})^2  \label{MaximumLike}
+\end{align}
+We then solve the conditional mean equation (\ref{ConditionalMeanEquation}) on $\epsilon_t$:
+\begin{align}
+    \epsilon_t=r_t-\sum_{j=1}^x\kappa_j r_{t-j}-c \label{ConditionalMeanEquationOnEpsilon}
+\end{align}
+Finally we insert the above equation (\ref{ConditionalMeanEquationOnEpsilon}) and the conditional volatility equation (\ref{ConditionalVolatilityEquation}) into the maximum likelihood function (\ref{MaximumLike}):
+\begin{align} 
+    ln L(\phi)=-\frac{1}{2}\sum_{t=1}^T ln\Big(\omega + \sum_{j=1}^y\big(\alpha_j(\epsilon_{t-j}-\lambda)^2\big)+\sum_{j=1}^z(\beta_j^{A-GARCH}\sigma_{t-j}^2)\Big)+\Big(\frac{(r_t-\sum_{j=1}^x\kappa_j r_{t-j}-c)^2}{\omega + \sum_{j=1}^y\alpha_j(\epsilon_{t-j}-\lambda)^2+\sum_{j=1}^z\beta_j^{A-GARCH}\sigma_{t-j}^2}\Big)  
+\end{align}
+The parameter constraints are:
+\begin{align} 
+    \omega>0,\quad\quad \alpha,\beta_i^{A-GARCH}\geq0,\quad\quad \alpha+\beta<1, \quad\quad \lambda\in R
+\end{align}
+In this paper we will try to avoid imposing any constraints on the parameter estimation routine. If it is necessary to impose any constraints on the optimization then this indicates that the model is inappropriate for the sample data and a different GARCH model should be used.
+
+\subsection*{Return Forecasting}
+
+After the maximization of this expression, we have optimal values for all the parameters. To forecast the the one day ahead return, we need to take the conditional expected return of the conditional mean equation (\ref{ConditionalMeanEquation}):
+\begin{align} 
+    E(r_{t})=c+\sum_{j=1}^x\kappa_j r_{t-j}
+\end{align}
+The expectation of the error process, $\epsilon_t$, is assumed to be zero. The parameters obtained in the maximum likelihood is our best guess the one day ahead forecast:
+\begin{align} 
+    E(r_{t+1})=c+\sum_{j=0}^x\kappa_j r_{t-j}
+\end{align}
+We then expect to use a rolling-window estimation technique. This rolling-window will be varied across a yet to be determined range, $s$. We will also try with different values for $x$,$y$ and $z$. 
+
+I chose to use a rolling window of 1000 days to fit the model, but this is a parameter for optimization. There is a case for using as much data as possible in the rolling window, but this may fail to capture the evolving model parameters quickly enough to adapt to a changing market.
+
+\section*{Revise the goodness-of the forecasting}
+
+#TODO 
+
+
+
+In this paper we will run our forecasting model on the defined portfolios. We calculate the forecasting error for each timestep, $\epsilon_{i,t}^{f}$, between the estimated returns, $r_{i,t}^{e}$, and realized returns, $r_{i,t}^{r}$:
+\begin{align}
+    \epsilon_{i,t}^{f} = r_{i,t}^{r} - r_{i,t}^{e}
+\end{align}
+and then we calculate the variance of the forecasting error, starting at day number $t=s$ and ending at day number $t=n$:
+\begin{align}
+    \frac{1}{n-s+1}\sum_{t=s}^{n}(r_{i,t}^{r} - r_{i,t}^{e})^{2}
+\end{align}
+and can conclude if there is any correlation between high/low IV and forecasting ability.
+
+\section*{Evaluate the correlation between forecasting error and daily IV} Run a regression of daily forecasting error on daily IV estimate, to consider if the value of the IV can help to forecast
