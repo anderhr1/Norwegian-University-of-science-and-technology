@@ -173,4 +173,4 @@ where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total nu
     RMSE_{b} = \frac{1}{|\Sigma|}\sum_{\tau=1}^{|\Sigma|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall b \in B
 \end{align}
 
-Further, we use the "long-short" metric to assess whether our forecasting model is able to predict the correct direction of the stock return. 
+Further, we use a statistical-directional metric, the number of correct forecasting hits. This indicates whether our forecasting model is able to predict the correct direction of the stock return. 

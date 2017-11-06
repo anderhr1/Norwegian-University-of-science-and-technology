@@ -1,5 +1,3 @@
-
-
 \chapter{Data}
 
 This study uses daily closing prices for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu (2009), which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents index is 168 before cleaning and <number> after cleaning.
@@ -11,26 +9,22 @@ This paper will use continuously compounded returns, $r_c$, defined as:
     \end{align}
     
 \newpage
-    
-\begin{table}[!htb]
-    \caption{Constituents of OSEAX}
-    \begin{subtable}{.5\linewidth}
-      \centering
-        \caption{}
-        \begin{tabular}{l}
-        \thead{\textbf{Company Name}} \\
-        \hline
-            \input{Input/ConstituentsOSEAX1.txt}
-        \end{tabular}
-    \end{subtable}%
-    \begin{subtable}{.5\linewidth}
-      \centering
-        \caption{}
-        \begin{tabular}{l}
-        \thead{\textbf{Company Name}}  \\
-        \hline
-            \input{Input/ConstituentsOSEAX2.txt}
-        \end{tabular}
-    \end{subtable} 
-\end{table}
 
+\begin{longtable}{|c|c|c|}
+\caption{Constituents of OSEAX}\\
+\hline
+\textbf{Company Name} & \textbf{Company Name} & \textbf{Company Name}\\
+\hline
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Company Name} & \textbf{Company Name} & \textbf{Company Name}\\
+\hline
+\endhead
+\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\input{Input/ConstituentsOSEAX.txt}
+\end{longtable}
