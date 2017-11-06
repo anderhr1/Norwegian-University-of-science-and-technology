@@ -168,6 +168,9 @@ We apply two separate metrics in order to assess the return forecasting accuracy
 \begin{align}
     RMSE_{\tau} = \sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall \tau in \Sigma
 \end{align}
-where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total number of periods. We calculate the RMSE for each bucket and each period, summing the total RMSE for each bucket over the total sample period.
+where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total number of periods. We calculate the RMSE for each bucket and each period, summing the total RMSE for each bucket over the total sample period, before finding the average by dividing by number for periods:
+\begin{align}
+    RMSE_{b} = \frac{1}{|\Sigma|}\sum_{\tau=1}^{|\Sigma|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall b \in B
+\end{align}
 
 Further, we use the "long-short" metric to assess whether our forecasting model is able to predict the correct direction of the stock return. 
