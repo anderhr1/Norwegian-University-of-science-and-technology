@@ -1,16 +1,11 @@
 ﻿Spectrum ASA & SPU-NO \\ 
-Avance Gas Holding Ltd. & AVANCE-NO \\ 
-Tanker Investments Ltd. & TIL-NO \\ 
 Bergen Group ASA & BERGEN-NO \\ 
 Aker BP ASA & AKERBP-NO \\ 
 ElectroMagnetic GeoServices ASA & EMGS-NO \\ 
 Petroleum Geo-Services ASA & PGS-NO \\ 
 BW Offshore Limited & BWO-NO \\ 
-Hoegh LNG Holdings Ltd. & HLNG-NO \\ 
 Seadrill Ltd. & SDRL-NO \\ 
-I.M. Skaugen SE & IMSK-NO \\ 
 Norwegian Energy Company ASA & NOR-NO \\ 
-BW LPG Ltd. & BWLPG-NO \\ 
 Akastor ASA & AKA-NO \\ 
 Oceanteam ASA & OTS-NO \\ 
 ProSafe SE & PRS-NO \\ 
@@ -20,48 +15,32 @@ InterOil Exploration and Production ASA & IOX-NO \\
 Fred. Olsen Energy ASA & FOE-NO \\ 
 Solstad Farstad ASA & SOFF-NO \\ 
 Wentworth Resources Limited & WRL-NO \\ 
-EMAS Offshore Limited & EMAS-NO \\ 
 Songa Offshore SE & SONG-NO \\ 
 Sevan Marine ASA & SEVAN-NO \\ 
 Frontline Ltd. & FRO-NO \\ 
 Statoil ASA & STL-NO \\ 
 Siem Offshore AS & SIOFF-NO \\ 
-Panoro Energy ASA & PEN-NO \\ 
 Eidesvik Offshore ASA & EIOF-NO \\ 
 Petrolia SE & PDR-NO \\ 
-Borr Drilling Limited & BDRILL-NO \\ 
 Questerre Energy Corporation Class A & QEC-NO \\ 
-RAK Petroleum plc Class A & RAKP-NO \\ 
-Sevan Drilling Ltd. & SEVDR-NO \\ 
-Atlantic Petroleum P/F & ATLA.NOK-NO \\ 
-Aker Solutions ASA & AKSO-NO \\ 
-Aqualis ASA & AQUA-NO \\ 
 Bonheur ASA & BON-NO \\ 
 Archer Limited & ARCHER-NO \\ 
 FLEX LNG Ltd & FLNG-NO \\ 
 DNO ASA Class A & DNO-NO \\ 
 SeaBird Exploration Plc & SBX-NO \\ 
-Odfjell Drilling Ltd. & ODL-NO \\ 
 Reach Subsea ASA & REACH-NO \\ 
 DOF ASA & DOF-NO \\ 
-Ocean Yield ASA & OCY-NO \\ 
-Kvaerner ASA & KVAER-NO \\ 
 Havila Shipping ASA & HAVI-NO \\ 
-S.D. Standard Drilling PLC & SDSD-NO \\ 
 Polarcus Limited & PLCS-NO \\ 
 Intex Resources ASA & ITX-NO \\ 
 Borgestad ASA & BOR-NO \\ 
-Avocet Mining PLC & AVM-NO \\ 
-Borregaard ASA & BRG-NO \\ 
 Incus Investor ASA & INC-NO \\ 
 Norsk Hydro ASA & NHY-NO \\ 
 Yara International ASA & YAR-NO \\ 
 Norske Skogindustrier ASA & NSG-NO \\ 
 NEL ASA & NEL-NO \\ 
-Havyard Group ASA & HYARD-NO \\ 
 AKVA Group ASA & AKVA-NO \\ 
 Goodtech ASA Class A & GOD-NO \\ 
-Saferoad Holding ASA & SAFE-NO \\ 
 Byggma ASA & BMA-NO \\ 
 Kongsberg Gruppen ASA & KOG-NO \\ 
 Hexagon Composites ASA & HEX-NO \\ 
@@ -69,16 +48,10 @@ NRC Group ASA & NRC-NO \\
 TTS Group ASA & TTS-NO \\ 
 AF Gruppen ASA Class A & AFG-NO \\ 
 Veidekke ASA & VEI-NO \\ 
-Multiconsult AS & MULTI-NO \\ 
-Zalaris ASA & ZAL-NO \\ 
 TOMRA Systems ASA & TOM-NO \\ 
 Solvang ASA & SOLV-NO \\ 
 Belships ASA & BEL-NO \\ 
 Odfjell SE Class A & ODF-NO \\ 
 Odfjell SE Class B & ODFB-NO \\ 
-Treasure ASA & TRE-NO \\ 
 Wilh. Wilhelmsen Holding ASA Class A & WWI-NO \\ 
-Fjord1 ASA & FJORD-NO \\ 
 Jinhui Shipping & Transportation Ltd. & JIN-NO \\ 
-Wallenius Wilhelmsen Logistics ASA & WWL-NO \\ 
-American Shipping Company ASA & AMSC-NO \\ 

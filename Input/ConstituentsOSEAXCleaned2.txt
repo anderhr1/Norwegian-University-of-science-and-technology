@@ -1,8 +1,7 @@
-Team Tankers International Ltd. & TEAM-NO \\ 
+American Shipping Company ASA & AMSC-NO \\ 
 Norwegian Air Shuttle ASA & NAS-NO \\ 
 Wilson ASA & WILS-NO \\ 
 Wilh. Wilhelmsen Holding ASA Class B & WWIB-NO \\ 
-Golden Ocean Group Ltd & GOGL-NO \\ 
 Stolt-Nielsen Limited & SNI-NO \\ 
 NTS ASA & NTS-NO \\ 
 SAS AB & SAS.NOK-NO \\ 
@@ -10,12 +9,7 @@ GC Rieber Shipping ASA & RISH-NO \\
 Kongsberg Automotive Holding ASA & KOA-NO \\ 
 Ekornes ASA & EKO-NO \\ 
 Schibsted Asa Class A & SCHA-NO \\ 
-Gyldendal Norsk Forlag Asa & GYL-NO \\ 
 Polaris Media ASA & POL-NO \\ 
-Schibsted ASA Class B & SCHB-NO \\ 
-Europris ASA & EPR-NO \\ 
-XXL ASA & XXL-NO \\ 
-Kid ASA & KID-NO \\ 
 Orkla ASA & ORK-NO \\ 
 Austevoll Seafood ASA & AUSS-NO \\ 
 Marine Harvest ASA & MHG-NO \\ 
@@ -23,62 +17,41 @@ Scottish Salmon Company Plc & SSC-NO \\
 Grieg Seafood ASA & GSF-NO \\ 
 SalMar ASA & SALM-NO \\ 
 Leroy Seafood Group ASA & LSG-NO \\ 
-Norway Royal Salmon ASA & NRS-NO \\ 
-Bakkafrost P/F & BAKKA-NO \\ 
-Arcus ASA & ARCUS-NO \\ 
 Medistim ASA & MEDI-NO \\ 
 ContextVision AB & COV-NO \\ 
-BerGenBio AS & BGBIO-NO \\ 
-Nordic Nanovector ASA & NANO-NO \\ 
 Weifa ASA & WEIFA-NO \\ 
 Navamedic ASA & NAVA-NO \\ 
 Biotec Pharmacon ASA & BIOTEC-NO \\ 
-Targovax ASA & TRVX-NO \\ 
 Photocure ASA & PHO-NO \\ 
-Voss Veksel- og Landmandsbank ASA & VVL-NO \\ 
 DNB ASA & DNB-NO \\ 
 SpareBank 1 SR-Bank ASA & SRBANK-NO \\ 
-Pareto Bank ASA & PARB-NO \\ 
-Skandiabanken ASA & SKBN-NO \\ 
-Norwegian Finans Holding ASA & NOFI-NO \\ 
 Axactor AB & AXA-NO \\ 
-B2Holding ASA & B2H-NO \\ 
 ABG Sundal Collier Holding ASA & ASC-NO \\ 
 Aker ASA Class A & AKER-NO \\ 
-Gjensidige Forsikring ASA & GJF-NO \\ 
-Insr Insurance Group ASA & INSR-NO \\ 
 Protector Forsikring ASA & PROTCT-NO \\ 
 Storebrand ASA & STB-NO \\ 
 Bouvet ASA & BOUVET-NO \\ 
 Funcom NV & FUNCOM-NO \\ 
 EVRY ASA & EVRY-NO \\ 
 Atea ASA & ATEA-NO \\ 
-Cxense ASA & CXENSE-NO \\ 
 Gaming Innovation Group, Inc. & GIG-NO \\ 
 Itera ASA & ITE-NO \\ 
 Data Respons ASA & DAT-NO \\ 
 Apptix ASA & APP-NO \\ 
 Opera Software ASA & OPERA-NO \\ 
-Link Mobility Group ASA & LINK-NO \\ 
 Techstep ASA & TECH-NO \\ 
-Asetek A/S & ASETEK-NO \\ 
 IDEX ASA & IDEX-NO \\ 
 Thin Film Electronics ASA & THIN-NO \\ 
 Kitron ASA & KIT-NO \\ 
-Next Biometrics Group AS & NEXT-NO \\ 
 Q-Free ASA & QFR-NO \\ 
 StrongPoint ASA & STRONG-NO \\ 
 Hiddn Solutions ASA & HIDDN-NO \\ 
-Napatech A/S & NAPA-NO \\ 
 Nordic Semiconductor ASA & NOD-NO \\ 
 REC Silicon ASA & REC-NO \\ 
 Telenor ASA & TEL-NO \\ 
 NextGenTel Holding ASA & NGT-NO \\ 
-Scatec Solar ASA & SSO-NO \\ 
 Arendals Fossekompani ASA & AFK-NO \\ 
-Entra ASA & ENTRA-NO \\ 
 Olav Thon Eiendomsselskap ASA & OLT-NO \\ 
 Solon Eiendom ASA & SOLON-NO \\ 
-Selvaag Bolig ASA & SBO-NO \\ 
 Storm Real Estate ASA & STORM-NO \\ 
 Norwegian Property ASA & NPRO-NO \\ 
