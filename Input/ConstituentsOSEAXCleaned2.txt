@@ -1,57 +1,57 @@
-American Shipping Company ASA & AMSC-NO \\ 
-Norwegian Air Shuttle ASA & NAS-NO \\ 
-Wilson ASA & WILS-NO \\ 
-Wilh. Wilhelmsen Holding ASA Class B & WWIB-NO \\ 
-Stolt-Nielsen Limited & SNI-NO \\ 
-NTS ASA & NTS-NO \\ 
-SAS AB & SAS.NOK-NO \\ 
-GC Rieber Shipping ASA & RISH-NO \\ 
-Kongsberg Automotive Holding ASA & KOA-NO \\ 
-Ekornes ASA & EKO-NO \\ 
-Schibsted Asa Class A & SCHA-NO \\ 
-Polaris Media ASA & POL-NO \\ 
-Orkla ASA & ORK-NO \\ 
-Austevoll Seafood ASA & AUSS-NO \\ 
-Marine Harvest ASA & MHG-NO \\ 
-Scottish Salmon Company Plc & SSC-NO \\ 
-Grieg Seafood ASA & GSF-NO \\ 
-SalMar ASA & SALM-NO \\ 
-Leroy Seafood Group ASA & LSG-NO \\ 
-Medistim ASA & MEDI-NO \\ 
-ContextVision AB & COV-NO \\ 
-Weifa ASA & WEIFA-NO \\ 
-Navamedic ASA & NAVA-NO \\ 
-Biotec Pharmacon ASA & BIOTEC-NO \\ 
-Photocure ASA & PHO-NO \\ 
-DNB ASA & DNB-NO \\ 
-SpareBank 1 SR-Bank ASA & SRBANK-NO \\ 
-Axactor AB & AXA-NO \\ 
-ABG Sundal Collier Holding ASA & ASC-NO \\ 
-Aker ASA Class A & AKER-NO \\ 
-Protector Forsikring ASA & PROTCT-NO \\ 
-Storebrand ASA & STB-NO \\ 
-Bouvet ASA & BOUVET-NO \\ 
-Funcom NV & FUNCOM-NO \\ 
-EVRY ASA & EVRY-NO \\ 
-Atea ASA & ATEA-NO \\ 
-Gaming Innovation Group, Inc. & GIG-NO \\ 
-Itera ASA & ITE-NO \\ 
-Data Respons ASA & DAT-NO \\ 
-Apptix ASA & APP-NO \\ 
-Opera Software ASA & OPERA-NO \\ 
-Techstep ASA & TECH-NO \\ 
-IDEX ASA & IDEX-NO \\ 
-Thin Film Electronics ASA & THIN-NO \\ 
-Kitron ASA & KIT-NO \\ 
-Q-Free ASA & QFR-NO \\ 
-StrongPoint ASA & STRONG-NO \\ 
-Hiddn Solutions ASA & HIDDN-NO \\ 
-Nordic Semiconductor ASA & NOD-NO \\ 
-REC Silicon ASA & REC-NO \\ 
-Telenor ASA & TEL-NO \\ 
-NextGenTel Holding ASA & NGT-NO \\ 
-Arendals Fossekompani ASA & AFK-NO \\ 
-Olav Thon Eiendomsselskap ASA & OLT-NO \\ 
-Solon Eiendom ASA & SOLON-NO \\ 
-Storm Real Estate ASA & STORM-NO \\ 
-Norwegian Property ASA & NPRO-NO \\ 
+American Shipping Company ASA \\ 
+Norwegian Air Shuttle ASA \\ 
+Wilson ASA \\ 
+Wilh. Wilhelmsen Holding ASA Class B \\ 
+Stolt-Nielsen Limited \\ 
+NTS ASA \\ 
+SAS AB \\ 
+GC Rieber Shipping ASA \\ 
+Kongsberg Automotive Holding ASA \\ 
+Ekornes ASA \\ 
+Schibsted Asa Class A \\ 
+Polaris Media ASA \\ 
+Orkla ASA \\ 
+Austevoll Seafood ASA \\ 
+Marine Harvest ASA \\ 
+Scottish Salmon Company Plc \\ 
+Grieg Seafood ASA \\ 
+SalMar ASA \\ 
+Leroy Seafood Group ASA \\ 
+Medistim ASA \\ 
+ContextVision AB \\ 
+Weifa ASA \\ 
+Navamedic ASA \\ 
+Biotec Pharmacon ASA \\ 
+Photocure ASA \\ 
+DNB ASA \\ 
+SpareBank 1 SR-Bank ASA \\ 
+Axactor AB \\ 
+ABG Sundal Collier Holding ASA \\ 
+Aker ASA Class A \\ 
+Protector Forsikring ASA \\ 
+Storebrand ASA \\ 
+Bouvet ASA \\ 
+Funcom NV \\ 
+EVRY ASA \\ 
+Atea ASA \\ 
+Gaming Innovation Group, Inc. \\ 
+Itera ASA \\ 
+Data Respons ASA \\ 
+Apptix ASA \\ 
+Opera Software ASA \\ 
+Techstep ASA \\ 
+IDEX ASA \\ 
+Thin Film Electronics ASA \\ 
+Kitron ASA \\ 
+Q-Free ASA \\ 
+StrongPoint ASA \\ 
+Hiddn Solutions ASA \\ 
+Nordic Semiconductor ASA \\ 
+REC Silicon ASA \\ 
+Telenor ASA \\ 
+NextGenTel Holding ASA \\ 
+Arendals Fossekompani ASA \\ 
+Olav Thon Eiendomsselskap ASA \\ 
+Solon Eiendom ASA \\ 
+Storm Real Estate ASA \\ 
+Norwegian Property ASA \\ 

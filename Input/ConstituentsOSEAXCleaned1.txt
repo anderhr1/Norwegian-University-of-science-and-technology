@@ -1,57 +1,57 @@
-﻿Spectrum ASA & SPU-NO \\ 
-Bergen Group ASA & BERGEN-NO \\ 
-Aker BP ASA & AKERBP-NO \\ 
-ElectroMagnetic GeoServices ASA & EMGS-NO \\ 
-Petroleum Geo-Services ASA & PGS-NO \\ 
-BW Offshore Limited & BWO-NO \\ 
-Seadrill Ltd. & SDRL-NO \\ 
-Norwegian Energy Company ASA & NOR-NO \\ 
-Akastor ASA & AKA-NO \\ 
-Oceanteam ASA & OTS-NO \\ 
-ProSafe SE & PRS-NO \\ 
-Subsea 7 S.A. & SUBC-NO \\ 
-TGS-NOPEC Geophysical Company ASA & TGS-NO \\ 
-InterOil Exploration and Production ASA & IOX-NO \\ 
-Fred. Olsen Energy ASA & FOE-NO \\ 
-Solstad Farstad ASA & SOFF-NO \\ 
-Wentworth Resources Limited & WRL-NO \\ 
-Songa Offshore SE & SONG-NO \\ 
-Sevan Marine ASA & SEVAN-NO \\ 
-Frontline Ltd. & FRO-NO \\ 
-Statoil ASA & STL-NO \\ 
-Siem Offshore AS & SIOFF-NO \\ 
-Eidesvik Offshore ASA & EIOF-NO \\ 
-Petrolia SE & PDR-NO \\ 
-Questerre Energy Corporation Class A & QEC-NO \\ 
-Bonheur ASA & BON-NO \\ 
-Archer Limited & ARCHER-NO \\ 
-FLEX LNG Ltd & FLNG-NO \\ 
-DNO ASA Class A & DNO-NO \\ 
-SeaBird Exploration Plc & SBX-NO \\ 
-Reach Subsea ASA & REACH-NO \\ 
-DOF ASA & DOF-NO \\ 
-Havila Shipping ASA & HAVI-NO \\ 
-Polarcus Limited & PLCS-NO \\ 
-Intex Resources ASA & ITX-NO \\ 
-Borgestad ASA & BOR-NO \\ 
-Incus Investor ASA & INC-NO \\ 
-Norsk Hydro ASA & NHY-NO \\ 
-Yara International ASA & YAR-NO \\ 
-Norske Skogindustrier ASA & NSG-NO \\ 
-NEL ASA & NEL-NO \\ 
-AKVA Group ASA & AKVA-NO \\ 
-Goodtech ASA Class A & GOD-NO \\ 
-Byggma ASA & BMA-NO \\ 
-Kongsberg Gruppen ASA & KOG-NO \\ 
-Hexagon Composites ASA & HEX-NO \\ 
-NRC Group ASA & NRC-NO \\ 
-TTS Group ASA & TTS-NO \\ 
-AF Gruppen ASA Class A & AFG-NO \\ 
-Veidekke ASA & VEI-NO \\ 
-TOMRA Systems ASA & TOM-NO \\ 
-Solvang ASA & SOLV-NO \\ 
-Belships ASA & BEL-NO \\ 
-Odfjell SE Class A & ODF-NO \\ 
-Odfjell SE Class B & ODFB-NO \\ 
-Wilh. Wilhelmsen Holding ASA Class A & WWI-NO \\ 
-Jinhui Shipping & Transportation Ltd. & JIN-NO \\ 
+﻿Spectrum ASA \\ 
+Bergen Group ASA \\ 
+Aker BP ASA \\ 
+ElectroMagnetic GeoServices ASA \\ 
+Petroleum Geo-Services ASA \\ 
+BW Offshore Limited \\ 
+Seadrill Ltd. \\ 
+Norwegian Energy Company ASA \\ 
+Akastor ASA \\ 
+Oceanteam ASA \\ 
+ProSafe SE \\ 
+Subsea 7 S.A. \\ 
+TGS-NOPEC Geophysical Company ASA \\ 
+InterOil Exploration and Production ASA \\ 
+Fred. Olsen Energy ASA \\ 
+Solstad Farstad ASA \\ 
+Wentworth Resources Limited \\ 
+Songa Offshore SE \\ 
+Sevan Marine ASA \\ 
+Frontline Ltd. \\ 
+Statoil ASA \\ 
+Siem Offshore AS \\ 
+Eidesvik Offshore ASA \\ 
+Petrolia SE \\ 
+Questerre Energy Corporation Class A \\ 
+Bonheur ASA \\ 
+Archer Limited \\ 
+FLEX LNG Ltd \\ 
+DNO ASA Class A \\ 
+SeaBird Exploration Plc \\ 
+Reach Subsea ASA \\ 
+DOF ASA \\ 
+Havila Shipping ASA \\ 
+Polarcus Limited \\ 
+Intex Resources ASA \\ 
+Borgestad ASA \\ 
+Incus Investor ASA \\ 
+Norsk Hydro ASA \\ 
+Yara International ASA \\ 
+Norske Skogindustrier ASA \\ 
+NEL ASA \\ 
+AKVA Group ASA \\ 
+Goodtech ASA Class A \\ 
+Byggma ASA \\ 
+Kongsberg Gruppen ASA \\ 
+Hexagon Composites ASA \\ 
+NRC Group ASA \\ 
+TTS Group ASA \\ 
+AF Gruppen ASA Class A \\ 
+Veidekke ASA \\ 
+TOMRA Systems ASA \\ 
+Solvang ASA \\ 
+Belships ASA \\ 
+Odfjell SE Class A \\ 
+Odfjell SE Class B \\ 
+Wilh. Wilhelmsen Holding ASA Class A \\ 
+Jinhui Shipping & Transportation Ltd. \\ 
