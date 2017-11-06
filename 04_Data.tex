@@ -1,1 +1,34 @@
+
+
 \chapter{Data}
+
+This study uses daily closing prices for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu (2009), which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents index is 168 before cleaning and <number> after cleaning.
+
+This paper will use continuously compounded returns, $r_c$, defined as: 
+    \begin{align} 
+        e^{r_{c,t} &= \frac{s_{t}}{s_{t-1}}} \\
+        r_c &= ln\frac{s_{t}}{s_{t-1}}
+    \end{align}
+    
+\newpage
+    
+\begin{table}[!htb]
+    \caption{Constituents of OSEAX}
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \caption{}
+        \begin{tabular}{ll}
+        \thead{\textbf{Company Name}} & \thead{\textbf{Ticker}} \\
+            \input{Input/ConstituentsOSEAX.txt}
+        \end{tabular}
+    \end{subtable}%
+    \begin{subtable}{.5\linewidth}
+      \centering
+        \caption{}
+        \begin{tabular}{ll}
+            \thead{\textbf{Company Name}} & \thead{\textbf{Ticker}} \\
+                \input{Input/ConstituentsOSEAXCleaned.txt}
+        \end{tabular}
+    \end{subtable} 
+\end{table}
+
