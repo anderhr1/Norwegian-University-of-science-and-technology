@@ -1,56 +1,84 @@
-ABG Sundal Collier Holding ASA & AF Gruppen ASA Class A & Akastor ASA \\ 
-Aker ASA Class A & Aker BP ASA & Aker Solutions ASA \\ 
-AKVA Group ASA & American Shipping Company ASA & Apptix ASA \\ 
-Aqualis ASA & Archer Limited & Arcus ASA \\ 
-Arendals Fossekompani ASA & Asetek A/S & Atea ASA \\ 
-Atlantic Petroleum P/F & Austevoll Seafood ASA & Avance Gas Holding Ltd. \\ 
-Avocet Mining PLC & Axactor AB & B2Holding ASA \\ 
-Bakkafrost P/F & Belships ASA & Bergen Group ASA \\ 
-BerGenBio AS & Biotec Pharmacon ASA & Bonheur ASA \\ 
-Borgestad ASA & Borr Drilling Limited & Borregaard ASA \\ 
-Bouvet ASA & BW LPG Ltd. & BW Offshore Limited \\ 
-Byggma ASA & ContextVision AB & Cxense ASA \\ 
-Data Respons ASA & DNB ASA & DNO ASA Class A \\ 
-DOF ASA & Eidesvik Offshore ASA & Ekornes ASA \\ 
-ElectroMagnetic GeoServices ASA & EMAS Offshore Limited & Entra ASA \\ 
-Europris ASA & EVRY ASA & Fjord1 ASA \\ 
-FLEX LNG Ltd & Fred. Olsen Energy ASA & Frontline Ltd. \\ 
-Funcom NV & Gaming Innovation Group, Inc. & GC Rieber Shipping ASA \\ 
-Gjensidige Forsikring ASA & Golden Ocean Group Ltd & Goodtech ASA Class A \\ 
-Grieg Seafood ASA & Gyldendal Norsk Forlag Asa & Havila Shipping ASA \\ 
-Havyard Group ASA & Hexagon Composites ASA & Hiddn Solutions ASA \\ 
-Hoegh LNG Holdings Ltd. & I.M. Skaugen SE & IDEX ASA \\ 
-Incus Investor ASA & Insr Insurance Group ASA & InterOil Exploration and Production ASA \\ 
-Intex Resources ASA & Itera ASA & Jinhui Shipping & Transportation Ltd. \\ 
-Kid ASA & Kitron ASA & Kongsberg Automotive Holding ASA \\ 
-Kongsberg Gruppen ASA & Kvaerner ASA & Leroy Seafood Group ASA \\ 
-Link Mobility Group ASA & Marine Harvest ASA & Medistim ASA \\ 
-Multiconsult AS & Napatech A/S & Navamedic ASA \\ 
-NEL ASA & Next Biometrics Group AS & NextGenTel Holding ASA \\ 
-Nordic Nanovector ASA & Nordic Semiconductor ASA & Norsk Hydro ASA \\ 
-Norske Skogindustrier ASA & Norway Royal Salmon ASA & Norwegian Air Shuttle ASA \\ 
-Norwegian Energy Company ASA & Norwegian Finans Holding ASA & Norwegian Property ASA \\ 
-NRC Group ASA & NTS ASA & Ocean Yield ASA \\ 
-Oceanteam ASA & Odfjell Drilling Ltd. & Odfjell SE Class A \\ 
-Odfjell SE Class B & Olav Thon Eiendomsselskap ASA & Opera Software ASA \\ 
-Orkla ASA & Panoro Energy ASA & Pareto Bank ASA \\ 
-Petroleum Geo-Services ASA & Petrolia SE & Photocure ASA \\ 
-Polarcus Limited & Polaris Media ASA & ProSafe SE \\ 
-Protector Forsikring ASA & Q-Free ASA & Questerre Energy Corporation Class A \\ 
-RAK Petroleum plc Class A & Reach Subsea ASA & REC Silicon ASA \\ 
-S.D. Standard Drilling PLC & Saferoad Holding ASA & SalMar ASA \\ 
-SAS AB & Scatec Solar ASA & Schibsted Asa Class A \\ 
-Schibsted ASA Class B & Scottish Salmon Company Plc & SeaBird Exploration Plc \\ 
-Seadrill Ltd. & Selvaag Bolig ASA & Sevan Drilling Ltd. \\ 
-Sevan Marine ASA & Siem Offshore AS & Skandiabanken ASA \\ 
-Solon Eiendom ASA & Solstad Farstad ASA & Solvang ASA \\ 
-Songa Offshore SE & SpareBank 1 SR-Bank ASA & Spectrum ASA \\ 
-Statoil ASA & Stolt-Nielsen Limited & Storebrand ASA \\ 
-Storm Real Estate ASA & StrongPoint ASA & Subsea 7 S.A. \\ 
-Tanker Investments Ltd. & Targovax ASA & Team Tankers International Ltd. \\ 
-Techstep ASA & Telenor ASA & TGS-NOPEC Geophysical Company ASA \\ 
-Thin Film Electronics ASA & TOMRA Systems ASA & Treasure ASA \\ 
-TTS Group ASA & Veidekke ASA & Voss Veksel- og Landmandsbank ASA \\ 
-Wallenius Wilhelmsen Logistics ASA & Weifa ASA & Wentworth Resources Limited \\ 
-Wilh. Wilhelmsen Holding ASA Class A & Wilh. Wilhelmsen Holding ASA Class B & Wilson ASA \\ 
-XXL ASA & Yara International ASA & Zalaris ASA \\ 
+ABG Sundal Collier Holding ASA & AF Gruppen ASA Class A \\ 
+Akastor ASA & Aker ASA Class A \\ 
+Aker BP ASA & Aker Solutions ASA \\ 
+AKVA Group ASA & American Shipping Company ASA \\ 
+Apptix ASA & Aqualis ASA \\ 
+Archer Limited & Arcus ASA \\ 
+Arendals Fossekompani ASA & Asetek A/S \\ 
+Atea ASA & Atlantic Petroleum P/F \\ 
+Austevoll Seafood ASA & Avance Gas Holding Ltd. \\ 
+Avocet Mining PLC & Axactor AB \\ 
+B2Holding ASA & Bakkafrost P/F \\ 
+Belships ASA & Bergen Group ASA \\ 
+BerGenBio AS & Biotec Pharmacon ASA \\ 
+Bonheur ASA & Borgestad ASA \\ 
+Borr Drilling Limited & Borregaard ASA \\ 
+Bouvet ASA & BW LPG Ltd. \\ 
+BW Offshore Limited & Byggma ASA \\ 
+ContextVision AB & Cxense ASA \\ 
+Data Respons ASA & DNB ASA \\ 
+DNO ASA Class A & DOF ASA \\ 
+Eidesvik Offshore ASA & Ekornes ASA \\ 
+ElectroMagnetic GeoServices ASA & EMAS Offshore Limited \\ 
+Entra ASA & Europris ASA \\ 
+EVRY ASA & Fjord1 ASA \\ 
+FLEX LNG Ltd & Fred. Olsen Energy ASA \\ 
+Frontline Ltd. & Funcom NV \\ 
+Gaming Innovation Group, Inc. & GC Rieber Shipping ASA \\ 
+Gjensidige Forsikring ASA & Golden Ocean Group Ltd \\ 
+Goodtech ASA Class A & Grieg Seafood ASA \\ 
+Gyldendal Norsk Forlag Asa & Havila Shipping ASA \\ 
+Havyard Group ASA & Hexagon Composites ASA \\ 
+Hiddn Solutions ASA & Hoegh LNG Holdings Ltd. \\ 
+I.M. Skaugen SE & IDEX ASA \\ 
+Incus Investor ASA & Insr Insurance Group ASA \\ 
+InterOil Exploration and Production ASA & Intex Resources ASA \\ 
+Itera ASA & Jinhui Shipping and Transportation Ltd. \\ 
+Kid ASA & Kitron ASA \\ 
+Kongsberg Automotive Holding ASA & Kongsberg Gruppen ASA \\ 
+Kvaerner ASA & Leroy Seafood Group ASA \\ 
+Link Mobility Group ASA & Marine Harvest ASA \\ 
+Medistim ASA & Multiconsult AS \\ 
+Napatech A/S & Navamedic ASA \\ 
+NEL ASA & Next Biometrics Group AS \\ 
+NextGenTel Holding ASA & Nordic Nanovector ASA \\ 
+Nordic Semiconductor ASA & Norsk Hydro ASA \\ 
+Norske Skogindustrier ASA & Norway Royal Salmon ASA \\ 
+Norwegian Air Shuttle ASA & Norwegian Energy Company ASA \\ 
+Norwegian Finans Holding ASA & Norwegian Property ASA \\ 
+NRC Group ASA & NTS ASA \\ 
+Ocean Yield ASA & Oceanteam ASA \\ 
+Odfjell Drilling Ltd. & Odfjell SE Class A \\ 
+Odfjell SE Class B & Olav Thon Eiendomsselskap ASA \\ 
+Opera Software ASA & Orkla ASA \\ 
+Panoro Energy ASA & Pareto Bank ASA \\ 
+Petroleum Geo-Services ASA & Petrolia SE \\ 
+Photocure ASA & Polarcus Limited \\ 
+Polaris Media ASA & ProSafe SE \\ 
+Protector Forsikring ASA & Q-Free ASA \\ 
+Questerre Energy Corporation Class A & RAK Petroleum plc Class A \\ 
+Reach Subsea ASA & REC Silicon ASA \\ 
+S.D. Standard Drilling PLC & Saferoad Holding ASA \\ 
+SalMar ASA & SAS AB \\ 
+Scatec Solar ASA & Schibsted Asa Class A \\ 
+Schibsted ASA Class B & Scottish Salmon Company Plc \\ 
+SeaBird Exploration Plc & Seadrill Ltd. \\ 
+Selvaag Bolig ASA & Sevan Drilling Ltd. \\ 
+Sevan Marine ASA & Siem Offshore AS \\ 
+Skandiabanken ASA & Solon Eiendom ASA \\ 
+Solstad Farstad ASA & Solvang ASA \\ 
+Songa Offshore SE & SpareBank 1 SR-Bank ASA \\ 
+Spectrum ASA & Statoil ASA \\ 
+Stolt-Nielsen Limited & Storebrand ASA \\ 
+Storm Real Estate ASA & StrongPoint ASA \\ 
+Subsea 7 S.A. & Tanker Investments Ltd. \\ 
+Targovax ASA & Team Tankers International Ltd. \\ 
+Techstep ASA & Telenor ASA \\ 
+TGS-NOPEC Geophysical Company ASA & Thin Film Electronics ASA \\ 
+TOMRA Systems ASA & Treasure ASA \\ 
+TTS Group ASA & Veidekke ASA \\ 
+Voss Veksel- og Landmandsbank ASA & Wallenius Wilhelmsen Logistics ASA \\ 
+Weifa ASA & Wentworth Resources Limited \\ 
+Wilh. Wilhelmsen Holding ASA Class A & Wilh. Wilhelmsen Holding ASA Class B \\ 
+Wilson ASA & XXL ASA \\ 
+Yara International ASA & Zalaris ASA \\ 
