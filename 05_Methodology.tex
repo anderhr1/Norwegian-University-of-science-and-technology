@@ -40,7 +40,7 @@ where $\tau$ is the current period, $\Sigma$ is the total number of periods to i
 
 Having calculated the IV values for all the selected stocks, we segment them into X number of buckets, by increasing proportion of IV to total volatility.
 
-\section*{Build a return forecasting model} 
+\section*{Building a return forecasting model} 
 
 
 Financial returns are often modelled as auto-regressive moving average (ARMA) time series with random disturbances having conditional heteroscedastic variances. The conditional mean and conditional variance will change at every point in time because it depends on the history of returns up to that point. That is, we account for the dynamic properties of returns by regarding their distribution at any point in time as being conditional on all the information up to that point. The distribution of a return at time t regards all the past returns up to and including time $t-1$ as being non-stochastic. We denote the information set, which is the set containing all the past returns up to and including time $t-1$, by $I_{t-1}$. The information set contains all the prices and returns that we can observe, like the filtration set in continuous time. 

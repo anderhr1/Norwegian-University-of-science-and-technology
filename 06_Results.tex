@@ -11,34 +11,19 @@ Table I shows the results of the goodness of forecasts for the different models 
 for the corresponding forecast horizons. The main conclusions are two.
 
 
-\begin{figure}
-    \centering
-    \includegraphics{Pictures/cumret.png}
-    \caption{Example table of cumulative return}
-    \label{fig:my_label}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics{Pictures/cumretGraphs.png}
-    \caption{Example graphs of cumulative return}
-    \label{fig:my_label}
-\end{figure}
-
-
-
-
+\newpage
+%\begin{landscape}
 \begin{longtable}{|c|c||c|c||c|c||c|} 
 \caption{Forecast Stocks}
 \label{Forecast Stocks}\\
 \hline
-\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6}& \textbf{7} \\
+\textbf{Ticker} & \textbf{$r_{Buy and Hold}$} & \textbf{Hit Ratio} & \textbf{$r_{Short/Long}$} & \textbf{$\alpha$} & \textbf{Mean Forecast Error}& \textbf{Standard Dev of Forecast Error} \\
 \hline
 \endfirsthead
 \multicolumn{7}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6}& \textbf{7} \\
+\textbf{Ticker} & \textbf{$r_{Buy and Hold}$} & \textbf{Hit Ratio} & \textbf{$r_{Short/Long}$} & \textbf{$\alpha$} & \textbf{Mean Forecast Error}& \textbf{Standard Dev of Forecast Error} \\
 \hline
 \endhead
 \hline \multicolumn{7}{r}{\textit{Continued on next page}} \\
@@ -47,3 +32,4 @@ for the corresponding forecast horizons. The main conclusions are two.
 \endlastfoot
 \input{Input/ForecastsStocks.txt}
 \end{longtable}
+%\end{landscape}
