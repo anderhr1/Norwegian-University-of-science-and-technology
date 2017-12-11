@@ -3,7 +3,7 @@ Methodology should describe the estimation technique(s) used to compute estimate
 
 \chapter{Methodology}
 
-The methodology of this paper is structured with three main components. In the first part of the study, we calculate the idiosyncratic volatility (IV) for each of the selected companies by applying the \cite{famafrench} regression. We then segment the companies into two buckets by their proportion of IV to total volatility. By employing a rolling window we implement daily re-balancing of the buckets. We use a rolling window size of 250 days, the number of consecutive observation per rolling window. The forecast horizon is one day ahead and the number of increments between successive rolling windows is 1 day. The entire data set contains 2200 days. 
+The methodology of this paper is structured with three main components. In the first part of the study we calculate the idiosyncratic volatility (IV) for each of the selected companies by applying the \cite{famafrench} regression. We then segment the companies into X equally sized buckets by their proportion of IV to total volatility. By employing a rolling window we implement daily re-balancing of the buckets. We use a rolling window size of 250 days, the number of consecutive observation per rolling window. The forecast horizon is one day ahead and the number of increments between successive rolling windows is 1 day. The entire data set contains 2200 days. 
 
 Further, we build an ARMA-GARCH forecasting model, assigning the daily forecasting error of each company to its associated bucket. Lastly, we revise the goodness-of the forecasting by applying several different metrics of comparison.
 
@@ -38,7 +38,7 @@ Having run the regression, we calculate the idiosyncratic volatility of the stoc
 \end{align}
 where $\tau$ is the current period, $\Sigma$ is the total number of periods to iterate over and $IV_{i,\tau}$ is the idiosyncratic volatility of stock $i$ in period $\tau$.
 
-Having calculated the IV values for all the selected stocks, we segment them into X number of buckets, by increasing proportion of IV to total volatility.
+Having calculated the IV values for all the selected stocks, we segment them into X equally sized buckets, by increasing proportion of IV to total volatility.
 
 \section*{Building a return forecasting model} 
 
@@ -60,7 +60,7 @@ For modeling data series we used two common concepts of conditional mean: the au
 
 The AR process is given by:
 \begin{align}
-    r_{i,t}=c_i + \sum_{j=1}^x\kappa_j r_{i,t-j} + \epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
+    r_{i,t}=c_i + \sum_{j=1}^w\kappa_j r_{i,t-j} + \epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
 \end{align}
 where $\kappa_j$ is the lag parameter of the observed variable, $r_t$ is the random observed variable at time $t$ dending on the previously realized values of $r_{t-j}$, $c$ is the mean constant and $\epsilon_t$ the white noise.
 
@@ -72,7 +72,7 @@ where $\mu_j$ is the lag parameter of the observed variable, $r_t$ is the random
 
 The combination of both the AR-process and MA-process, gives us the ARMA process described by:
 \begin{align}
-    r_{i,t}=c_i+\sum_{j=1}^x\kappa_{i,j} r_{i,t-j}+\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}+\epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
+    r_{i,t}=c_i+\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}+\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}+\epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
 \end{align}
 
 \subsection*{The Conditional Variance Equation, GARCH($y,z$)}
@@ -110,11 +110,11 @@ Maximizing the ARMA likelihood reduces to the problem of maximizing:
 \end{align}
 with respect to all the parameters. To do this we solve the conditional mean equation (\ref{ConditionalMeanEquationARMA}) for $\epsilon_t$:
 \begin{align}
-     \epsilon_{i,t}=r_{i,t}-\sum_{j=1}^x\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i \label{ConditionalMeanEquationOnEpsilon}
+     \epsilon_{i,t}=r_{i,t}-\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i \label{ConditionalMeanEquationOnEpsilon}
 \end{align}
 Finally we insert the above equation (\ref{ConditionalMeanEquationOnEpsilonARMA}) and the conditional volatility equation (\ref{ConditionalVolatilityEquation}) into the maximum likelihood function (\ref{MaximumLikeARMA}):
 \begin{align} 
-    ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T\Bigg( ln(\sigma_i^2)+\Big(\frac{(r_{i,t}-\sum_{j=1}^x\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i)^2}{\sigma_i^2}\Big)\Bigg)  \label{fullMaximumLikeARMA}
+    ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T\Bigg( ln(\sigma_i^2)+\Big(\frac{(r_{i,t}-\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i)^2}{\sigma_i^2}\Big)\Bigg)  \label{fullMaximumLikeARMA}
 \end{align}
 
 \subsubsection{ARMA($w,x$) GARCH($y,z$)}
@@ -124,7 +124,7 @@ Maximizing the ARMA GARCH likelihood reduces to the problem of maximizing:
 \end{align}
 with respect to all the parameters. The conditional mean equation is solved on epsilon, just as in equation \ref{ConditionalMeanEquationOnEpsilon}. The equation is then inserted, together with the conditional volatility equation (\ref{ConditionalVolatilityEquation}), into the maximum likelihood function (\ref{MaximumLike}):
 \begin{align} 
-    ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T \Bigg(ln\Big(\omega_i + \sum_{j=1}^y\alpha_{i,j}\epsilon_{i,t-j}^2+\sum_{j=1}^z\beta_{i,j}\sigma_{i,t-j}^2\big)+\Big(\frac{(r_{i,t}-\sum_{j=1}^x\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i)^2}{\omega_i + \sum_{j=1}^y \alpha_{i,j} \epsilon_{i,t-j}^2 +\sum_{j=1}^z\beta_{i,j}\sigma_{i,t-j}^2}\Big)\Bigg)   \label{fullMaximumLike}
+    ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T \Bigg(ln\Big(\omega_i + \sum_{j=1}^y\alpha_{i,j}\epsilon_{i,t-j}^2+\sum_{j=1}^z\beta_{i,j}\sigma_{i,t-j}^2\big)+\Big(\frac{(r_{i,t}-\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i)^2}{\omega_i + \sum_{j=1}^y \alpha_{i,j} \epsilon_{i,t-j}^2 +\sum_{j=1}^z\beta_{i,j}\sigma_{i,t-j}^2}\Big)\Bigg)   \label{fullMaximumLike}
 \end{align}
 The parameter constraints are:
 \begin{align} 
@@ -150,11 +150,11 @@ The method implemented in this subsection is done for each stock, $i$, for every
 
 After the algorithm in the previous subsection is ran on the data, we obtain optimal values for all the parameters for each stock every day. To forecast the the one day ahead return, and hence test our out-of sample performance, we need to take the conditional expected return of the conditional mean equation (\ref{ConditionalMeanEquation}). The expected return at time $t$ for a given stock, $i$, is:
 \begin{align} 
-    E(r_{i,t})=c_i+\sum_{j=1}^x\kappa_{i,j} r_{i,t-j}+\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j} \label{ExpectedConditionalMean}
+    E(r_{i,t})=c_i+\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}+\sum_{j=1}^w\mu_{i,j} \epsilon_{i,t-j} \label{ExpectedConditionalMean}
 \end{align}
 The expectation of the error process, $\epsilon_t$, is assumed to be zero. The parameters obtained in the previous subsection is our best guess on what the parameters would be tomorrow. Hence, the optimal parameters at time $t$ is used to forecast the return at time $t+1$. Using equation \label{ExpectedConditionalMean}, our forecast at time $t$ for time $t+1$ for a given stock,$i$, is:
 \begin{align} 
-    E(r_{i,t+1})=c_i+\sum_{j=0}^x\kappa_{i,j} r_{i,t-j}+\sum_{j=0}^x\mu_{i,j} \epsilon_{i,t-j}
+    E(r_{i,t+1})=c_i+\sum_{j=0}^w\kappa_{i,j} r_{i,t-j}+\sum_{j=0}^x\mu_{i,j} \epsilon_{i,t-j}
 \end{align}
 
 \section*{Revise the goodness-of the forecasting}
@@ -164,7 +164,7 @@ Having run our forecasting model and produced a series of forecasting estimates,
 \end{align}
 where $\epsilon_{i,t}^{f}$ is the forecasting error, the difference between the forecasting estimate, $r_{i,t}^{e}$, and realized returns, $r_{i,t}^{r}$.
 
-We apply two separate metrics in order to assess the return forecasting accuracy: the root mean square error metric and a "long-short" metric. Firstly, we have the root mean square error metric, which is defined as:
+We apply two separate metrics in order to assess the return forecasting accuracy: the root mean square error metric and a sign metric. Firstly, we have the root mean square error metric, which is defined as:
 \begin{align}
     RMSE_{\tau} = \sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall \tau in \Sigma
 \end{align}
