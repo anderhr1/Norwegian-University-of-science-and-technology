@@ -14,24 +14,25 @@ for the corresponding forecast horizons. The main conclusions are two.
 
 
 \newpage
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \begin{landscape}
-\begin{longtable}{rrrrrrrrr} 
+\begin{longtable}{P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}} 
 \caption{Forecast Stocks}
 \label{Forecast Stocks}\\
 \hline
-\textbf{Ticker} &  \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$&  $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ &  $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$  \\
+\textbf{Ticker} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$ & $\boldsymbol{Sharp_{economic}} $ & $\boldsymbol{Sharp_{sign}}$ \\
 \hline
 \endfirsthead
-\multicolumn{9}{c}%
+\multicolumn{12}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{Ticker} &  \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$&  $\boldsymbol{\sigma_{economic}}$  & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ &  $\boldsymbol{\sigma_{sign}}$ &  $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$  \\
+\textbf{Ticker} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$ & $\boldsymbol{Sharp_{economic}} $ & $\boldsymbol{Sharp_{sign}}$ \\
 \hline
 \endhead
-\hline \multicolumn{9}{r}{\textit{Continued on next page}} \\
+\hline \multicolumn{12}{r}{\textit{Continued on next page}} \\
 \endfoot
 \hline
 \endlastfoot
-\input{Input/ForecastsStocks.txt}
+\input{Input/BucketTable.txt}
 \end{longtable}
 \end{landscape}
