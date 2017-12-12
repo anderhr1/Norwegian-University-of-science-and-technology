@@ -34,7 +34,7 @@ Regressions were run on the time series for each stock on each day starting at d
 Having run the regression, we calculate the idiosyncratic volatility of the stock for the period by the following formula:
  \begin{align}
     IV_{i,\tau} &= \sqrt{\sigma_{i,\tau}^{2} - cov(r_{i,\tau},r_{m,\tau}) - cov(r_{i,\tau},r_{SMB,\tau}) - cov(r_{i,\tau},r_{HML,\tau})}, \quad \forall \tau \in \Sigma \\
-    &= \sqrt{\sigma_{i,\tau} - \beta_{1,i,\tau} \sigma_{m,\tau}^{2}- \beta_{2,i,\tau} \sigma_{SMB,\tau}^{2}- \beta_{3,i,\tau} \sigma_{HML,\tau}^{2}}, \quad \forall \tau \in \Sigma
+    &= \sqrt{\sigma_{i,\tau}^2 - \beta_{1,i,\tau} \sigma_{m,\tau}^{2}- \beta_{2,i,\tau} \sigma_{SMB,\tau}^{2}- \beta_{3,i,\tau} \sigma_{HML,\tau}^{2}}, \quad \forall \tau \in \Sigma
 \end{align}
 where $\tau$ is the current period, $\Sigma$ is the total number of periods to iterate over and $IV_{i,\tau}$ is the idiosyncratic volatility of stock $i$ in period $\tau$.
 
