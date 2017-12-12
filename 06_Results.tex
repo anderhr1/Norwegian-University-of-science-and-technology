@@ -1,10 +1,16 @@
 The result section will usually be tabulated or graphed, and each table or figure should be described, noting any interesting features – whether expected or unexpected, and in particular, inferences should relate to the original aims and objectives of the research outlined in the introduction. Results should be discussed and analysed, not simply presented blandly. Comparisons should also be drawn with the results or similar existing studies if relevant – do your results confirm or contradict those of previous research? Each table or figure should be mentioned explicitly in the text. Do not include in the project any tables or figures which are not discussed in the text. It is also worth trying to present the results in as interesting and varied way as possible – for example, including figures and charts as well as just tables.
 
-\textbf{DUMMY TEXT}
-The in-sample and out-of-sample forecasting ability of the different linear and nonlinear models described above were assessed in terms of statistical accuracy and economic criteria. The analysis was based on one-step-ahead forecasting. Once each model had been estimated, we constructed the in-sample and out-of-sample forecasts without updating the parameters of the model that were
-obtained from the training set.
 
 \chapter{Results}
+The result section is structured in two parts. Firstly, we highlight the empirical relationship between idiosyncratic volatility of individual stocks and the resulting forecasting performance. Secondly, we pool companies in buckets by their IV percentage, and discuss the overall forecasting performance by assessing the portfolios overall return, sign ratio and respective Sharpe ratio.
+
+\section*{Relationship between idiosyncratic volatility of individual stocks and the resulting forecasting performance}
+
+Our analysis is based on one-step-ahead forecasting. Once the ARMA-GARCH parameters had been estimated, we constructed the out-of-sample forecasts for each company, without updating the parameters of the model that were
+obtained from the training set. The out-of-sample forecasting ability of our ARMA-GARCH forecasting model were then assessed in terms of statistical accuracy and economic criteria. 
+
+First, the results 
+
 
 Main points:
 
@@ -13,8 +19,7 @@ Få inn
     \item Graph 6.1: Vi ser en sammenehng mellom IV prosent og forecasting error. Det er altså vanskeligere å nøyaktig i størrelsesorden forutse høy IV-aksjer sin return. Dette er en pooled regression
     \item Vi bommer også mer på retning på høy IV stocks
     \item Men når vi treffer riktig retning, så er det på de store utslagene - som gjør at vi genererer positive alphaer, der alpha er definert som....
-    \item Høy korrelasjon mellom IV og volatilitet 
-    \item Ec. volatilitet har en høyere forklaringevne på alpha return enn bare IV isolert - det betyr at den systematiske risikoen som gjør at man kan forklare alpha.
+    \item Høy korrelasjon mellom IV og volatilitet - og det highlighter at vi genererer høy alpha fordi vi treffer på de store utslagene
 \end{itemize}
 
 \textbf{Table med regressjonsresultater - Alpha, beta, t-verdier, r sq.}
@@ -36,8 +41,14 @@ for the corresponding forecast horizons. The main conclusions are two.
     \label{visualization}
 \end{figure}
 
+\section*{Forecasting performance of buckets }
 
-
+\begin{itemize}
+    \item Nå har vi sett på sammenhengen mellom enkeltaksjers IV og forecasting performance
+    \item Nå ønsker vi å lage portføljer for å kaste lys over det samme problemet, nå med mer utjevnede forskjeller. 
+    \item Når IV øker, minker sign ration, men samtidig øker alphaen, fordi vi se volatiliteten øker
+    \item Kommentere sharpe ratione
+\end{itemize}
 
 
 
