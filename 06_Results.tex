@@ -2,19 +2,28 @@ The result section will usually be tabulated or graphed, and each table or figur
 
 
 \chapter{Results}
-The result section is structured in two parts. Firstly, we highlight the empirical relationship between idiosyncratic volatility of individual stocks and the resulting forecasting performance. Secondly, we pool companies in buckets by their IV percentage, and discuss the overall forecasting performance by assessing the portfolios overall return, sign ratio and respective Sharpe ratio.
+The result section is structured in two parts. Firstly, we highlight the empirical relationship between idiosyncratic volatility of individual stocks and the resulting forecasting performance. Secondly, we pool companies in buckets by their IV percentage, and discuss the overall forecasting performance by assessing the portfolios overall return, sign ratio and Sharpe ratio.
 
 \section*{Relationship between idiosyncratic volatility of individual stocks and forecasting performance}
 
-Our analysis is based on one-step-ahead forecasting. Once the ARMA-GARCH parameters had been estimated, we constructed the out-of-sample forecasts for each company, without updating the parameters of the model that were
-obtained from the training set. The out-of-sample forecasting ability of our ARMA-GARCH forecasting model were then assessed in terms of statistical accuracy and economic criteria. 
+Our analysis is based on one-step-ahead forecasting. We calculate the IV percentage daily, based on the last 250 days of data. Also, once the ARMA-GARCH parameters has been estimated, we construct the out-of-sample forecasts for each company, without updating the parameters of the model that were
+obtained from the training set. We then compare our forecast with the realized return to obtain the squared forecasting error. 
+
+Hence, in the figure below we can observe the relationship between the current IV percentage of a company and the realized daily forecasting error. There is strong indications of a positive relationship between the IV percentage and squared forecast error. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.7]{Plot/ScatterRegression.png}
+    \caption{Regression: IV to forecasting error}
+    \label{visualization}
+\end{figure}
 
 First, the results 
-
 
 Main points:
 
 Få inn 
+
 \begin{itemize}
     \item Graph 6.1: Vi ser en sammenehng mellom IV prosent og forecasting error. Det er altså vanskeligere å nøyaktig i størrelsesorden forutse høy IV-aksjer sin return. Dette er en pooled regression
     \item Vi bommer også mer på retning på høy IV stocks
@@ -29,19 +38,22 @@ for the corresponding forecast horizons. The main conclusions are two.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 1]{Plot/ScatterRegression.png}
+    \includegraphics[scale = 0.7]{Plot/IndividualStockRegressions.png}
     \caption{Regression: IV to forecasting error}
     \label{visualization}
 \end{figure}
 
 \begin{figure}[h]
     \centering
-    \includegraphics[height = 9 in , width = 5 in]{Plot/IndividualStockRegression.png}
+    \includegraphics[scale = 0.7]{Plot/IVvsEconomicVolatilityRegression.png}
     \caption{Regression: IV to forecasting error}
     \label{visualization}
 \end{figure}
 
-\section*{Forecasting performance on buckets pooled by IV}
+\newpage 
+
+\section*{Forecasting performance of buckets segmented by IV}
+
 
 \begin{itemize}
     \item Nå har vi sett på sammenhengen mellom enkeltaksjers IV og forecasting performance
@@ -78,3 +90,25 @@ for the corresponding forecast horizons. The main conclusions are two.
 
 
 
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+%\begin{landscape}
+\begin{longtable}{P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.6cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}} 
+\caption{Forecast Stocks}
+\label{Forecast Stocks}\\
+\hline
+\textbf{Bucket} &
+\hline
+\endfirsthead
+\multicolumn{12}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Bucket} & \textbf{IV }$\boldsymbol{\%}$ & 
+\hline
+\endhead
+\hline \multicolumn{12}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\input{Input/RegressionTable.txt}
+%\end{longtable}
+\end{landscape}
