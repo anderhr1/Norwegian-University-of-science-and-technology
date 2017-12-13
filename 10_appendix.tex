@@ -1,0 +1,93 @@
+\begin{appendices}
+
+\addcontentsline{toc}{section}{Appendix A: Indvidual Stock Results}
+\chapter*{Appendix A: Indvidual Stock Results} 
+
+
+\newpage
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\begin{landscape}
+\begin{longtable}{P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}P{1.7cm}} 
+\caption{Stocks Metrics: sorted by increasing average daily IV percentage}
+\label{Forecast Stocks}\\
+\hline
+\textbf{Ticker} & \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$  \\
+\hline
+\endfirsthead
+\multicolumn{10}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Ticker} & \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$  \\
+\hline
+\endhead
+\hline \multicolumn{10}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\input{Input/ForecastsStocks.txt}
+\end{longtable}
+\end{landscape}
+
+
+\addcontentsline{toc}{section}{Appendix B: Constituents of the OSEAX}
+\chapter*{Appendix B: Constituents of the OSEAX}
+
+\begin{longtable}{|c|c|} 
+\caption{Constituents of OSEAX}
+\label{ConstitutesOSEAX}\\
+\hline
+\textbf{Company Name} & \textbf{Company Name} \\
+\hline
+\endfirsthead
+\multicolumn{2}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Company Name} & \textbf{Company Name} \\
+\hline
+\endhead
+\hline \multicolumn{2}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\input{Input/ConstituentsOSEAX.txt}
+\end{longtable}
+
+\addcontentsline{toc}{section}{Appendix C: Portfolio returns}
+\chapter*{Appendix C: Graphs of portfolio returns} \label{appendix3}
+\newpage
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/BucketNumber1ReturnPlot.png}
+  \captionof{figure}{Portfolio 1}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/BucketNumber2ReturnPlot.png}
+  \captionof{figure}{Portfolio 2}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/BucketNumber3ReturnPlot.png}
+  \captionof{figure}{Portfolio 3}
+  \label{fig:test1}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/BucketNumber4ReturnPlot.png}
+  \captionof{figure}{Portfolio 4}
+  \label{fig:test2}
+\end{minipage}
+\end{figure}
+
+
+\end{appendices}
