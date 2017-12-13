@@ -9,6 +9,8 @@
 \usepackage{longtable}
 \usepackage{pdflscape}
 \usepackage{array}
+\usepackage[toc,page]{appendix}
+\usepackage{appendix}
 \titleformat{\chapter}{\huge}{\thechapter.}{20pt}{\huge}
 %%===================================
 %Write the various parts of your thesis as separate files and include them into the main file by the command \include{name of included file}. When you compile the LaTeX file, you may choose which subfiles to include by the command
@@ -35,15 +37,12 @@
 \include{09_References}
 % Include more chapters as required.
 %%=========================================
-\appendix
-\include{101_acronyms}
-\include{102_appendix}
+\include{10_appendix}
 % Include more appendices as required.
 %%=========================================
 \bibliographystyle{apa}
 \addcontentsline{toc}{chapter}{\bibname}
 \bibliography{refs}  
 %%=========================================
-
 
 \end{document}

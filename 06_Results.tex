@@ -1,114 +1,121 @@
-The result section will usually be tabulated or graphed, and each table or figure should be described, noting any interesting features – whether expected or unexpected, and in particular, inferences should relate to the original aims and objectives of the research outlined in the introduction. Results should be discussed and analysed, not simply presented blandly. Comparisons should also be drawn with the results or similar existing studies if relevant – do your results confirm or contradict those of previous research? Each table or figure should be mentioned explicitly in the text. Do not include in the project any tables or figures which are not discussed in the text. It is also worth trying to present the results in as interesting and varied way as possible – for example, including figures and charts as well as just tables.
-
-
 \chapter{Results}
-The result section is structured in two parts. Firstly, we highlight the empirical relationship between idiosyncratic volatility of individual stocks and the resulting forecasting performance. Secondly, we pool companies in buckets by their IV percentage, and discuss the overall forecasting performance by assessing the portfolios overall return, sign ratio and Sharpe ratio.
+The result section is structured in two parts. Firstly, we highlight the empirical relationship between daily idiosyncratic volatility of the individual stocks and the resulting forecasting performance. Secondly, we pool the stocks in four portfolios by their IV percentage, and then assess the forecasting performance of our defined portfolios.
 
-\section*{Relationship between idiosyncratic volatility of individual stocks and forecasting performance}
+\section*{Relationship between idiosyncratic volatility  and forecasting performance of individual stocks}
 
-Our analysis is based on one-step-ahead forecasting. We calculate the IV percentage daily, based on the last 250 days of data. Also, once the ARMA-GARCH parameters has been estimated, we construct the out-of-sample forecasts for each company, without updating the parameters of the model that were
-obtained from the training set. We then compare our forecast with the realized return to obtain the squared forecasting error. 
-
-Hence, in the figure below we can observe the relationship between the current IV percentage of a company and the realized daily forecasting error. There is strong indications of a positive relationship between the IV percentage and squared forecast error. 
+We commence our analysis by examining a pooled regression of the relationship between the daily IV percentage and the one-day-ahead squared forecast error for all the stocks over the whole period. Both these numbers are estimated based on the previous 250 days, over the whole period using a rolling-window. Therefore, we update the individual daily IV percentages daily, as well as estimate the ARMA-GARCH parameters and construct the one-day-ahead out-of-sample forecasts. Then, we compare the model's forecast with the realized return to obtain the squared forecasting error. Finally, we run the described pooled regression, visualized in figure \ref{Scatter regression}: 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 0.7]{Plot/ScatterRegression.png}
-    \caption{Regression: IV to forecasting error}
-    \label{visualization}
+    \includegraphics[scale = 0.5]{Plot/ScatterRegression.png}
+    \caption{Regression: daily IV on squared forecasting error}
+    \label{Scatter regression}
 \end{figure}
 
-First, the results 
+Figure \ref{Scatter regression} indicate the existence of a positive relationship between the daily IV percentage and squared forecast error. This implies that it is harder of predict the magnitude of tomorrows for stocks with a high daily IV percentage.
 
-Main points:
-
-Få inn 
-
-\begin{itemize}
-    \item Graph 6.1: Vi ser en sammenehng mellom IV prosent og forecasting error. Det er altså vanskeligere å nøyaktig i størrelsesorden forutse høy IV-aksjer sin return. Dette er en pooled regression
-    \item Vi bommer også mer på retning på høy IV stocks
-    \item Men når vi treffer riktig retning, så er det på de store utslagene - som gjør at vi genererer positive alphaer, der alpha er definert som....
-    \item Høy korrelasjon mellom IV og volatilitet - og det highlighter at vi genererer høy alpha fordi vi treffer på de store utslagene
-\end{itemize}
-
-\textbf{Table med regressjonsresultater - Alpha, beta, t-verdier, r sq.}
-
-Table I shows the results of the goodness of forecasts for the different models and time periods and
-for the corresponding forecast horizons. The main conclusions are two.
+Furthermore, we examine the relationship between the average daily IV percentage and the \textit{sign ratio}. The average daily IV percentage is the average of all daily IV percentages over the period.The sign ratio is and a statistical-directional metric, defined as the percentage of times our forecasting model predicts the correct direction of the one-day-ahead return. Running a regression on each stock's average daily IV percentage and its sign ratio, we obtain the following plot: 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 0.7]{Plot/IndividualStockRegressions.png}
-    \caption{Regression: IV to forecasting error}
-    \label{visualization}
+    \includegraphics[scale = 0.5]{Plot/IndividualStockRegression1.png}
+    \caption{Regression: average daily IV percentage on Sign error}
+    \label{IVSignError}
 \end{figure}
+
+Figure \ref{IVSignError} visually illustrate that it's harder to predict the direction of the one-day-ahead return for stocks with a high average daily IV percentage. From table \ref{Regression Stocks} we confirm this by observing that we have a significant $\beta$ at $-0.319$.
+
+So far the presented results have indicated that it is harder to predict the one-day-ahead return for stocks with a high average daily IV percentage, both in terms of magnitude and direction. Now, we wish to examine the profitability of following the predictions of our forecasting model. 
+
+Therefore, we run a regression on each stock’s average daily IV percentage on the alpha, defined as the difference $r_{sign}-r_{economic}$. This yields a rather surprising result.
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 0.7]{Plot/IVvsEconomicVolatilityRegression.png}
+    \includegraphics[scale = 0.5]{Plot/IndividualStockRegression2.png}
     \caption{Regression: IV to forecasting error}
-    \label{visualization}
+    \label{IVAlphaRegression}
 \end{figure}
-
-\newpage 
-
-\section*{Forecasting performance of buckets segmented by IV}
-
-
-\begin{itemize}
-    \item Nå har vi sett på sammenhengen mellom enkeltaksjers IV og forecasting performance
-    \item Nå ønsker vi å lage portføljer for å kaste lys over det samme problemet, nå med mer utjevnede forskjeller. 
-    \item Når IV øker, minker sign ration, men samtidig øker alphaen, fordi vi se volatiliteten øker
-    \item Kommentere sharpe ratione
-\end{itemize}
-
-
 
 \newpage
+
+Figure \ref{IVAlphaRegression} illustrates that following the sign strategy generates a positive alpha for a majority of the stocks in the sample. Moreover, Table \ref{Regression IndiStocks} confirms the positive relationship between the daily average IV percentage and the alpha, with a significant $\beta$ of $0.003$. 
+
+Figure \ref{IVtoVol}, shows the relationship between average daily IV percentage and economic standard deviation:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.5]{Plot/IVvsEconomicVolatilityRegression.png}
+    \caption{Regression: IV to forecasting error}
+    \label{IVtoVol}
+\end{figure}
+
+Here we can observe the positive correlation between a high daily IV percentage and economic standard deviation. This emphasizes that stocks with a high average daily IV percentage also tend to exhibit a higher volatility.  
+
+This leads to two preliminary interpretations: the forecasting performance for the one-day-ahead return in terms of direction or magnitude is worse for stocks with a high daily IV percentage. Also, the forecasting model generates positive alpha for these stocks. This can understood by the fact these stocks tend to exhibit a higher total volatility and the forecasting model seems to predict the bigger directional movements when volatility, and hence daily IV percentage, is greater.
+
+Table \ref{Regression Individual Stocks} below shows the results and parameters of the four regressions presented in this section:
+
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+%\begin{landscape}
+\begin{longtable}{P{2cm}P{2cm}P{2cm}P{2cm}P{2cm}P{2cm}P{2cm}} 
+\caption{Regression Individual Stocks}
+\label{Regression Individual Stocks}\\
+\hline
+\textbf{Figure} & \textbf{Observations} & \textbf{Adj. }$\boldsymbol{R^{2}}$ & \textbf{Intercept} & \textbf{P-Value} & \textbf{Beta} & \textbf{P-Value} \\
+\hline
+\endfirsthead
+\multicolumn{7}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Figure} & \textbf{Observations} & \textbf{Adj. }$\boldsymbol{R^{2}}$ & \textbf{Intercept} & \textbf{P-Value} & \textbf{Beta} & \textbf{P-Value} \\
+\hline
+\endhead
+\hline \multicolumn{7}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+\input{Input/RegressionTable.txt}
+\end{longtable}
+%\end{landscape}
+
+For more detailed results on the individual stocks, the reader is referenced to Appendix A.
+
+\section*{Forecasting performance of portfolios segmented by average daily IV percentage}
+
+In the previous section, we looked at the empirical relationship between individual stocks' daily IV proportion and forecasting performance. In this section, we pool stocks in four portfolios by their average daily IV percentage, and discuss the overall forecasting performance by assessing the portfolios return, sign ratio and Sharpe ratio. By pooling companies into portfolios we obtain diversification benefits, differences in the relationship between individual stocks' average daily IV proportion and their forecasting performance are evened out. As a result, using portfolios instead of individual stocks, we are able to identify a clearer relationship between IV proportion and forecasting performance. 
+
+Our findings are presented in Table \ref{Portfolio Metrics}. The first column denotes the portfolio number. The second column is the average daily IV percentage. Column three and four denotes the annualized economic return and the annualized standard deviation of the economic return, respectively. Column six denotes the sign ratio, and column seven and eight denotes the annualized sign return and the annualized standard deviation of the sign return, respectively. In column nine the annualized alpha is denoted. The mean of the daily forecast errors is denoted in column ten and the standard deviation of the daily forecast errors is denoted in column eleven. Finally, in column twelve and thirteen, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. The Sharpe ratio is defined as the excess return over the risk free rate, divided by the standard deviation.
+
+Our findings in Table \ref{Portfolio Metrics} shows that portfolios with higher average daily IV percentage has higher mean forecast error. Not only does it exist a positive relationship between average daily IV percentage and mean forecast error, the forecast errors also have higher standard deviations as the average daily IV percentage increases. Furthermore, as the average daily IV percentage increases, the sign ratio decreases. In other words, it seems harder to predict both the magnitude and direction of the one-day-ahead return for the portfolios with high average daily IV percentage. To, conclude, we have found a negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of magnitude and direction. 
+
+Despite the  negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of magnitude and direction, the annualized alpha increases as the average daily IV increases. Our findings suggest that portfolios with a higher average daily IV percentage also tend to have higher economic standard deviation. Hence, a reason for the increase in alpha, despite the negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of magnitude and direction , might be that it is easier for the forecasting model to predict the bigger directional movements when economic standard volatility, and hence average daily IV percentage, is greater. In other     words, when the forecasting model predicts the correct direction, the economic return is higher than when the model predicts wrong. Further, when the average daily IV percentage increases the difference between economic return on a correct prediction and economic return on a wrong prediction increases.
+
+Our findings also suggest that the annualized standard deviation of the sign return is less compared to the annualized standard deviation of the economic return, for all four portfolios. The difference between the annualized standard deviations are greater for portfolios with lower average daily IV percentage. 
+
+A greater annualized sign return combined with a lower annualized sign standard deviation, implies a Sharpe ratio that is greater than the Sharpe ratio of the annualized economic return. Taking into account that the forecasting model trades every stock in each portfolio every day and does not incorporate transaction costs, the annualized sign return, and hence the Sharpe ratio, is expected to be less than calculated in Table \ref{Portfolio Metrics}. See Appendix C for the development of the returns for each of the four portfolios. 
+
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \begin{landscape}
 \begin{longtable}{P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.6cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}} 
 \caption{Forecast Stocks}
-\label{Forecast Stocks}\\
+\label{Portfolio Metrics}\\
 \hline
-\textbf{Bucket} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
+\textbf{Portfolio} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
 \hline
 \endfirsthead
 \multicolumn{12}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{Bucket} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{\sigma_{forecast}}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
+\textbf{Portfolio} & \textbf{IV }$\boldsymbol{\%}$ & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
 \hline
 \endhead
 \hline \multicolumn{12}{r}{\textit{Continued on next page}} \\
 \endfoot
 \hline
 \endlastfoot
-\input{Input/BucketTable.txt}
+\input{Input/portfolioTable.txt}
 \end{longtable}
 \end{landscape}
 
 
 
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
-%\begin{landscape}
-\begin{longtable}{P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.6cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}} 
-\caption{Forecast Stocks}
-\label{Forecast Stocks}\\
-\hline
-\textbf{Bucket} &
-\hline
-\endfirsthead
-\multicolumn{12}{c}%
-{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
-\hline
-\textbf{Bucket} & \textbf{IV }$\boldsymbol{\%}$ & 
-\hline
-\endhead
-\hline \multicolumn{12}{r}{\textit{Continued on next page}} \\
-\endfoot
-\hline
-\endlastfoot
-\input{Input/RegressionTable.txt}
-%\end{longtable}
-\end{landscape}
