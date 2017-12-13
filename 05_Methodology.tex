@@ -1,20 +1,19 @@
-Methodology should describe the estimation technique(s) used to compute estimates of the parameters of the model or models. The models should be outlined and explained, using equation where appropriate. Again, description should be written critically noting any potential weaknesses in the approach and, if relevant, why more robust or up-to-date techniques were not employed. If the methodology employed does not require detailed descriptions, this section may usefully be combined with the data section. 
-
-
 \chapter{Methodology}
 
-The methodology of this paper is structured with three main components. In the first part of the study we calculate the idiosyncratic volatility (IV) for each of the selected companies by applying the \cite{famafrench} regression. We then segment the companies into X equally sized buckets by their proportion of IV to total volatility. By employing a rolling window we implement daily re-balancing of the buckets. We use a rolling window size of 250 days, the number of consecutive observation per rolling window. The forecast horizon is one day ahead and the number of increments between successive rolling windows is 1 day. The entire data set contains 2200 days. 
+The methodology of this paper is structured with four main components. In the first part of the study we calculate the daily idiosyncratic volatility (IV) for each of the selected stocks by applying the \cite{famafrench} regression, updating the estimate each day based on the last 250 days in a rolling window fashion. We do this for each day over the whole period.
 
-Further, we build an ARMA-GARCH forecasting model, assigning the daily forecasting error of each company to its associated bucket. Lastly, we revise the goodness-of the forecasting by applying several different metrics of comparison.
+Secondly, we segment the stocks into four equally sized portfolios by their proportion of daily IV to economic standard deviation (the standard deviation of the realized returns), which we denote as the daily IV percentage. We implement daily rebalancing of the portfolios.
 
-\section*{Calculate the idiosyncratic volatility (IV) for the companies on the OSEAX} 
+Thirdly, we build an ARMA-GARCH forecasting model. We estimate the ARMA-GARCH parameters for each stock each day based on the 250 days training set, and construct the one-day-ahead out-of-sample forecasts. We then roll the window one day forward. We compare the model’s one-day-ahead forecast with the realized return to obtain forecasting error. This is assigned to its associated portfolio and used for revising the forecasting model. 
 
-\subsection*{Regression based on the Fama french three factor model} For each company on the OSEAX, selected following the previously described criteria, we calculate the IV. We define the IV as the unexplained variance, after applying the Fama And French Three Factor Model. This model incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using this methodology we have the following multivariate linear regression:
+Lastly, we revise the goodness-of the forecasting by applying statistical and economical metrics of comparison, which will be described in further detail.
+
+\section*{Regression based on the Fama French three factor model} In order to calculate the IV of each stock, we use the Fama And French Three Factor Model regression. We define the IV as the unexplained variance after applying the regression. This model incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using this methodology we have the following multiple linear regression:
 \begin{align} 
     r_{i,t} - r_{f,t}= \alpha_{i,t} + \beta_{m,i,t}(r_{m,t} - r_{f,t}) + \beta_{SMB,i,t}r_{SMB,t} + \beta_{HML,i,t}r_{HML,t} + \epsilon_{i,t}, \quad  \forall i \in I \quad  \forall t \in T 
     \label{FFregression}
 \end{align}
-where $t$ indicates the day in the sample, $r_{i,t}$ is the daily realized return of the stock $i$, $r_{f,t}$ is the daily risk-free rate of Norwegian 10-years government bonds, $r_{m,t}$ is the daily return of the OSEAX, $r_{SMB,t}$ is the daily return of small cap stocks minus large cap stocks, $r_{HML,t}$ is the daily return of companies that have $\frac{B}{M}$ ratio above average minus the ones with the ratio below average, $\beta_{m,i,t}$, $\beta_{SMB,i,t}$ and $\beta_{HML,i,t}$ is the corresponding coefficients resulting from the regression and the regression error, $\epsilon_{i,t}$.
+where $t$ indicates the day in the sample period, $r_{i,t}$ is the daily realized return of the stock $i$, $r_{f,t}$ is defined as the daily risk-free rate of Norwegian 10-years government bonds, $r_{m,t}$ is the daily return of the OSEAX, $r_{SMB,t}$ is the daily return of small cap stocks minus large cap stocks, $r_{HML,t}$ is the daily return of stocks that have $\frac{B}{M}$ ratio above average minus the ones with the ratio below average. $\beta_{m,i,t}$, $\beta_{SMB,i,t}$ and $\beta_{HML,i,t}$ is the corresponding coefficients resulting from the regression and the regression error is $\epsilon_{i,t}$.
 
 More precisely, the $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ are defined as follows:
 \begin{align}
@@ -22,26 +21,23 @@ More precisely, the $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ are defined as follow
     r_{SMB,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s={\frac{N}{2}+1}}^{N} MC_{s,t}}, \quad  \forall t \in T \\
     r_{HML,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s=\frac{N}{2}+1}^{N} MC_{s,t}} \quad  \forall t \in T
 \end{align}
-where $N$ is the number of companies in the sample and $MC_{i,t}$ is the market capitalization of company $i$ at day $t$.
+where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the realized return and market capitalization of stock $i$ at day $t$, respectively. 
 
-The daily return of the market was obtained by weighting each of the XX stocks in the sample according to their market values. The excess daily market return was calculated as the difference between the return of the market and the converted daily rate of Norwegian 10-years government bonds. \cite{famafrench} methodology was used to calculate the daily returns of the SMB and HML portfolios. Lastly we have the dependent variable, the excess return of each stock in the sample, its return minus the risk-free rate.
+The daily return of the market was obtained by weighting each of the XX stocks in the sample according to their market values. The excess daily market return was calculated as the difference between the return of the market and the converted daily rate of Norwegian 10-years government bonds. \cite{famafrench} methodology was used to calculate the daily returns of the SMB and HML portfolios.
 
-Regressions were run on the time series for each stock on each day starting at day equal to the rolling window size, in accordance to  (\ref{FFregression}). 
-\\\\
-\textbf{TBD Stationarity assumption: } We assume that the log return time series are stationary.
+The regression where run on the return series for each stock on each day starting at day equal to the rolling window size, 250, in accordance to (\ref{FFregression}). 
 
-\subsection*{Calculating the IV and segmentation of stocks}
-Having run the regression, we calculate the idiosyncratic volatility of the stock for the period by the following formula:
+\section*{Calculating the IV and segmentation of stocks}
+Having run the regression for a stock on a given day, we calculate the daily IV of the stock by the following formula:
  \begin{align}
-    IV_{i,\tau} &= \sqrt{\sigma_{i,\tau}^{2} - cov(r_{i,\tau},r_{m,\tau}) - cov(r_{i,\tau},r_{SMB,\tau}) - cov(r_{i,\tau},r_{HML,\tau})}, \quad \forall \tau \in \Sigma \\
-    &= \sqrt{\sigma_{i,\tau}^2 - \beta_{1,i,\tau} \sigma_{m,\tau}^{2}- \beta_{2,i,\tau} \sigma_{SMB,\tau}^{2}- \beta_{3,i,\tau} \sigma_{HML,\tau}^{2}}, \quad \forall \tau \in \Sigma
+    IV_{i,t} &= \sqrt{\sigma_{i,t}^{2} - cov(r_{i,t},r_{m,t}) - cov(r_{i,t},r_{SMB,t}) - cov(r_{i,t},r_{HML,t})}, \quad \forall t \in T \\
+    &= \sqrt{\sigma_{i,t}^2 - \beta_{1,i,t} \sigma_{m,t}^{2}- \beta_{2,i,t} \sigma_{SMB,t}^{2}- \beta_{3,i,t} \sigma_{HML,t}^{2}}, \quad \forall t \in T
 \end{align}
-where $\tau$ is the current period, $\Sigma$ is the total number of periods to iterate over and $IV_{i,\tau}$ is the idiosyncratic volatility of stock $i$ in period $\tau$.
+where $t$ is the current period, T is the number of days the rolling window rund over and $IV_{i,t}$ is the idiosyncratic volatility of stock $i$ in period $t$.
 
-Having calculated the IV values for all the selected stocks, we segment them into X equally sized buckets, by increasing proportion of IV to total volatility.
+Having estimated the daily IV values for all the selected stocks, we calculate the daily IV percentage, and segment the stocks into four equally sized portfolios, by increasing proportion of daily IV percentage. We implement daily rebalancing of the buckets, and weight the stocks equally. 
 
-\section*{Building a return forecasting model} 
-
+\section*{Building the forecasting model: ARMA($w,x$)-GARCH($y,z$)} 
 
 Financial returns are often modelled as auto-regressive moving average (ARMA) time series with random disturbances having conditional heteroscedastic variances. The conditional mean and conditional variance will change at every point in time because it depends on the history of returns up to that point. That is, we account for the dynamic properties of returns by regarding their distribution at any point in time as being conditional on all the information up to that point. The distribution of a return at time t regards all the past returns up to and including time $t-1$ as being non-stochastic. We denote the information set, which is the set containing all the past returns up to and including time $t-1$, by $I_{t-1}$. The information set contains all the prices and returns that we can observe, like the filtration set in continuous time. 
 
@@ -85,7 +81,7 @@ The GARCH($y$,$z$) has the conditional volatility equation given by:
     \sigma_{i,t^2} &= \omega_i + \sum_{j=1}^y\alpha_{i,j}\epsilon_{i,t-j}^2+\sum_{j=1}^z\beta_{i,j}\sigma_{i,t-j}^2,\quad\epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalVolatilityEquation}
 \end{align}
 
-The GARCH error parameter $\alpha$ measures the reaction of conditional volatility to market shocks. When $\alpha$ is realtively large, above 0.1, the volatility is very sensitive to market events.
+The GARCH error parameter $\alpha$ measures the reaction of conditional volatility to market shocks. When $\alpha$ is relatively large, above 0.1, the volatility is very sensitive to market events.
 
 The GARCH lag parameter $\beta$ measures the persistence in conditional volatility irrespective of anything happening in the market. When $\beta$ is relatively large, above 0.9, then volatility takes a long time to die out.
 
@@ -102,7 +98,7 @@ In the absence of market shocks the GARCH variance will eventually settle down t
 
 \subsection*{Parameter Estimation}
 
-The plain vanilla ARMA and ARMA GARCH parameters are estimated by maximizing the value of the log likelihood function. As mentioned earlier, in this paper we assume that the distribution of the error process is normal with expectation 0 and conditional variance ${\sigma_t^2}$. Furthermore, we have assumed stationarity, so the unconditional variance, in the case of plain vanilla ARMA, is ${\bar\sigma^2}$. With these assumptions in mind, we can use the normal log likelihood function.
+The plain vanilla ARMA and ARMA-GARCH parameters are estimated by maximizing the value of the log likelihood function. As mentioned earlier, in this paper we assume that the distribution of the error process is normal with expectation 0 and conditional variance ${\sigma_t^2}$. Furthermore, we have assumed stationarity, so the unconditional variance, in the case of plain vanilla ARMA, is ${\bar\sigma^2}$. With these assumptions in mind, we can use the normal log likelihood function.
 \subsubsection{Plain Vanilla ARMA($w,x$)}
 Maximizing the ARMA likelihood reduces to the problem of maximizing:
 \begin{align} 
@@ -117,8 +113,8 @@ Finally we insert the above equation (\ref{ConditionalMeanEquationOnEpsilonARMA}
     ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T\Bigg( ln(\sigma_i^2)+\Big(\frac{(r_{i,t}-\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}-\sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j}-c_i)^2}{\sigma_i^2}\Big)\Bigg)  \label{fullMaximumLikeARMA}
 \end{align}
 
-\subsubsection{ARMA($w,x$) GARCH($y,z$)}
-Maximizing the ARMA GARCH likelihood reduces to the problem of maximizing:
+\subsubsection{ARMA($w,x$)-GARCH($y,z$)}
+Maximizing the ARMA-GARCH likelihood reduces to the problem of maximizing:
 \begin{align} 
     ln(L_{i,t})=-\frac{1}{2}\sum_{t=1}^T\bigg( ln(\sigma_{i,t}^2)+(\frac{\epsilon_{i,t}}{\sigma_{i,t}})^2\bigg)   \label{MaximumLike}
 \end{align}
@@ -130,10 +126,9 @@ The parameter constraints are:
 \begin{align} 
     \omega_i>0,\quad\quad \alpha_{i,j},\beta_{i,j}\geq0 \quad \forall j, \quad \sum_{j=1}^y\alpha_{i,j}+\sum_{j=1}^z\beta_{i,j}<1 \label{ParameterConstraints}
 \end{align}
-In this paper we will try to avoid imposing any constraints on the parameter estimation routine. If it is necessary to impose any constraints on the optimization then this indicates that the model is inappropriate for the sample data and a different GARCH model should be used.
 
-\subsection*{Implementation of the ARMA($w,x$) GARCH($1,1$)}
-To forecast returns we will try to fit an auto regressive moving average return model (ARMA) of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$). The estimation of the ARMA($w,x$) GARCH($1,1$) parameters is done in R, while the rest of the calculations in this paper is done in Python. The reason we chose to calculate the parameters of the ARMA($w,x$) GARCH($1,1$) in R, is because there are currently no packages in Python supporting ARMA GARCH, only AR GARCH. 
+\subsection*{Implementation of ARMA($w,x$)-GARCH($1,1$)}
+To forecast returns we will try to fit an auto regressive moving average return model (ARMA) of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$). The estimation of the ARMA($w,x$)-GARCH($1,1$) parameters is done in R, while the rest of the calculations in this paper is done in Python. The reason we chose to calculate the parameters of the ARMA($w,x$)-GARCH($1,1$) in R, is because there are currently no packages in Python supporting ARMA-GARCH, only AR-GARCH. 
 
 The first thing to be decided, is the ARMA order. In other words, we have to decide which values the parameters, $w$ and $x$, in the conditional mean equation (\ref{ConditionalMeanEquation}) should have. The parameters and hence the maximum likelihood is calculated for all combinations of $w$ and $x$, using equation \ref{fullMaximumLikeARMA}, where $w\in[0,3]$ and $x\in[0,3]$. The final values of $w$ and $x$, the ARMA order, to use in our forecast is chosen based on the the Akaike information criterion (AIC). AIC is an estimator of the relative quality of statistical models for a given set of data. Given a collection of models for the data, AIC estimates the quality of each model, relative to each of the other models. Thus, AIC provides a means for model selection. The AIC of a given model is calculated using the following equation:
 \begin{align}
@@ -141,14 +136,16 @@ The first thing to be decided, is the ARMA order. In other words, we have to dec
 \end{align}
 where $k$ is the number of estmated parameters and $L$ is the maximum value of the likelihood function. 
 
-After the decision is made of which ARMA order to use, equation (\ref{fullMaximumLike}) is solved. There is no guarantee that the maximum likelihood of the ARMA GARCH will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{fullMaximumLikeARMA}) and not ARMA GARCH (\ref{fullMaximumLike}). The maximum likelihood function of plain vanilla ARMA will almost always converge because it is linear. If the plain vanilla ARMA does not converge, the process above is repeated with the ARMA order giving second best AIC, and so on, until convergence is achieved.
+After the decision is made of which ARMA order to use, equation (\ref{fullMaximumLike}) is solved. There is no guarantee that the maximum likelihood of the ARMA-GARCH will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{fullMaximumLikeARMA}) and not ARMA-GARCH (\ref{fullMaximumLike}). The maximum likelihood function of plain vanilla ARMA will almost always converge because it is linear. If the plain vanilla ARMA does not converge, the process above is repeated with the ARMA order giving second best AIC, and so on, until convergence is achieved.
 
-The method implemented in this subsection is done for each stock, $i$, for every time step we move forward. The time step is one day. As a result, the parameters used to forecast are updated every day for each stock.
+The ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period used as a rolling window. The time step is one day and the information set, sample, which the parameters are estimated from are the past 250 daily returns. There are 107 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1800 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
+
+One may argue that a information set bigger than 250 should be used, as the standard errors of the parameters are only valid asymptotically. This, additional forecasting model spesification and other forecasting models are further discussed in Chapter \ref{FutureWork}.
 
 
 \subsection*{Return Forecasting}
 
-After the algorithm in the previous subsection is ran on the data, we obtain optimal values for all the parameters for each stock every day. To forecast the the one day ahead return, and hence test our out-of sample performance, we need to take the conditional expected return of the conditional mean equation (\ref{ConditionalMeanEquation}). The expected return at time $t$ for a given stock, $i$, is:
+After the model in the previous subsection is run on the data, we obtain optimal values for all the parameters for each stock every day. To forecast the the one-day-ahead return, and hence test our out-of sample performance, we need to compute the conditional expected return of the conditional mean equation (\ref{ConditionalMeanEquation}). The expected return at time $t$ for a given stock, $i$, is:
 \begin{align} 
     E(r_{i,t})=c_i+\sum_{j=1}^w\kappa_{i,j} r_{i,t-j}+\sum_{j=1}^w\mu_{i,j} \epsilon_{i,t-j} \label{ExpectedConditionalMean}
 \end{align}
@@ -158,32 +155,30 @@ The expectation of the error process, $\epsilon_t$, is assumed to be zero. The p
 \end{align}
 
 \section*{Revise the goodness-of the forecasting}
-Having run our forecasting model and produced a series of forecasting estimates, we calculate the forecasting error for each step in sampling period. We define the forecasting error as:
+Having run our forecasting model and produced a series of forecasting estimates, we calculate the forecasting error for each day in the out-of-sample period. We define the forecasting error as:
 \begin{align}
     \epsilon_{i,t}^{f} = r_{i,t}^{r} - r_{i,t}^{e}
 \end{align}
-where $\epsilon_{i,t}^{f}$ is the forecasting error, the difference between the forecasting estimate, $r_{i,t}^{e}$, and realized returns, $r_{i,t}^{r}$.
+where $\epsilon_{i,t}^{f}$ is the forecasting error, the difference between the forecasting estimate, $r_{i,t}^{e}$, and realized returns, $r_{i,t}^{r}$, for all stocks and all time steps.
 
-We apply two separate metrics in order to assess the return forecasting accuracy: the root mean square error metric and a sign metric. Firstly, we have the root mean square error metric, which is defined as:
+In order to assess the return forecasting accuracy, we apply two separate statistical metrics and an economical metrics to measure the profitability of the following the forecasting model 
+
+We define the root mean square error metric and a sign metric as our statistical metrics. Firstly, we have the root mean square error metric (RMSE), that is the standard deviation of the residuals, which is defined as:
 \begin{align}
     RMSE_{\tau} = \sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall \tau in \Sigma
 \end{align}
-where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total number of periods. We calculate the RMSE for each bucket and each period, summing the total RMSE for each bucket over the total sample period, before finding the average by dividing by number for periods:
+where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total number of periods. We calculate the RMSE for each portfolio and each period, summing the total RMSE for each portfolio over the total sample period, before finding the average by dividing by number for periods:
 \begin{align}
     RMSE_{b} = \frac{1}{|\Sigma|}\sum_{\tau=1}^{|\Sigma|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall b \in B
 \end{align}
 
-Further, we use a statistical-directional metric, the number of correct forecasting hits. This indicates whether our forecasting model is able to predict the correct direction of the stock return. 
+Further, as a measure of the market timing ability of the forecasting model, we calculate the proportion of times the model correctly predicted the direction of the return. We define this percentage as Sign and its corresponding return as $r_{sign}$. 
 
-\textbf{TBD} We also implement an economic metric, the trading profit based on forecasts vs buy-and-hold
+Moreover, we also apply economical metrics. We wish to examine the profitability of following the predictions of our forecasting model, compared to an ordinary buy-and-hold strategy. 
 
- \textbf{HELPFUL} We obtained in-sample and out-of-sample one-step-ahead forecasts that were composed of the esti-
-mated parameters of the model and lagged returns. Below we describe recursive parameter estimation
+Hence, we define sign strategy as  following the one-day-ahead predictions from the forecasting model from the start to the end of the forecasting period. That means taking a long position if the model predicts a positive return, and a short position if the model predicts a negative return for the next time step. The annualized return of this strategy is defined as the sign return, $r_{sign}$.
+If the prediction is correct, the realized return is assigned to the $r_{sign}$. Likewise, if the prediction is wrong, the realized return is withdrawn from the accumulated return, $r_{sign}$.
 
-and the corresponding predictions. To assess predictive ability, we evaluated different forecast models
+Moreover, we define the economic return, $r_{economic}$, as the annualized return obtained from following a buy-and-hold strategy, holding a stock from the start until the end of the period.
 
-using different measures, given the difficulty in specifying a universally acceptable forecast evalua-
-tion criterion. First, forecast accuracy was evaluated by calculating the MSE and MAE. Second, as
-
-a measure of the market timing ability of the model we showed the proportion of times SIGNs were
-correctly predicted. Finally, we assessed
+Further, we define alpha, $\alpha$, as the difference $r_{sign}-r_{economic}$. This is the excess return from following the sign strategy compared to the buy-and-hold strategy. 
