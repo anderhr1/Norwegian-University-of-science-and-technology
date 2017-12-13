@@ -33,9 +33,9 @@ Having run the regression for a stock on a given day, we calculate the daily IV 
     IV_{i,t} &= \sqrt{\sigma_{i,t}^{2} - cov(r_{i,t},r_{m,t}) - cov(r_{i,t},r_{SMB,t}) - cov(r_{i,t},r_{HML,t})}, \quad \forall t \in T \\
     &= \sqrt{\sigma_{i,t}^2 - \beta_{1,i,t} \sigma_{m,t}^{2}- \beta_{2,i,t} \sigma_{SMB,t}^{2}- \beta_{3,i,t} \sigma_{HML,t}^{2}}, \quad \forall t \in T
 \end{align}
-where $t$ is the current period, T is the number of days the rolling window rund over and $IV_{i,t}$ is the idiosyncratic volatility of stock $i$ in period $t$.
+where $t$ is the current period, T is the number of days the rolling window runs over and $IV_{i,t}$ is the idiosyncratic volatility of stock $i$ in period $t$.
 
-Having estimated the daily IV values for all the selected stocks, we calculate the daily IV percentage, and segment the stocks into four equally sized portfolios, by increasing proportion of daily IV percentage. We implement daily rebalancing of the buckets, and weight the stocks equally. 
+Having estimated the daily IV values for all the selected stocks, we calculate the daily IV percentage, and segment the stocks into four equally sized portfolios, by increasing proportion of daily IV percentage. We implement daily rebalancing of the buckets, \textbf{and weight the stocks equally. }
 
 \section*{Building the forecasting model: ARMA($w,x$)-GARCH($y,z$)} 
 
