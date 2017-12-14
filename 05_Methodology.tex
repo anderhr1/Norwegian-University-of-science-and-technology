@@ -4,11 +4,15 @@ The methodology of this paper is structured with four main components. In the fi
 
 Secondly, we segment the stocks into four equally sized portfolios by their proportion of daily IV to economic standard deviation (the standard deviation of the realized returns), which we denote as the daily IV percentage. We implement daily rebalancing of the portfolios.
 
-Thirdly, we build an ARMA-GARCH forecasting model. We estimate the ARMA-GARCH parameters for each stock each day based on the 250 days training set, and construct the one-day-ahead out-of-sample forecasts. We then roll the window one day forward. We compare the model’s one-day-ahead forecast with the realized return to obtain forecasting error. This is assigned to its associated portfolio and used for revising the forecasting model. 
+Thirdly, we build an ARMA-GARCH forecasting model. We estimate the ARMA-GARCH parameters for each stock each day based on the 250 previous daily returns, and construct the one-day-ahead out-of-sample forecasts, over the whole period used as rolling window. We then roll the window one day forward. We compare the model’s one-day-ahead forecast with the realized return to obtain forecasting error. This is assigned to its associated portfolio and used for revising the forecasting model. 
 
 Lastly, we revise the goodness-of the forecasting by applying statistical and economical metrics of comparison, which will be described in further detail.
 
-\section*{Regression based on the Fama French three factor model} In order to calculate the IV of each stock, we use the Fama And French Three Factor Model regression. We define the IV as the unexplained variance after applying the regression. This model incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using this methodology we have the following multiple linear regression:
+\section*{Calculating the idiosyncratic volatility and creation of portfolios segmentation by daily IV percentage}
+
+Consistent with Ang et al. (2006) we define idiosyncratic volatility as the square root of the variance of the error term in the Fama French Three factor model.
+
+\subsection*{Regression based on the Fama French three factor model}  This model incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using this methodology we have the following multiple linear regression:
 \begin{align} 
     r_{i,t} - r_{f,t}= \alpha_{i,t} + \beta_{m,i,t}(r_{m,t} - r_{f,t}) + \beta_{SMB,i,t}r_{SMB,t} + \beta_{HML,i,t}r_{HML,t} + \epsilon_{i,t}, \quad  \forall i \in I \quad  \forall t \in T 
     \label{FFregression}
@@ -25,17 +29,21 @@ where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the
 
 The daily return of the market was obtained by weighting each of the XX stocks in the sample according to their market values. The excess daily market return was calculated as the difference between the return of the market and the converted daily rate of Norwegian 10-years government bonds. \cite{famafrench} methodology was used to calculate the daily returns of the SMB and HML portfolios.
 
-The regression where run on the return series for each stock on each day starting at day equal to the rolling window size, 250, in accordance to (\ref{FFregression}). 
+The regression where run on the return series for each stock on each day starting at day equal to the rolling window size, 250, in accordance to \ref{FFregression}. 
 
-\section*{Calculating the IV and segmentation of stocks}
-Having run the regression for a stock on a given day, we calculate the daily IV of the stock by the following formula:
+\subsection*{Definition of idiosyncratic volatility}
+Consistent with Ang et al. (2006) we define idiosyncratic volatility as the square root of the variance of the error term in the Fama French Three factor model. Hence, from equation \ref{FFregression}, we have:
  \begin{align}
-    IV_{i,t} &= \sqrt{\sigma_{i,t}^{2} - cov(r_{i,t},r_{m,t}) - cov(r_{i,t},r_{SMB,t}) - cov(r_{i,t},r_{HML,t})}, \quad \forall t \in T \\
-    &= \sqrt{\sigma_{i,t}^2 - \beta_{1,i,t} \sigma_{m,t}^{2}- \beta_{2,i,t} \sigma_{SMB,t}^{2}- \beta_{3,i,t} \sigma_{HML,t}^{2}}, \quad \forall t \in T
-\end{align}
-where $t$ is the current period, T is the number of days the rolling window runs over and $IV_{i,t}$ is the idiosyncratic volatility of stock $i$ in period $t$.
+ IV_{i,t} &= \sqrt{Var[\epsilon_{i,t}]} \\
+  &= \sqrt{Var[r_{i,t} - r_{f,t}- \alpha_{i,t}-\beta_{m,i,t}(r_{m,t} - r_{f,t}) - \beta_{SMB,i,t}r_{SMB,t} - \beta_{HML,i,t}r_{HML,t}]},  \quad  \forall i \in I \quad  \forall t \in T \\
+ &= \sqrt{Var[r_{i,t}]+\beta_{1,i,t}^2Var[r_{m,t}]+\beta_{SMB,t}^2Var[r_{SMB,t}]+\beta_{HML,t}^2Var[r_{HML,t}]}, \quad  \forall i \in I \quad  \forall t \in T \\ 
+ &= \sqrt{\sigma_{i,t}^2 - \beta^2_{m,i,t} \sigma_{m,t}^{2}- \beta^2_{SMB,t} \sigma_{SMB,t}^{2}- \beta^2_{3,i,t} - \sigma_{HML,t}^{2}, \quad  \forall i \in I \quad  \forall t \in T
+ \end{align}
+where $t$ is the current period, T is the number of days the rolling window runs over and $IV_{i,t}$ is the IV of stock $i$ in period $t$.
 
-Having estimated the daily IV values for all the selected stocks, we calculate the daily IV percentage, and segment the stocks into four equally sized portfolios, by increasing proportion of daily IV percentage. We implement daily rebalancing of the buckets, \textbf{and weight the stocks equally. }
+Having estimated the daily IV values for all the selected stocks, we calculate the daily IV percentage. We have chosen to use the IV percentage to control for 
+
+and segment the stocks into four equally sized portfolios, by increasing proportion of daily IV percentage. We implement daily rebalancing of the buckets, \textbf{and weight the stocks equally. }
 
 \section*{Building the forecasting model: ARMA($w,x$)-GARCH($y,z$)} 
 
@@ -84,9 +92,6 @@ The GARCH($y$,$z$) has the conditional volatility equation given by:
 The GARCH error parameter $\alpha$ measures the reaction of conditional volatility to market shocks. When $\alpha$ is relatively large, above 0.1, the volatility is very sensitive to market events.
 
 The GARCH lag parameter $\beta$ measures the persistence in conditional volatility irrespective of anything happening in the market. When $\beta$ is relatively large, above 0.9, then volatility takes a long time to die out.
-
-GARCH model is able to deal with common financial data time series characteristics such as thick tails and volatility clustering, as pointed out by (Mandelbrot, 1963) and (Mandelbrot, 1967). There are, however, some characteristics of financial time series that the GARCH model is not able to deal with. The main disadvantage of the GARCH model is that conditional variance depends on the squared value of $\epsilon_t$, which in turn means that the model is sensitive only to the absolute magnitude of the variable but not to its sign leading to a presence of a leverage effect (Black, 1976), which represents a negative
-correlation between asset returns and volatility of returns.
 
 \subsection*{Long term volatility}
 
@@ -138,7 +143,7 @@ where $k$ is the number of estmated parameters and $L$ is the maximum value of t
 
 After the decision is made of which ARMA order to use, equation (\ref{fullMaximumLike}) is solved. There is no guarantee that the maximum likelihood of the ARMA-GARCH will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{fullMaximumLikeARMA}) and not ARMA-GARCH (\ref{fullMaximumLike}). The maximum likelihood function of plain vanilla ARMA will almost always converge because it is linear. If the plain vanilla ARMA does not converge, the process above is repeated with the ARMA order giving second best AIC, and so on, until convergence is achieved.
 
-The ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period used as a rolling window. The time step is one day and the information set, sample, which the parameters are estimated from are the past 250 daily returns. There are 107 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1800 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
+The ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period used as a rolling window. The time step is one day and the information set, sample, which the parameters are estimated from are the past 250 daily returns. As mentioned in the introduction to this chapter, there are 107 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1800 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
 
 One may argue that a information set bigger than 250 should be used, as the standard errors of the parameters are only valid asymptotically. This, additional forecasting model spesification and other forecasting models are further discussed in Chapter \ref{FutureWork}.
 
