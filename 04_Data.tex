@@ -5,28 +5,28 @@ This study uses daily finacial data for all the constituents of the Oslo Stock E
 
 \begin{figure}[h]
     \centering
-    \includegraphics[scale = 1]{Plot/MarketReturn.png}
-    \caption{Regression: daily IV percentage on squared return forecasting error}
+    \includegraphics[scale = 0.65]{Plot/MarketReturn.png}
+    \caption{Economic Return of the Equally Weighted Market Portfolio}
     \label{Scatter regression}
 \end{figure}
 
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 %\begin{landscape}
-\begin{longtable}{P{2cm}} 
-\caption{Regression Individual Stocks}
+\begin{longtable}{P{2cm}P{1cm}P{1cm}P{2cm}P{2cm}P{2cm}P{1cm}P{1.5cm}} 
+\caption{Descriptive Statistics of the Equally Weighted Market Portfolio}
 \label{RegressionIndividualStocks}\\
 \hline
-\textbf{Figure} & \textbf{Observations} & \textbf{Adj. }$\boldsymbol{R^{2}}$ & \textbf{Intercept} & \textbf{P-Value} & \textbf{Beta} & \textbf{P-Value} \\
+\textbf{Observations} & \textbf{Min} & \textbf{Max}&$\boldsymbol{E(r_{economic})}$ &$\boldsymbol{\sigma^2_{economic}}$ &$\boldsymbol{\sigma_{economic}}$ & \textbf{Skew} & \textbf{Kurt} \\
 \hline
 \endfirsthead
-\multicolumn{7}{c}%
+\multicolumn{8}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
 \textbf{Figure} & \textbf{Observations} & \textbf{Adj. }$\boldsymbol{R^{2}}$ & \textbf{Intercept} & \textbf{P-Value} & \textbf{Beta} & \textbf{P-Value} \\
 \hline
 \endhead
-\hline \multicolumn{7}{r}{\textit{Continued on next page}} \\
+\hline \multicolumn{8}{r}{\textit{Continued on next page}} \\
 \endfoot
 \hline
 \endlastfoot
