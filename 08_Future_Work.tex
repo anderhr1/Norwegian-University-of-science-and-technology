@@ -1,12 +1,16 @@
 \chapter{Future Work} \label{FutureWork}
+\label{FW}
 
 \begin{itemize}
     \item Try ARMA-GARCH with varying sample size. Should use sample size > 1000 to achieve efficient standard error estimates as the standard errors are only valid asymptotically.
-    \item Try with different GARCH lags and other typs of GARCH.
+    \item Try with different GARCH lags and other types of GARCH.
     \item Try with another assumption of the log returns. Skewed or t-distributed. 
     \item Other forecasting algorithms. May achieve completely different forecasting performance with other algorithms
     \item Include transaction costs
-    \item Vi vekter nå alle aksjene likt i portføljen - hvis vi vekter med MC, vil vi oppnå større diversifiseringseffekter, - aka muligens bedre Sharpe ratio
+    \item Vi vekter nå alle aksjene likt i portføljen - hvis vi vekter med MC, vil vi oppnå større diversifiseringseffekter, - aka muligens bedre Sharpe ratios
+    \item Add trading volume constraints \textbf{Idiosyncratic volatility had a positive relationship with expected return, and a negative relationship with liquidity (Spiegel & Wang, 2005)}
+    \item Use different window size - or rebalance every week/month
+    \item Quantile portfolios
 \end{itemize}
 
 Many researchers have already published huge number of papers comparing autoregressive (AR) orARMA or GARCH models with neural network and support-vector machine in financial time-series forecasting. There are some recent papers in this combination. For example, Chen et al. [7] compared support-vector machines and BPs taking AR as a benchmark in forecasting the six major Asian stock markets, and Chen et al. [6] proposed recurrent SVR based on the GARCH model compared with moving average (MA), recurrent neural network and parametric GARCH model in terms of their ability to forecast volatility. But they did not take account of the finite mixture ARMA-GARCH model in this combination. However, Santos et al. [35] compared ARMA-GARCH model with ARMA, Aneural networks and fuzzy systems in forecasting exchange rates, but they did not consider support-vector machine in this combination. 
