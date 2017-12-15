@@ -1,9 +1,8 @@
 \chapter{Literature Review}
 \label{LR}
-
 In this chapter we will review the literature in two sections. The two sections, covering idiosyncratic volatility and financial forecasting models, can be perceived rather independent. In the next chapter, we will connect the two literature spaces in a dynamic ARMA-GARCH return forecasting model. 
 
-\section{Idiosyncratic volatility}
+\section{Idiosyncratic volatility}  
 There exists various definitions of idiosyncratic volatility (IV). Malkiel and Xu \cite{malkielxu97} defined IV as the variance of stock return minus variance of the S\&P 500 index. Malkiel and Xu \cite{malkielxu04} and Bali and Cakici \cite{balicakici08} calculate the IV the standard deviation of the regression residual of both the CAPM and Fama-French three factor model \cite{famafrench}. The latter model was among others also adopted by Ang et al. \cite{angetal06} \cite{angetal09}  and Fu \cite{Fu}. Common for the various definitions are the description of IV as the fluctuations in the stock price caused by company-specific factors, with little or no correlation with market risk.
 
 To further understand the theory behind and implications of IV, we will elaborate on literature exploring the pricing of risk factors and the empirical relationship between IV and stock returns.
@@ -26,11 +25,17 @@ Malkiel and Xu \cite{malkielxu02} indicate the positive relationship between IV 
 Additionally, Spiegel & Wang  \cite{spiegelwang} idiosyncratic volatility had a positive relationship with expected return, and a negative relationship with liquidity. In their sample the highest IV deciles had 1.33\% more average return than the lowest deciles. In addition, the highest deciles had the smallest size and the least liquidity in their result. Kotiaho \cite{kotiaho} carried out a similar study and found that especially small-cap stocks have a positive relationship between their IV and expected returns.
 
 \subsubsection{Advocates of a negative relationship}
-In contrast to previous studies, the result of Ang et al. \cite{angetal09} took a new direction. Using data from 23 countries (including Norway), they examined the cross-sectional relationship between IV and expected returns. They concluded that stocks with a higher IV earned lower expected returns, using the Fama-French three factor model \cite{famafrench}. In a previous article, Ang et al. \cite{angetal06} indicate a negative relationship between a stock's monthly returns and its 1-month lagged idiosyncratic risk. 
+if IV is taken to represent firm-specific risk for an investor, it commands a premium, s IV proxying for something other than non-diversifiable risk
+
+A positive relationship between risk and return is widely accepted in financial theory. Hence, if IV is interpreted as firm-specific risk for an investor, it commands a premium. However, in contrast to previous studies, in recent studies this interpretation has taken a new direction.
+
+Ang et al. \cite{angetal09} presented some groundbreaking results. Using data from 23 countries (including Norway), they examined the cross-sectional relationship between IV and expected returns. They concluded that stocks with a higher IV earned lower expected returns, using the Fama-French three factor model \cite{famafrench}. In a previous article, Ang et al. \cite{angetal06} indicate a negative relationship between a stock's monthly returns and its 1-month lagged idiosyncratic risk. 
 
 In our study we consider the relationship between a portfolio's daily IV and forecasting performance. Thus, Bali and Cakici \cite{balicakici06} study is interesting. They show that Ang et al. \cite{angetal09} results where not robust, with different estimation methods. They indicate no relation between value-weighted portfolio returns and the value-weighted average IV. However, Huang, Liu, Rhee, and Zhang \cite{huang} contest these and Ang et al. \cite{angetal09} results. Their analysis shows that there is a relation, and it can be explained by short-term mean-reversion.
 
-In summary, there exists divided opinion on the positive relationship between idiosyncratic risk and stock returns. On the positive side, literature explains the positive relationship by the fact that investors cannot fully diversify their portfolio due to the information and transaction costs. Contrary, Ang et al. \cite{angetal06} among others, found a negative relationship between IV and expected return. These results have been extensively debated. 
+Jiang et al. \cite{jiangetal} identifies some reasons for this unexpected reality, commonly defined as the idiosyncratic volatility anomaly. They argue that IV is a proxy of future earnings shocks and that the anomaly to a large extent is caused by corporate selective disclosure. 
+
+In summary, there exists divided opinion on the relationship between idiosyncratic risk and stock returns. On the positive side, literature explains the positive relationship by the fact that investors cannot fully diversify their portfolio due to the information and transaction costs. Contrary, Ang et al. \cite{angetal06} among others, found a negative relationship between IV and expected return. Jiang et al. \cite{jiangetal} explains the anomaly by corporate selective disclosure.
 
 \subsubsection{Studies on the relationship between idiosyncratic volatility and returns in the Norwegian stock market}
 

@@ -1,7 +1,7 @@
 \chapter{Methodology}
 \label{Methodology}
 
-The sample period for the various models we employ is the 250 last daily data points. All calculations are performed every day for all [x] stocks over the whole period used as a rolling window. The period used as a rolling window goes from January 2011 to September 2017, containing about 1500 daily data points. Bear in mind that transaction costs are not incorporated throughout this paper. The methodology of this paper is structured with four main components. 
+The sample period for the various models we employ is the 250 last daily data points. All calculations are performed every day for all [x] stocks over the whole period used as a rolling window. The period used as a rolling window goes from January 2011 to September 2017, containing about 1500 daily data points. Bear in mind that transaction costs are not incorporated throughout this paper. The methodology of this paper is structured with four main components, illustrated with a flow chart in Figure \ref{FlowChart}.
 
 In the first part of the study we calculate the daily idiosyncratic volatility (IV) for each of the selected stocks by applying the Fama French regression.
 
@@ -11,13 +11,21 @@ Thirdly, we construct an ARMA-GARCH return forecasting model. We estimate the AR
 
 Lastly, we revise the return forecasting performance of both the individual stocks and the equally sized, equally weighted portfolios by applying statistical and economical metrics of comparison.
 
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{Pictures/FlowChart.png}
+    \captionof{figure}{Methodology: Flow Chart}
+    \label{FlowChart}
+\end{figure}
+
+\newpage
 \section{Calculating the idiosyncratic volatility}
 
 In this section, we describe how we implemented the Fama French three factor model, before we define idiosyncratic volatility.
 
 \subsection{Implementation of the Fama French three factor model} The Fama French three factor model \cite{famafrench} incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using their methodology we employ the following multiple linear regression:
 \begin{align} 
-    r_{i,t} - r_{f,t}= \alpha_{i,t} + \beta_{m,i,t}(r_{m,t} - r_{f,t}) + \beta_{SMB,i,t}r_{SMB,t} + \beta_{HML,i,t}r_{HML,t} + \epsilon_{i,t}, \quad  \forall i \in I \quad  \forall t \in T 
+    r_{i,t} - r_{f,t}= \alpha_{i,t} + \beta_{m,i,t}(r_{m,t} - r_{f,t}) + \beta_{SMB,i,t}r_{SMB,t} + \beta_{HML,i,t}r_{HML,t} + \epsilon_{i,t}, \quad  \forall_i \in I \quad  \forall_t \in T 
     \label{FFregression}
 \end{align}
 
@@ -25,9 +33,9 @@ where $t$ indicates the day in the sample period, $r_{i,t}$ is the daily realize
 
 More precisely, we define $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ as:
 \begin{align}
-    r_{m,t} &= \sum_{i=1}^{N} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{N} MC_{s,t}},  \quad  \forall t \in T \\
-    r_{SMB,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s={\frac{N}{2}+1}}^{N} MC_{s,t}}, \quad  \forall t \in T \\
-    r_{HML,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s=\frac{N}{2}+1}^{N} MC_{s,t}} \quad  \forall t \in T
+    r_{m,t} &= \sum_{i=1}^{N} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{N} MC_{s,t}},  \quad  \forall_t \in T \\
+    r_{SMB,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s={\frac{N}{2}+1}}^{N} MC_{s,t}}, \quad  \forall_t \in T \\
+    r_{HML,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s=\frac{N}{2}+1}^{N} MC_{s,t}} \quad  \forall_t \in T
 \end{align}
 where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the realized return and market capitalization of stock $i$ at day $t$, respectively. 
 
@@ -35,19 +43,19 @@ where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the
 Consistent with Ang et al. \cite{angetal06} we define idiosyncratic volatility as the square root of the variance of the error term in the Fama French three factor model \cite{famafrench}. Hence, deriving from equation \ref{FFregression}, we have:
  \begin{align}
  IV_{i,t} &= \sqrt{Var[\epsilon_{i,t}]} \\
-  &= \sqrt{Var[r_{i,t} - r_{f,t}- \alpha_{i,t}-\beta_{m,i,t}(r_{m,t} - r_{f,t}) - \beta_{SMB,i,t}r_{SMB,t} - \beta_{HML,i,t}r_{HML,t}]},  \quad  \forall i \in I \quad  \forall t \in T \\
- &= \sqrt{Var[r_{i,t}]+\beta_{1,i,t}^2Var[r_{m,t}]+\beta_{SMB,i,t}^2Var[r_{SMB,t}]+\beta_{HML,i,t}^2Var[r_{HML,t}]}, \quad  \forall i \in I \quad  \forall t \in T \\ 
- &= \sqrt{\sigma_{i,t}^2 - \beta^2_{m,i,t} \sigma_{m,t}^{2}- \beta^2_{SMB,i,t} \sigma_{SMB,t}^{2}- \beta^2_{HML,i,t} \sigma_{HML,t}^{2}}, \quad  \forall i \in I \quad  \forall t \in T
+  &= \sqrt{Var[r_{i,t} - r_{f,t}- \alpha_{i,t}-\beta_{m,i,t}(r_{m,t} - r_{f,t}) - \beta_{SMB,i,t}r_{SMB,t} - \beta_{HML,i,t}r_{HML,t}]},  \quad  \forall_i \in I \quad  \forall_t \in T \\
+ &= \sqrt{Var[r_{i,t}]+\beta_{1,i,t}^2Var[r_{m,t}]+\beta_{SMB,i,t}^2Var[r_{SMB,t}]+\beta_{HML,i,t}^2Var[r_{HML,t}]}, \quad  \forall_i \in I \quad  \forall_t \in T \\ 
+ &= \sqrt{\sigma_{i,t}^2 - \beta^2_{m,i,t} \sigma_{m,t}^{2}- \beta^2_{SMB,i,t} \sigma_{SMB,t}^{2}- \beta^2_{HML,i,t} \sigma_{HML,t}^{2}}, \quad  \forall_i \in I \quad  \forall_t \in T
  \end{align}
-where $t$ is the current day, T is the number of days the rolling window runs over and $IV_{i,t}$ is the IV of stock $i$ in day $t$. 
+where $t$ is the current day, T is the number of days the rolling window runs over and $IV_{i,t}$ is the IV of stock $i$ in day $t$. Here we assume the ordinary OLS assumptions of the linear regression model: linear dependence of the parameters, random sample of n observations, the error process is i.i.d, normally distributed with conditional mean equal to zero... and there is no multi-collinerarity and homoskedasticity. 
 
 \section{Portfolio construction pooled by the constituents' daily IV percentage}
 We have now described the methodology of estimating the daily IV percentage values. In this study, we seek to examine the relationship between the proportion of a stock's idiosyncratic volatility to volatility, the IV percentage. This because we find it interesting to examine stocks where the IV constitutes a large or small component of the stock's volatility, and not just in terms of magnitude. We define the daily IV percentage as the ratio:
 \begin{align}
-    \frac{IV_{i,t}}{\sigma_{i,t}}, \quad  \forall i \in I \quad  \forall t \in T
+    \frac{IV_{i,t}}{\sigma_{i,t}}, \quad  \forall_i \in I \quad  \forall_t \in T
 \end{align}
 
-Further, we construct four equally sized, equally weighted portfolios by pooling stocks by their daily IV percentage. Portfolio 1 contains stocks with the lowest daily IV percentage, while portfolio 4 contains stocks with the lowest daily IV percentage. The portfolios are held for one day and the the equally-weighted return at the end of the current day is calculated. We rebalance the portfolios every day. 
+Further, we construct four equally sized, equally weighted portfolios by pooling stocks by their daily IV percentage. Portfolio 1 contains stocks with the lowest daily IV percentage, while portfolio 4 contains stocks with the highest daily IV percentage. The portfolios are held for one day and the the equally-weighted return at the end of the current day is calculated. We rebalance the portfolios every day. 
 
 
 \section{Constructing the return forecasting model: a dynamic ARMA($w,x$)-GARCH($1,1$)} 
@@ -62,7 +70,7 @@ We write $\sigma_t^2$ to denote the conditional variance at time $t$. This is th
     r_t | I_{t-1} \sim N(0,{\sigma_t^2})
 \end{align}
 
-Often one would choose other distributions due to the fact that financial series often have fat tails. One option would be to use the Student-t distribution distribution or a skewed version of it. This paper assumes that returns are having a normal distribution. 
+Often one would choose other distributions due to the fact that financial series often have fat tails. One option would be to use the Student-t distribution distribution or a skewed version of it. This paper assumes that daily log returns are having a normal distribution. 
 
 \subsubsection{The Conditional Mean Equation, ARMA($w$,$x$)}
 
@@ -86,8 +94,7 @@ The combination of both the AR-process and MA-process, gives us the ARMA process
 \end{align}
 
 \subsubsection{The Conditional Variance Equation, GARCH($y,z$)}
-As financial data time series usually exhibit volatility clustering, a model dealing with
-conditional heteroskedasticity should be considered. We use the GARCH model introduced by (Bollerslev, 1986),which is a generalization of the ARCH model that was originally developed by (Engle, 1982). The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
+As financial data time series usually exhibit volatility clustering, a model dealing with conditional heteroskedasticity should be considered. We use the GARCH model introduced by Bollerslev \cite{Bollerslev},which is a generalization of the ARCH model that was originally developed by Engle \cite{Engle}. The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
 
 The GARCH($y$,$z$) has the conditional volatility equation given by:
 
@@ -102,7 +109,6 @@ The GARCH lag parameter $\beta$ measures the persistence in conditional volatili
 \subsubsection{Long term volatility}
 
 In the absence of market shocks the GARCH variance will eventually settle down to a steady state value. This is the value $\bar{\sigma}^2$ such that ${\sigma_t^2} = \bar{\sigma}^2$ for all t. We call $\bar{\sigma}^2$ the unconditional variance of the GARCH model. It corresponds to a long term average value of the conditional variance. The theoretical value of the GARCH long term or unconditional variance is not the same as the unconditional variance in a moving average volatility model. The moving average unconditional variance is called the i.i.d. variance because it is based on the i.i.d. returns assumption. The theoretical value of the unconditional variance in a GARCH model is clearly not based on the i.i.d. returns assumption. In fact, the GARCH unconditional variance differs depending on the GARCH model. The long term or unconditional variance is found by substituting ${\sigma_t^2} = {\sigma_{t-1}^2} = \bar{\sigma}^2$ into the GARCH conditional variance equation.We also use the fact that $E(\epsilon_{t-1}^2)=\sigma_{t-1}^2$. This yields the following formula for the long term variance of the GARCH model:
-
 \begin{align}
     \bar{\sigma}_i^2=\frac{\omega_i}{1-(\sum_{j=1}^y\alpha_{i,j}+\sum_{j=1}^z\beta_{i,j})} \label{longTermVolatilityGARCH}
 \end{align}
@@ -172,39 +178,49 @@ In the last section we specified the return forecasting model, we now wish to ev
 
 \subsection{Statistical Metrics}
 
+\subsubsection{Forecasting Error}
 The return forecasting model produces a series of return forecasting estimates, we calculate the return forecasting error for each day in the out-of-sample period. We define the return forecasting error as:
 \begin{align}
     \epsilon_{i,t}^{f} = r_{i,t}^{r} - r_{i,t}^{e}
 \end{align}
 where $\epsilon_{i,t}^{f}$ is the return forecasting error, the difference between the return forecasting estimate, $r_{i,t}^{e}$, and realized returns, $r_{i,t}^{r}$, for all stocks and all time steps.
 
-In order to assess the return forecasting accuracy and precision, we define two statistical metrics.
+In order to assess the return forecasting accuracy and precision, we define two statistical metrics. 
 
-Firstly, as a statistical measure of accuracy, we define the mean forecast error, that is the \textbf{bla bla bla}, as:
+\subsubsection{Mean Forecast Error}
+Firstly, as a statistical measure of accuracy for a portfolio, we define the mean forecast error (MFE). That is the annualized average total forecast error of a portfolio per day. The mathematical expression is:
 
-\textbf{Fyll inn matematisk formel}
-
-Secondly, as a statistical measure of precision, we define the root mean square error metric (RMSE), that is the standard deviation of the residuals, as:
 \begin{align}
-    RMSE_{\tau} = \sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall \tau in \Sigma
+    MFE_{p} =  \frac{1}{|T|}\sum_{t=1}^{T}\frac{\sum_{i=1}^{N}r_{i,t}^{r} - r_{i,t}^{e}}{n}, \quad \forall_p \in P
 \end{align}
-where $i$ is stock and $\tau$ is the current period and $\Sigma$ is the total number of periods. We calculate the RMSE for each portfolio and each period, summing the total RMSE for each portfolio over the total sample period, before finding the average by dividing by number for periods:
-\begin{align}
-    RMSE_{b} = \frac{1}{|\Sigma|}\sum_{\tau=1}^{|\Sigma|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall b \in B
-\end{align}
+where $i$ is stock and $t$ is the current period, $N$ is the number of stocks in the portfolio and $T$ is the set of days the rolling window runs over.
 
-Another statistical metric, as a measure of the market timing ability of the return forecasting model, we calculate the proportion of times the model correctly predicted the direction of the return. We define this percentage as Sign and its corresponding return as $r_{sign}$. 
+\subsubsection{Root Mean Square Error Metric}
+Secondly, as a statistical measure of precision for a portfolio, we define the root mean square error metric (RMSE). That is the standard deviation of the residuals, and the mathematical expression is:
+\begin{align}
+    RMSE_{p} = \frac{1}{|T|}\sum_{t=1}^{|T|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall_p \in P
+\end{align}
+where $i$ is stock and $t$ is the current day, $N$ is the number of stocks in the portfolio and $T$ is the set of days the rolling window runs over.
+
+\subsubsection{Sign Ratio}
+Another statistical metric, as a measure of the market timing ability of the return forecasting model, we calculate the proportion of times the model correctly predicted the direction of the return. We define this percentage as the Sign ratio.
 
 \subsection{Economical Metrics}
 
-Moreover, we also wish to apply economical metrics. 
+\subsubsection{Buy-and-hold-strategy and Economic return}
+First, we define the economic return, $r_{economic}$, as the annualized return obtained from following a buy-and-hold strategy, holding a stock from the start until the end of the period. 
 
-We define the economic return, $r_{economic}$, as the annualized return obtained from following a buy-and-hold strategy, holding a stock from the start until the end of the period.
+\subsubsection{Sign strategy and Sign return}
+Second, we wish to examine the profitability of following the predictions of our return forecasting model, and comparing it to an ordinary buy-and-hold strategy. 
 
-Furthermore, we wish to examine the profitability of following the predictions of our return forecasting model, compared to an ordinary buy-and-hold strategy. 
+Thus, we define sign strategy, with its associated sign return, $r_{sign}$. The sign return is defined as the annualized accumulated return from following the one-day-ahead predictions from the return forecasting model from the start to the end of the period used as a rolling window. Given a daily rebalancing environment, following the sign strategy implies deciding on a new position in every stock each day. Hence, the sign strategy will take a long position if the forecasting model predicts a positive return, and a short position if the forecasting model predicts a negative return for the next day. The return for a stock, a given day, is calculated as follows: if the model predicts the correct direction of the one-day-ahead realized return, the absolute value of the realized return is assigned to the accumulated return, $r_{sign}$. Likewise, if the model predicts the wrong direction, the absolute value of the realized return is subtracted from the accumulated return, $r_{sign}$. 
 
-Hence, we define the sign return as following the one-day-ahead predictions from the return forecasting model from the start to the end of the period used as a rolling window. That means taking a long position if the model predicts a positive return, and a short position if the model predicts a negative return for the next day. The annualized return of this strategy is defined as the sign return, $r_{sign}$. If the prediction is correct, the realized return is assigned to the $r_{sign}$. Likewise, if the prediction is wrong, the realized return is withdrawn from the accumulated return, $r_{sign}$.
-
+\subsubsection{Alpha}
 In addition, we calculate standard deviations of the economic and sign return. We define alpha, $\alpha$, as the difference $r_{sign}-r_{economic}$. This is the excess return from following the sign strategy compared to the buy-and-hold strategy. 
 
-Finally, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. The Sharpe ratio is defined as the excess return over the risk free rate, divided by the standard deviation.
+\subsubsection{Sharpe Ratio}
+Finally, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. The Sharpe ratio is defined as the excess return over the risk free rate, divided by the standard deviation:
+\begin{align}
+    S_{economic} &= \frac{r_{economic}-r_f}{\sigma_{economic}} \\
+    S_{sign} &= \frac{r_{sign}-r_f}{\sigma_{sign}}
+\end{align}
