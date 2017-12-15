@@ -1,37 +1,58 @@
 \chapter{Data}
 \label{Da}
 
-This study uses daily finacial data for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu \cite{Fu}, which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents in the index is 168 before cleaning and <number> after cleaning. This paper is based on the cleaned data. For the constituents of the OSEAX, after data cleaning, we refer to appendix B.
+This study uses daily financial data for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017 is. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu \cite{Fu}, which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents in the index is 168 before cleaning and <number> after cleaning. This paper is based on the cleaned data. For the constituents of the OSEAX, after data cleaning, we refer to appendix B. In Figure \ref{MarketReturn} the economic return of the equally weighted portfolio containing the constituents of the OSEAX, after data cleaning, is graphed. In addition, we show the annualized squared daily economic return. The portfolio has a return of about [x] percent from January 2010 to September 2017. In addition, we observe volatility clustering in the annualized squared daily economic returns, suggesting that non-linear effects are present.
 
 \begin{figure}[h]
+\label{MarketReturn}
     \centering
     \includegraphics[scale = 0.65]{Plot/MarketReturn.png}
     \caption{Economic Return of the Equally Weighted Market Portfolio}
     \label{Scatter regression}
 \end{figure}
 
+In Table \ref{DesStat} we present the annualized descriptive statistics.
+\textbf{TODO: Kommentere mean og volatilitet}
+
+\begin{figure}[h]
+\label{MarketReturn}
+    \centering
+    \includegraphics[scale = 0.65]{Plot/PercentilePlot.png}
+    \caption{Percentile Plot of the Equally Weighted Market Portfolio}
+    \label{Scatter regression}
+\end{figure}
+
+ From the table we observe that we have positive excess kurtosis, suggesting that our return distribution is a leptokurtic density. A leptokurtic density is one that has higher peak than a normal density. More peak than normal means that a distribution also has fatter tails and that there are more chances of extreme outcomes compared to a normal distribution. Moreover, the negative skew indicates that the right tail has more probability density than the left tail. In other, words we are observing a mean to the right of the median.
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 %\begin{landscape}
-\begin{longtable}{P{2cm}P{1cm}P{1cm}P{2cm}P{2cm}P{2cm}P{1cm}P{1.5cm}} 
-\caption{Descriptive Statistics of the Equally Weighted Market Portfolio}
-\label{RegressionIndividualStocks}\\
+\begin{longtable}{P{2cm}P{1.8cm}P{1.8cm}P{2cm}P{1.8cm}P{1.8cm}P{1.8cm}P{1cm}P{1.5cm}} 
+\caption{Annualized Descriptive Statistics of the Equally Weighted Market Portfolio}
+\label{DesStat}\\
 \hline
-\textbf{Observations} & \textbf{Min} & \textbf{Max}&$\boldsymbol{E(r_{economic})}$ &$\boldsymbol{\sigma^2_{economic}}$ &$\boldsymbol{\sigma_{economic}}$ & \textbf{Skew} & \textbf{Kurt} \\
+\textbf{Observations} & \textbf{Min} & \textbf{Max}&$\boldsymbol{E(r_{economic})}$&\textbf{Median} &$\boldsymbol{\sigma^2_{economic}}$ &$\boldsymbol{\sigma_{economic}}$ & \textbf{Skew} & \textbf{Kurt} \\
 \hline
 \endfirsthead
-\multicolumn{8}{c}%
+\multicolumn{9}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{Figure} & \textbf{Observations} & \textbf{Adj. }$\boldsymbol{R^{2}}$ & \textbf{Intercept} & \textbf{P-Value} & \textbf{Beta} & \textbf{P-Value} \\
+\textbf{Max}&$\boldsymbol{E(r_{economic})}$&\textbf{Median} &$\boldsymbol{\sigma^2_{economic}}$ &$\boldsymbol{\sigma_{economic}}$ & \textbf{Skew} & \textbf{Kurt} \\
 \hline
 \endhead
-\hline \multicolumn{8}{r}{\textit{Continued on next page}} \\
+\hline \multicolumn{9}{r}{\textit{Continued on next page}} \\
 \endfoot
 \hline
 \endlastfoot
 \input{Input/DescriptiveStatsTable.txt}
 \end{longtable}
+
+All the financial data is pulled from Factset. The data pulled are:
+\begin{itemize}
+    \item Stock closing price, daily
+    \item Company total shares outstanding, daily
+    \item Company book value, rolling last twelve month
+    \item Norwegian 10-years government bonds closing price, daily
+\end{itemize}
 
 %This paper will use continuously compounded returns, $r_c$, defined as: 
 %    \begin{align} 
