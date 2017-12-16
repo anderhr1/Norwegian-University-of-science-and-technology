@@ -1,8 +1,47 @@
 \chapter{Results}
 \label{Results}
-The result section is structured in two parts. Firstly, we highlight the empirical relationship between daily idiosyncratic volatility of the individual stocks and the resulting one-day-ahead return forecasting performance. Secondly, we pool the stocks in four equally sized, equally weighted portfolios by their constituent's daily IV percentage, and then assess the overall return forecasting performance of our defined portfolios.
+The result section is structured in two parts. Firstly, we highlight general forecastingp
 
-\section{Individual stocks}
+the empirical relationship between daily idiosyncratic volatility of the individual stocks and the resulting one-day-ahead return forecasting performance. Secondly, we pool the stocks in four equally sized, equally weighted portfolios by their constituent's daily IV percentage, and then assess the overall return forecasting performance of our defined portfolios.
+
+\section{General Forecasting Performance of the ARMA-GARCH}
+
+\newpage
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/EvaluationSignRatio.png}
+  \captionof{figure}{Sign Ratio}
+  \label{SignRatio}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/EvaluationSignReturn.png}
+  \captionof{figure}{Sign Return}
+  \label{SignReturn}
+\end{minipage}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/EvaluationMAFE.png}
+  \captionof{figure}{MAFE}
+  \label{MAFE}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[scale=0.5]{Plot/EvaluationRMSE.png}
+  \captionof{figure}{RMSE}
+  \label{RMSE}
+\end{minipage}
+\end{figure}
+
+\section{TBD}
+\section{Individual Stocks}
 
 We commence our analysis by examining a pooled regression of the relationship between the daily IV percentage and the one-day-ahead squared forecast error for all the stocks over the whole period, visualized in figure \ref{Scatter regression}: 
 
@@ -85,11 +124,11 @@ For more detailed results on the individual stocks, the reader is referenced to 
 
 In the previous section, we looked at the empirical relationship between individual stocks' daily IV proportion and return forecasting performance. In this section, we pool stocks in four equally sized, equally weighted portfolios by their constituents daily IV percentage, and discuss the overall return forecasting performance by assessing the portfolios return, sign ratio and Sharpe ratio. By pooling companies into portfolios we obtain diversification benefits, differences in the relationship between individual stocks' average daily IV proportion and their return forecasting performance are evened out. As a result, using portfolios instead of individual stocks, we are able to identify a clearer relationship between IV proportion and return forecasting performance. 
 
-Our findings are presented in Table \ref{Portfolio Metrics}. The first column denotes the portfolio number. The second column is the average daily IV percentage. Column three and four denotes the annualized economic return and the annualized standard deviation of the economic return, respectively. Column six denotes the sign ratio, and column seven and eight denotes the annualized sign return and the annualized standard deviation of the sign return, respectively. In column nine the annualized alpha is denoted. The mean of the annualized daily forecast errors, the annualized daily accuracy, is denoted in column ten. The annualized RMSE of the daily forecast errors, the annualized daily precision, is denoted in column eleven. Finally, in column twelve and thirteen, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. 
+Our findings are presented in Table \ref{Portfolio Metrics}. The first column denotes the portfolio number. The second column is the average daily IV percentage. Column three and four denotes the annualized economic return and the annualized standard deviation of the economic return, respectively. Column six denotes the sign ratio, and column seven and eight denotes the annualized sign return and the annualized standard deviation of the sign return, respectively. In column nine the annualized alpha is denoted. The MAFE, the annualized daily accuracy, is denoted in column ten. The annualized RMSE, the annualized daily precision, is denoted in column eleven. Finally, in column twelve and thirteen, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. 
 
 Our findings in Table \ref{Portfolio Metrics} shows that equally sized, equally weighted portfolios with higher average daily IV percentage generates higher annualized economic returns on average, than equally sized, equally weighted portfolios with lower average daily IV percentage. This result is not directly related to forecasting performance, but is still an interesting observation, as it supports the conclusions of Østnes and Hafskjær \cite{ostnes}. However, this is in contrast to the low idiosyncratic volatility anomaly introduced by Ang et al. \cite{angetal06}, supported in the Norwegian Stock Market concluded by Arnesen and Borge \cite{arnborge} and Tjaum and Wiedswang \cite{thaumwiedswang}. Arnesen and Borge \cite{arnborge} and Tjaum and Wiedswang \cite{thaumwiedswang} get the same results with both equally weighted and market weighted portfolios. However, they do not operate in an daily rebalanced environment as we do in this paper, which may give quite different results considering that that daily financial data contains short-term noise. Looking at the evidence presented in Appendix B, it reasonable to assume that a market weighted portfolio would result in similar annualized economic returns as Arnesen and Borge \cite{arnborge} and Tjaum and Wiedswang \cite{thaumwiedswang}. 
 
-Furthermore, we find that portfolios with higher average daily IV percentage has higher mean forecast error. Not only does it exist a positive relationship between average daily IV percentage and the annualized mean forecast error, the forecast errors also have higher annualized RMSE as the average daily IV percentage increases. Furthermore, as the average daily IV percentage increases, the sign ratio decreases. In other words, it seems harder to predict both the magnitude and direction of the one-day-ahead return for the portfolios with high average daily IV percentage. To, conclude, we have found a negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of accuracy, precision and direction. 
+Furthermore, we find that portfolios with higher average daily IV percentage has higher annualized MAFE. Not only does it exist a positive relationship between average daily IV percentage and the annualized MAFE, the forecast errors also have higher annualized RMSE as the average daily IV percentage increases. Furthermore, as the average daily IV percentage increases, the sign ratio decreases. In other words, it seems harder to predict both the magnitude and direction of the one-day-ahead return for the portfolios with high average daily IV percentage. To, conclude, we have found a negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of accuracy, precision and direction. 
 
 Despite the negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of accuracy, precision and direction, the annualized alpha increases as the average daily IV increases. Our findings suggest that portfolios with a higher average daily IV percentage also tend to have higher economic standard deviation. Hence, a reason for the increase in alpha, despite the negative relationship between average daily IV percentage and forecast performance of the portfolios in terms of accuracy, precision and direction, might be that it is easier for the return return forecasting model to predict the bigger directional movements when economic standard volatility, and hence average daily IV percentage, is greater. In other words, each correct prediction generates a high magnitude return despite it happens more infrequently as the average daily IV percentage increases
 
@@ -105,13 +144,13 @@ Taking into account that the return forecasting model trades on every stock in e
 \caption{Portfolio Metrics: Sorted by increasing average daily IV percentage}
 \label{Portfolio Metrics}\\
 \hline
-\textbf{Portfolio} &  \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ }& $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
+\textbf{Portfolio} &  \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ }& $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{MAFE}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
 \hline
 \endfirsthead
 \multicolumn{12}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{Portfolio} & \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ } & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{\bar\epsilon_{forecast}}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
+\textbf{Portfolio} & \textbf{Daily }$\boldsymbol{\bar{IV}}$\textbf{ } & $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{MAFE}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
 \hline
 \endhead
 \hline \multicolumn{12}{r}{\textit{Continued on next page}} \\

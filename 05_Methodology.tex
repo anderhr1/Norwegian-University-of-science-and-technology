@@ -29,7 +29,7 @@ In this section, we describe how we implemented the Fama French three factor mod
     \label{FFregression}
 \end{align}
 
-where $t$ indicates the day in the sample period, $r_{i,t}$ is the daily realized return of the stock $i$, $r_{f,t}$ is defined as the daily risk-free rate of Norwegian 10-years government bonds, $r_{m,t}$ is the daily return of the value-weighted market OSEAX portfolio, $r_{SMB,t}$ is the daily excess return of a portfolio consisting of small stocks relative to a portfolio consisting of big stocks, $r_{HML,t}$ is the daily excess return of a portfolio consisting of high book-to-market ratio stocks relative to low book-to-market stocks. $\beta_{m,i,t}$, $\beta_{SMB,i,t}$ and $\beta_{HML,i,t}$ are the corresponding coefficients resulting from the regression and the regression error is $\epsilon_{i,t}$.
+where $t$ indicates the day in the sample period, $r_{i,t}$ is the daily realized return of the stock $i$, $r_{f,t}$ is defined as the daily risk-free rate of Norwegian 10-years government bonds, $r_{m,t}$ is the daily return of the value-weighted, not equally-weighted, market portfolio, $r_{SMB,t}$ is the daily excess return of a portfolio consisting of small stocks relative to a portfolio consisting of big stocks, $r_{HML,t}$ is the daily excess return of a portfolio consisting of high book-to-market ratio stocks relative to low book-to-market stocks. $\beta_{m,i,t}$, $\beta_{SMB,i,t}$ and $\beta_{HML,i,t}$ are the corresponding coefficients resulting from the regression and the regression error is $\epsilon_{i,t}$.
 
 More precisely, we define $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ as:
 \begin{align}
@@ -187,18 +187,18 @@ where $\epsilon_{i,t}^{f}$ is the return forecasting error, the difference betwe
 
 In order to assess the return forecasting accuracy and precision, we define two statistical metrics. 
 
-\subsubsection{Mean Forecast Error}
-Firstly, as a statistical measure of accuracy for a portfolio, we define the mean forecast error (MFE). That is the annualized average total forecast error of a portfolio per day. The mathematical expression is:
+\subsubsection{Mean Absolute Forecast Error}
+Firstly, as a statistical measure of accuracy for a portfolio, we define the mean forecast error (MAFE). That is the annualized average total forecast error of a portfolio per day. The mathematical expression is:
 
 \begin{align}
-    MFE_{p} =  \frac{1}{|T|}\sum_{t=1}^{T}\frac{\sum_{i=1}^{N}r_{i,t}^{r} - r_{i,t}^{e}}{n}, \quad \forall_p \in P
+    MAFE_{p} =  \frac{1}{|T|}\sum_{t=1}^{T}\frac{\sum_{i=1}^{N}|r_{i,t}^{r} - r_{i,t}^{e}|}{n}, \quad \forall_p \in P
 \end{align}
 where $i$ is stock and $t$ is the current period, $N$ is the number of stocks in the portfolio and $T$ is the set of days the rolling window runs over.
 
 \subsubsection{Root Mean Square Error Metric}
 Secondly, as a statistical measure of precision for a portfolio, we define the root mean square error metric (RMSE). That is the standard deviation of the residuals, and the mathematical expression is:
 \begin{align}
-    RMSE_{p} = \frac{1}{|T|}\sum_{t=1}^{|T|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall_p \in P
+    RMSE_{p} = \frac{1}{|T|-1}\sum_{t=1}^{|T|}\sqrt{\frac{\sum_{i=1}^{N}(r_{i,t}^{r} - r_{i,t}^{e})^{2}}{n}}, \quad \forall_p \in P
 \end{align}
 where $i$ is stock and $t$ is the current day, $N$ is the number of stocks in the portfolio and $T$ is the set of days the rolling window runs over.
 
