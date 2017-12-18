@@ -1,24 +1,24 @@
 \chapter{Results}
 \label{Results}
-The result section is structured in two parts. Firstly, we will give a brief description of the general forecasting performance of the ARMA-GARCH. Then we present our result (IVOL) of the empirical relationship between daily idiosyncratic volatility and the one-day-ahead return forecasting performance. This analysis is separated in terms of individual stocks and equally sized, equally weighted portfolios by their constituent's daily IVOL percentage.
+The result section is structured in two parts. Firstly, we will give a brief description of the general forecasting performance of the ARMA-GARCH. Then, we present our result of the empirical relationship between daily idiosyncratic volatility (IVOL) and the out-of-sample, one-day-ahead return forecasting performance. This analysis is separated between the forecasting performance of individual stocks and equally sized, equally weighted portfolios sorted by the selected stock's daily IVOL percentage.
 
 \section{General Forecasting Performance of the ARMA-GARCH}
-In order to obtain an overall understanding of the ARMA-GARCH forecasting performance, we present various statistics describing the model over the period considered. Without any other forecasting model to compare to, it is infeasible to draw any conclusions of the absolute performance of the ARMA-GARCH. Therefore, we will present the results in an objective manner.
+In order to obtain an overall understanding of the ARMA-GARCH forecasting performance, we present various statistics describing the model over the period considered. Without any other forecasting model to compare to, it is infeasible to make any conclusions about the absolute performance of the ARMA-GARCH. Therefore, we will present the results in an objective manner.
 
-Figure \ref{SignRatio} shows the average Sign ratio, Figure \ref{SignReturn} shows the accumulated Sign return from a the equally weighted market portfolio with daily rebalancing, Figure \ref{MAFE} shows the average MAFE, while Figure \ref{RMSE} shows the average RMSE.
+Figure \ref{SignRatio} shows the average sign ratio, Figure \ref{SignReturn} shows the accumulated sign return from a the equally weighted market portfolio with daily rebalancing, Figure \ref{MAFE} shows the average MAFE, while Figure \ref{RMSE} shows the average RMSE.
 
 \begin{figure}
 \centering
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.5]{Plot/EvaluationSignRatio.png}
-  \captionof{figure}{Sign Ratio}
+  \captionof{figure}{Average Sign Ratio}
   \label{SignRatio}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.5]{Plot/EvaluationSignReturn.png}
-  \captionof{figure}{Sign Return}
+  \captionof{figure}{Accumulated Sign Return}
   \label{SignReturn}
 \end{minipage}
 \end{figure}
@@ -27,24 +27,24 @@ Figure \ref{SignRatio} shows the average Sign ratio, Figure \ref{SignReturn} sho
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.5]{Plot/EvaluationMAFE.png}
-  \captionof{figure}{MAFE}
+  \captionof{figure}{Average MAFE}
   \label{MAFE}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[scale=0.5]{Plot/EvaluationRMSE.png}
-  \captionof{figure}{RMSE}
+  \captionof{figure}{Average RMSE}
   \label{RMSE}
 \end{minipage}
 \end{figure}
 
-From Figure \ref{SignRatio}, we observe that the forecasting model's prediction ability in terms of market timing and direction is fluctuating over time, with an average sign ratio of $43\%$. Moreover, Figure \ref{SignReturn} shows that the forecasting model generates solid returns following the sign strategy, with a total accumulated return of $953\%$ over the 7 years considered, substantially better than the $106\%$ obtained by following a buy-and-hold-strategy. We can also conclude that the MAFE and RMSE varies over time, with average annualized number of $553\%$ and $59\%$, respectively.
+From Figure \ref{SignRatio} we observe that the return forecasting model's prediction ability in terms of market timing and direction is fluctuating over time, with an average sign ratio of $43\%$. Moreover, Figure \ref{SignReturn} shows that the forecasting model generates solid returns following the sign strategy, with a total accumulated return of $953\%$ over the 7 years considered, substantially better than the $106\%$ obtained by following a buy-and-hold-strategy with daily rebalancing. We can also conclude that the MAFE and RMSE varies over time, with average annualized number of $553\%$ and $59\%$, respectively.
 
 \section{Relationship Between Daily IVOL Percentage and Forecasting Performance}
 
 \subsection{Individual Stocks}
 
-We commence our analysis by examining a pooled regression of the relationship between the daily IVOL percentage and the one-day-ahead squared forecast error for all the stocks over the whole period, visualized in figure \ref{Scatter regression}: 
+We commence our analysis by examining a pooled regression of the relationship between the daily IVOL percentage and the out-of-sample, one-day-ahead squared forecast error for all the stocks over the whole period, visualized in figure \ref{Scatter regression}: 
 
 \begin{figure}[h]
     \centering
@@ -55,7 +55,7 @@ We commence our analysis by examining a pooled regression of the relationship be
 
 Figure \ref{Scatter regression} indicate the existence of a positive relationship between the daily IVOL percentage and squared forecast error. Visually, one could also infer a weak positive exponential relationship. The result implies that it is more difficult to accurately and precisely predict tomorrows return for stocks with a high daily IVOL percentage.
 
-Furthermore, we examine the relationship between the average daily IVOL percentage and the \textit{sign ratio}. Running a regression on each stock's average daily IVOL percentage and its sign ratio, we obtain the following plot: 
+Furthermore, we examine the relationship between the average daily IVOL percentage and the sign ratio. Running a regression on each stock's average daily IVOL percentage and its sign ratio, we obtain the following plot: 
 
 \begin{figure}[h]
     \centering
@@ -64,7 +64,7 @@ Furthermore, we examine the relationship between the average daily IVOL percenta
     \label{IVSignError}
 \end{figure}
 
-Figure \ref{IVSignError} visually illustrate that it's more difficult to predict the direction of the one-day-ahead return for stocks with a high average daily IVOL percentage. From table \ref{RegressionIndividualStocks} we confirm this by observing that we have a significant $\beta$ at $-0.319$. Like our observations in Figure \ref{Scatter regression}, one can visually infer a weak negative exponential relationship between sign ratio and average daily IVOL percentage.
+Figure \ref{IVSignError} visually illustrate that it's more difficult to predict the direction of the one-day-ahead return for stocks with a high average daily IVOL percentage. From table \ref{RegressionIndividualStocks} we confirm this by observing that we have a significant $\beta$ at $-0.525$. Like our observations in Figure \ref{Scatter regression}, one can visually infer a weak negative exponential relationship between sign ratio and average daily IVOL percentage.
 
 So far the presented results have indicated that it is harder to predict the one-day-ahead return for stocks with a high average daily IVOL percentage, both in terms of accuracy, precision and direction. Now, we wish to examine the profitability of following the predictions of our return forecasting model. 
 
@@ -77,9 +77,9 @@ Therefore, we run a regression on each stock’s average daily IVOL percentage o
     \label{IVAlphaRegression}
 \end{figure}
 
-Figure \ref{IVAlphaRegression} illustrates that following the sign strategy generates a positive alpha for a majority of the stocks in the sample. Moreover, Table \ref{RegressionIndividualStocks} confirms the positive relationship between the daily average IVOL percentage and the alpha, with a significant $\beta$ of $0.003$. 
+Figure \ref{IVAlphaRegression} illustrates that following the sign strategy generates a positive alpha for a majority of the stocks in the sample. Moreover, Table \ref{RegressionIndividualStocks} confirms the positive relationship between the daily average IVOL percentage and the alpha, with a significant $\beta$ of $0.016$. 
 
-Figure \ref{IVtoVol}, shows the relationship between average daily IVOL percentage and annualized economic standard deviation:
+Figure \ref{IVtoVol} shows the relationship between average daily IVOL percentage and annualized economic standard deviation. Here we can observe the positive correlation between a high daily IVOL percentage and economic standard deviation. This emphasizes that stocks with a high average daily IVOL percentage also tend to exhibit a higher volatility.  
 
 \begin{figure}[h]
     \centering
@@ -88,9 +88,7 @@ Figure \ref{IVtoVol}, shows the relationship between average daily IVOL percenta
     \label{IVtoVol}
 \end{figure}
 
-Here we can observe the positive correlation between a high daily IVOL percentage and economic standard deviation. This emphasizes that stocks with a high average daily IVOL percentage also tend to exhibit a higher volatility.  
-
-This leads to two preliminary interpretations: the return forecasting performance for the one-day-ahead return in terms of direction or accuracy, precision is worse for stocks with a high daily IVOL percentage. However, the return of trading according to the predictions of forecasting model tends to generate positive alpha for these stocks. This can understood by the fact these stocks tend to exhibit a higher total volatility, as seen in Figure \ref{IVtoVol}, and it appears that the return forecasting model predicts the bigger directional movements when hence daily IVOL percentage, and hence volatility, is greater.
+This leads to two preliminary interpretations: the return forecasting performance for the one-day-ahead return in terms of predicting accuracy, precision and direction is worse for stocks with a high daily IVOL percentage. However, the return of trading according to the daily predictions of forecasting model tends to generate positive alpha for these stocks. Possible explanations for this result will be discussed in the next section.
 
 Table \ref{RegressionIndividualStocks} below shows the results and parameters of the four regressions presented in this section:
 
@@ -121,31 +119,31 @@ For more detailed results on the individual stocks, the reader is referenced to 
 
 \newpage
 
-\subsection{Equally sized, equally weighted portfolios}
+\subsection{Equally Sized, Equally Weighted Portfolios}
 
-In the previous section, we looked at the empirical relationship between individual stocks' daily IVOL proportion and return forecasting performance. In this section, we pool stocks into four equally sized, equally weighted portfolios sorted by the constituents daily IVOL percentage, and discuss the overall return forecasting performance by assessing the portfolios return, sign ratio and Sharpe ratio. By pooling companies into portfolios we obtain diversification benefits, as differences in the relationship between individual stocks' average daily IVOL proportion and their return forecasting performance are evened out. As a result, using portfolios instead of individual stocks, we are able to identify a clearer relationship between IVOL proportion and return forecasting performance. 
+In the previous section, we looked at the empirical relationship between individual stocks' daily IVOL proportion and return forecasting performance. In this section, we pool stocks into four equally sized, equally weighted portfolios sorted by the selected stocks' daily IVOL percentage, and discuss the overall return forecasting performance by assessing the portfolios' return, sign ratio and Sharpe ratio. By pooling companies into portfolios we obtain diversification benefits, as differences in the relationship between individual stocks' average daily IVOL proportion and their return forecasting performance are evened out. As a result, we believe that using portfolios instead of individual stocks enables us to identify a clearer relationship between IVOL proportion and return forecasting performance. 
 
-Our findings are presented in Table \ref{Portfolio Metrics}. The first column denotes the portfolio number. The second column is the average daily IVOL percentage. Column three and four denotes the annualized economic return and the annualized standard deviation of the economic return, respectively. Column six denotes the sign ratio, and column seven and eight denotes the annualized sign return and the annualized standard deviation of the sign return, respectively. In column nine the annualized alpha is denoted. The MAFE, the annualized daily accuracy, is denoted in column ten. The annualized RMSE, the annualized daily precision, is denoted in column eleven. Finally, in column twelve and thirteen, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. 
+Our findings are presented in Table \ref{Portfolio Metrics}. The first column denotes the portfolio number. The second column is the average daily IVOL percentage. Column three and four denotes the annualized economic return and the annualized standard deviation of the economic return, respectively. Column five denotes the sign ratio, and column six and seven denotes the annualized sign return and the annualized standard deviation of the sign return, respectively. In column eighth the annualized alpha is denoted. The MAFE, the annualized daily accuracy, is denoted in column nine. The annualized RMSE, the annualized daily precision, is denoted in column ten. Finally, in column eleven and twelve, we find the Sharpe ratio of the annualized economic return and annualized sign return, respectively. 
 
 Our findings in Table \ref{Portfolio Metrics} show that equally sized, equally weighted portfolios with higher average daily IVOL percentage generates higher annualized economic returns on average, than equally sized, equally weighted portfolios with lower average daily IVOL percentage. This result is not directly related to forecasting performance, but is still an interesting observation, as it supports the conclusions of Østnes and Hafskjær \cite{ostnes}. However, this is in contrast to the low idiosyncratic volatility anomaly introduced by Ang et al. \cite{angetal06}, and also present Norwegian Stock Market argued by Arnesen and Borge \cite{arnborge} and Tjaum and Wiedswang \cite{thaumwiedswang}. Arnesen and Borge \cite{arnborge} and Tjaum and Wiedswang \cite{thaumwiedswang} obtain the same conclusion with both equally weighted and market weighted portfolios. However, they do not operate in an daily rebalanced environment as we do in this paper, which may give quite different results considering that that daily financial data contains short-term noise. 
 
-Furthermore, we find that portfolios with higher average daily IVOL percentage has higher annualized MAFE. Not only does there exist a positive relationship between average daily IVOL percentage and the annualized MAFE, the forecast errors also have higher annualized RMSE as the average daily IVOL percentage increases. Furthermore, as the average daily IVOL percentage increases, the sign ratio decreases. In other words, it seems more difficult to predict both the magnitude and direction of the one-day-ahead return for the portfolios with high average daily IVOL percentage. To conclude, we have found a negative relationship between average daily IVOL percentage and forecast performance of the portfolios in terms of accuracy, precision and direction. 
+Furthermore, we find that portfolios with higher average daily IVOL percentage has higher annualized MAFE. Not only does there exist a positive relationship between average daily IVOL percentage and the annualized MAFE, the forecast errors also have higher annualized RMSE as the average daily IVOL percentage increases. Also, as the average daily IVOL percentage increases, the sign ratio decreases. In other words, it seems more difficult to predict both the magnitude and direction of the one-day-ahead return for the portfolios with high average daily IVOL percentage. To conclude, there exists a negative relationship between average daily IVOL percentage and forecast performance of the portfolios in terms of accuracy, precision and direction. 
 
-Despite the negative relationship between average daily IVOL percentage and forecast performance of the portfolios in terms of accuracy, precision and direction, the annualized alpha increases as the average daily IVOL increases. Our findings suggest that portfolios with a higher average daily IVOL percentage also tend to have higher economic standard deviation. Hence, a reason for the increase in alpha, despite the negative relationship between average daily IVOL percentage and forecast performance of the portfolios in terms of accuracy, precision and direction, might be that it is easier for the return return forecasting model to predict the bigger directional movements when economic standard volatility, and hence average daily IVOL percentage, is greater. In other words, each correct prediction generates a large magnitude return despite it happens more infrequently as the average daily IVOL percentage increases.
+Despite the negative relationship between average daily IVOL percentage and forecast performance of the portfolios in terms of accuracy, precision and direction, the annualized alpha increases as the average daily IVOL percentage increases. Our findings suggest that portfolios with a higher average daily IVOL percentage also tend to have higher economic standard deviation. Hence, a reason for the increase in alpha, despite it happens more infrequently, might be that it is easier for the return forecasting model to predict the bigger, directional movements when economic standard volatility, and hence average daily IVOL percentage, is greater. Other explanations of the observed relationship might be the choice of using equally weighted portfolios, which is daily rebalanced. Thus, it is difficult to interpret this result without comparing different return forecasting models, rebalancing intervals and types of portfolios. In addition, we need to do comparisons with different financial data granularity, such as weekly or monthly data.
 
 Another interesting observation is that the annualized economic standard deviation decreases, as the average daily IVOL percentage increases, despite the increase in annualized economic return. Consequently, the diversification effect is greater in equally weighted portfolios containing stocks with a high proportion of IVOL, even though we showed a positive correlation between a high daily IVOL percentage and annualized economic standard deviation in the last section. This is reasonable considering that diversification is about reducing the IVOL.
 
-Our findings also suggest that the annualized standard deviation of the sign return is less compared to the annualized standard deviation of the economic return, for all four portfolios. The difference between the annualized standard deviations are greater for portfolios with lower average daily IVOL percentage. A greater annualized sign return combined with a lower annualized sign standard deviation, implies a Sharpe ratio that is greater than the Sharpe ratio of the annualized economic return. 
+Our findings also suggest that the annualized standard deviation of the sign return is less compared to the annualized standard deviation of the economic return, for all four portfolios. The difference between the annualized standard deviations are greater for portfolios with lower average daily IVOL percentage. As a consequence, a greater annualized sign return combined with a lower annualized sign standard deviation, results in a Sharpe ratio that is greater than the Sharpe ratio for the annualized economic return. 
 
-Taking into account that the return forecasting model trades on every stock in each equally weighted portfolio every day and does not incorporate transaction costs, the annualized sign return, and hence the Sharpe ratio, is expected to be less than calculated in Table \ref{Portfolio Metrics}. See Appendix C for the development of the accumulated returns and alphas for each of the four portfolios. 
+The return forecasting model will in worst case trade on every stock in each equally weighted portfolio every day. The model does not incorporate transaction costs, and hence the annualized sign return and Sharpe ratio is expected to be less than calculated in Table \ref{Portfolio Metrics}. See Appendix C for the development of the accumulated returns and alphas for each of the four portfolios. 
 
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \begin{landscape}
-\begin{longtable}{P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.6cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}} 
+\begin{longtable}{P{1.5cm}P{2.2cm}P{1.5cm}P{1.5cm}P{1.6cm}P{1.3cm}P{1.3cm}P{1.3cm}P{1.5cm}P{1.5cm}P{1.5cm}P{1.5cm}} 
 \caption{Portfolio Metrics: Sorted by increasing average daily IVOL percentage}
 \label{Portfolio Metrics}\\
 \hline
-\textbf{Portfolio} &  \textbf{Daily }$\boldsymbol{\bar{IVOL}}$\textbf{ }& $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{MAFE}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
+\textbf{Portfolio} &  \textbf{Daily }$\boldsymbol{\bar{IVOL}}$\textbf{ \%}& $\boldsymbol{r_{economic}}$ & $\boldsymbol{\sigma_{economic}}$ & \textbf{Sign Ratio} &  $\boldsymbol{r_{sign}}$ & $\boldsymbol{\sigma_{sign}}$ & $\boldsymbol{\alpha}$ & $\boldsymbol{MAFE}$ & $\boldsymbol{RMSE}$ & $\boldsymbol{S_{economic}} $ & $\boldsymbol{S_{sign}}$ \\
 \hline
 \endfirsthead
 \multicolumn{12}{c}%
