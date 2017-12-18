@@ -1,7 +1,16 @@
 \chapter{Data}
 \label{Da}
 
-This study uses daily financial data for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017 is. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu \cite{Fu}, which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents in the index is 168 before cleaning and <number> after cleaning. This paper is based on the cleaned data. For the constituents of the OSEAX, after data cleaning, we refer to appendix B. In Figure \ref{MarketReturn} the economic return of the equally weighted portfolio containing the constituents of the OSEAX, after data cleaning, is graphed. This portfolio will be referred to as the market portfolio. In addition, we show the squared daily economic return. The portfolio has a return of about [x] percent from January 2010 to September 2017. In addition, we observe volatility clustering in the squared daily economic returns, suggesting that non-linear effects are present.
+This study uses daily financial data for all the constituents of the Oslo Stock Exchange All-Share Index (OSEAX), obtained from Factset, between January 2010 and September 2017 is. Stocks that are not continuously listed during the period is excluded. In addition, we have excluded stocks following the criterion employed by Fu \cite{Fu}, which requires that each stock be traded for a minimum of 15 days during each month of the sample period. The number of constituents in the index is 168 before cleaning and 105 after cleaning. This paper is based on the cleaned data. For the selected stocks, after data cleaning, we refer to appendix B. 
+
+All the financial data is retrieved from FactSet. In addition to the Norwegian 10-years government bonds daily closing price, we retrieved the following data for each stock:
+\begin{itemize}
+    \item Closing price, daily
+    \item Total shares outstanding, daily
+    \item Book value, rolling last twelve month
+\end{itemize}
+
+In Figure \ref{MarketReturn} the economic return of the equally weighted portfolio containing the selected stocks is visualized. This portfolio will be referred to as the market portfolio. In addition, we show the squared daily economic return. The portfolio has a return of $106\%$ from January 2010 to September 2017. We observe volatility clustering in the squared daily economic returns, suggesting that non-linear effects are present.
 
 \begin{figure}[h]
 \label{MarketReturn}
@@ -11,7 +20,7 @@ This study uses daily financial data for all the constituents of the Oslo Stock 
     \label{MarketReturn}
 \end{figure}
 
-In Table \ref{DesStat} we present the descriptive statistics. From the table we observe that we have positive excess kurtosis, suggesting that our return distribution is a leptokurtic density. A leptokurtic density is one that has higher peak than a normal density. More peak than normal means that a distribution also has fatter tails and that there are more chances of extreme outcomes compared to a normal distribution. Moreover, the negative skew indicates that the right tail has more probability density than the left tail. As a result, the mean is being skewed to the left of the center of the data. From Figure \ref{PercentilePlot} and Figure \ref{QQPlot}, we see that the economic return distribution is closely related, but not equal to a normal distribution.  
+In Table \ref{DesStat} we present the descriptive statistics. We observe that the equally weighted market portfolio has a positive daily expected return of $0.04\%$. The data exhibits positive excess kurtosis, suggesting that our return distribution is a leptokurtic density. A leptokurtic density is one that has higher peak than a normal density. More peak than normal means that a distribution also has fatter tails and that there are more chances of extreme outcomes compared to a normal distribution. Moreover, the negative skew indicates that the right tail has more probability density than the left tail. As a result, the mean is being skewed to the left of the center of the data. From Figure \ref{PercentilePlot} and Figure \ref{QQPlot}, we see that the economic return distribution is closely related, but not equal to a normal distribution.  
 
 \begin{figure}
 \centering
@@ -52,17 +61,3 @@ In Table \ref{DesStat} we present the descriptive statistics. From the table we 
 \endlastfoot
 \input{Input/DescriptiveStatsTable.txt}
 \end{longtable}
-
-All the financial data is pulled from Factset. In addition to the Norwegian 10-years government bonds daily closing price, we pulled the following data for each stock:
-\begin{itemize}
-    \item Closing price, daily
-    \item Total shares outstanding, daily
-    \item Book value, rolling last twelve month
-\end{itemize}
-
-
-%This paper will use continuously compounded returns, $r_c$, defined as: 
-%    \begin{align} 
-%        e^r_{c,t} = \frac{s_{t}}{s_{t-1}}\\
-%        r_c = ln\frac{s_{t}}{s_{t-1}}
-%    \end{align}

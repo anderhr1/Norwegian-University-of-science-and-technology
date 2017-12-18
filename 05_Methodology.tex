@@ -1,11 +1,11 @@
 \chapter{Methodology}
 \label{Methodology}
 
-The sample period for the various models we employ is the 250 last daily data points. All calculations are performed every day for all [x] stocks over the whole period used as a rolling window. The period used as a rolling window goes from January 2011 to September 2017, containing about 1500 daily data points. Bear in mind that transaction costs are not incorporated throughout this paper. The methodology of this paper is structured with four main components, illustrated with a flow chart in Figure \ref{FlowChart}.
+The sample period for the various models we employ is the 250 last daily data points. All calculations are performed every day for all 105 stocks over the whole period used as a rolling window. The period used as a rolling window goes from January 2011 to September 2017, containing about 1500 daily data points. Bear in mind that transaction costs are not incorporated throughout this paper. The methodology of this paper is structured with four main components, illustrated with a flow chart in Figure \ref{FlowChart}.
 
-In the first part of the study we calculate the daily idiosyncratic volatility (IV) for each of the selected stocks by applying the Fama French regression.
+In the first part of the study we calculate the daily idiosyncratic volatility (IVOL) for each of the selected stocks by applying the Fama French regression.
 
-Secondly, we pool the stocks into four equally sized, equally weighted portfolios by their constituents proportion of daily IV to daily volatility, which we denote as the daily IV percentage. The equally weighted portfolios are rebalanced daily.
+Secondly, we pool the stocks into four equally sized, equally weighted portfolios by their constituents proportion of daily IVOL to daily volatility, which we denote as the daily IVOL percentage. The equally weighted portfolios are rebalanced daily.
 
 Thirdly, we construct an ARMA-GARCH return forecasting model. We estimate the ARMA-GARCH parameters and construct the one-day-ahead out-of-sample forecasts. Then, we compare the model’s one-day-ahead forecast with the realized return to obtain the daily return forecasting error. This is assigned to its associated portfolio that day and used to revise the return forecasting model. 
 
@@ -14,14 +14,14 @@ Lastly, we revise the return forecasting performance of both the individual stoc
 \begin{figure}
     \centering
     \includegraphics[scale=0.5]{Pictures/FlowChart.png}
-    \captionof{figure}{Methodology: Flow Chart}
+    \captionof{figure}{Flow Chart of the methodology}
     \label{FlowChart}
 \end{figure}
 
 \newpage
 \section{Calculating the idiosyncratic volatility}
 
-In this section, we describe how we implemented the Fama French three factor model, before we define idiosyncratic volatility.
+In this section, we describe how we implemented the Fama French three factor model, before we define IVOL.
 
 \subsection{Implementation of the Fama French three factor model} The Fama French three factor model \cite{famafrench} incorporates the empirical fact that value and small-cap stocks have a tendency to outperform the market on a regular basis. Using their methodology we employ the following multiple linear regression:
 \begin{align} 
@@ -40,28 +40,28 @@ More precisely, we define $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ as:
 where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the realized return and market capitalization of stock $i$ at day $t$, respectively. 
 
 \subsection{Definition of idiosyncratic volatility}
-Consistent with Ang et al. \cite{angetal06} we define idiosyncratic volatility as the square root of the variance of the error term in the Fama French three factor model \cite{famafrench}. Hence, deriving from equation \ref{FFregression}, we have:
+Consistent with Ang et al. \cite{angetal06} we define IVOL as the square root of the variance of the error term in the Fama French three factor model \cite{famafrench}. Hence, deriving from equation \ref{FFregression}, we have:
  \begin{align}
  IV_{i,t} &= \sqrt{Var[\epsilon_{i,t}]} \\
   &= \sqrt{Var[r_{i,t} - r_{f,t}- \alpha_{i,t}-\beta_{m,i,t}(r_{m,t} - r_{f,t}) - \beta_{SMB,i,t}r_{SMB,t} - \beta_{HML,i,t}r_{HML,t}]},  \quad  \forall_i \in I \quad  \forall_t \in T \\
  &= \sqrt{Var[r_{i,t}]+\beta_{1,i,t}^2Var[r_{m,t}]+\beta_{SMB,i,t}^2Var[r_{SMB,t}]+\beta_{HML,i,t}^2Var[r_{HML,t}]}, \quad  \forall_i \in I \quad  \forall_t \in T \\ 
  &= \sqrt{\sigma_{i,t}^2 - \beta^2_{m,i,t} \sigma_{m,t}^{2}- \beta^2_{SMB,i,t} \sigma_{SMB,t}^{2}- \beta^2_{HML,i,t} \sigma_{HML,t}^{2}}, \quad  \forall_i \in I \quad  \forall_t \in T
  \end{align}
-where $t$ is the current day, T is the number of days the rolling window runs over and $IV_{i,t}$ is the IV of stock $i$ in day $t$. Here we assume the ordinary OLS assumptions of the linear regression model: linear dependence of the parameters, random sample of n observations, the error process is i.i.d, normally distributed with conditional mean equal to zero... and there is no multi-collinerarity and homoskedasticity. 
+where $t$ is the current day, T is the number of days the rolling window runs over and $IV_{i,t}$ is the IVOL of stock $i$ in day $t$. Here we assume the ordinary OLS assumptions of the linear regression model. 
 
-\section{Portfolio construction pooled by the constituents' daily IV percentage}
-We have now described the methodology of estimating the daily IV percentage values. In this study, we seek to examine the relationship between the proportion of a stock's idiosyncratic volatility to volatility, the IV percentage. This because we find it interesting to examine stocks where the IV constitutes a large or small component of the stock's volatility, and not just in terms of magnitude. We define the daily IV percentage as the ratio:
+\section{Portfolio construction pooled by the constituents' daily IVOL percentage}
+We have now described the methodology of estimating the daily IVOL percentage values. In this study, we seek to examine the relationship between the proportion of a stock's IVOL to volatility, the IVOL percentage. This because we find it interesting to examine stocks where the IVOL constitutes a large or small component of the stock's volatility, and not just in terms of magnitude. We define the daily IVOL percentage as the ratio:
 \begin{align}
     \frac{IV_{i,t}}{\sigma_{i,t}}, \quad  \forall_i \in I \quad  \forall_t \in T
 \end{align}
 
-Further, we construct four equally sized, equally weighted portfolios by pooling stocks by their daily IV percentage. Portfolio 1 contains stocks with the lowest daily IV percentage, while portfolio 4 contains stocks with the highest daily IV percentage. The portfolios are held for one day and the the equally-weighted return at the end of the current day is calculated. We rebalance the portfolios every day. 
+Further, we construct four equally sized, equally weighted portfolios by pooling stocks by their daily IVOL percentage. Portfolio 1 contains stocks with the lowest daily IVOL percentage, while portfolio 4 contains stocks with the highest daily IVOL percentage. The portfolios are held for one day and the the equally-weighted return at the end of the current day is calculated. We rebalance the portfolios every day. 
 
 
 \section{Constructing the return forecasting model: a dynamic ARMA($w,x$)-GARCH($1,1$)} 
 
 
-\subsection{Theoretical background for the ARMA-GARCH return forecasting model}
+\subsection{Theoretical background of the ARMA-GARCH return forecasting model}
 
 Financial returns are often modelled as auto-regressive moving average (ARMA) time series with random disturbances having conditional heteroscedastic variances. The conditional mean and conditional variance will change at every point in time because it depends on the history of returns up to that point. That is, we account for the dynamic properties of returns by regarding their distribution at any point in time as being conditional on all the information up to that point. The distribution of a return at time t regards all the past returns up to and including time $t-1$ as being non-stochastic. We denote the information set, which is the set containing all the past returns up to and including time $t-1$, by $I_{t-1}$. The information set contains all the prices and returns that we can observe, like the filtration set in continuous time. 
 
@@ -157,7 +157,7 @@ where $k$ is the number of estmated parameters and $L$ is the maximum value of t
 
 After the decision is made of which ARMA order to use, equation (\ref{fullMaximumLike}) is solved. There is no guarantee that the maximum likelihood of the ARMA-GARCH will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{fullMaximumLikeARMA}) and not ARMA-GARCH (\ref{fullMaximumLike}). The maximum likelihood function of plain vanilla ARMA will almost always converge because it is linear. If the plain vanilla ARMA does not converge, the process above is repeated with the ARMA order giving second best AIC, and so on, until convergence is achieved.
 
-The ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period used as a rolling window. The time step is one-day-ahead and the information set, sample, which the parameters are estimated from are the past 250 daily returns. As mentioned in the introduction to this chapter, there are [x] stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1500 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
+The ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period used as a rolling window. The time step is one-day-ahead and the information set sample, which the parameters are estimated from, are the past 250 daily returns. As mentioned in the introduction to this chapter there are 105 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1500 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
 
 One may argue that a information set bigger than 250 should be used, as the standard errors of the parameters are only valid asymptotically. This, additional return forecasting model spesification and other return forecasting models are further discussed in Chapter \ref{FutureWork}.
 
