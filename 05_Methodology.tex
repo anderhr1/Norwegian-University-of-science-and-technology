@@ -7,7 +7,7 @@ In the first part of our analysis we calculate the daily idiosyncratic volatilit
 
 Secondly, we pool the stocks into four equally sized, equally weighted portfolios sorted by the selected stocks' proportion of daily IVOL to daily volatility, which we denote as the daily IVOL percentage. The equally weighted portfolios are rebalanced daily.
 
-Thirdly, we construct an ARMA-GARCH return forecasting model. We estimate the ARMA-GARCH parameters and construct the out-of-sample, one-day-ahead forecasts. Then, we compare the model’s out-of-sample,one-day-ahead forecast with the realized return to obtain the daily return forecasting error. 
+Thirdly, we construct an ARMA-GARCH return forecasting model. We estimate the ARMA-GARCH parameters and construct the out-of-sample, one-day-ahead forecasts. Then, we compare the model’s out-of-sample, one-day-ahead forecast with the realized return to obtain the daily return forecasting error. 
 
 Lastly, we revise the return forecasting performance of both the individual stocks and the equally sized, equally weighted portfolios by applying statistical and economical metrics of comparison.
 
@@ -36,7 +36,7 @@ More precisely, we define $r_{m,t}$, $r_{HML,t}$ and $r_{SMB,t}$ as follows:
     r_{SMB,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s={\frac{N}{2}+1}}^{N} MC_{s,t}}, \quad  \forall_t \in T \\
     r_{HML,t} &= \sum_{i=1}^{\frac{N}{2}} r_{i,t} \cdot \frac{\text{MC}_{i,t}}{\sum_{s=1}^{\frac{N}{2}} MC_{s,t}} - \sum_{k=\frac{N}{2}+1}^{N} r_{k,t} \cdot \frac{\text{MC}_{k,t}}{\sum_{s=\frac{N}{2}+1}^{N} MC_{s,t}} \quad  \forall_t \in T
 \end{align}
-where $N$ is the number of stocks in the sample, $r_{i,t}$ and $MC_{i,t}$ is the realized return and market capitalization of stock $i$ at day $t$, respectively. 
+where $r_{i,t}$ and $MC_{i,t}$ is the realized return and market capitalization of stock $i$ at day $t$, respectively. $N$ is the number of stocks in the sample and $\frac{N}{2}$ divides the stocks into two equal parts, by their market cap for the SMB calculations and book-to-market ratio for the HML calculations.
 
 \subsection{Definition of Idiosyncratic Volatility}
 Consistent with Ang et al. \cite{angetal06}, we define IVOL as the square root of the variance of the error term in the Fama French three factor model \cite{famafrench}. That is, $IVOL_{i,t} = \sqrt{Var[\epsilon_{i,t}]}$. We estimate the IVOL for all stocks, $i \in I$, and all days, $t \in T$. Deriving from equation \ref{FFregression}, we have:
@@ -76,15 +76,15 @@ To model the financial data time series we use two common concepts of conditiona
 
 The AR process for stock $i$ is given by:
 \begin{align}
-    r_{i,t}=c_i + \sum_{j=1}^w\kappa_j r_{i,t-j} + \epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
+    r_{i,t}=c_i + \sum_{j=1}^w\kappa_{i,j} r_{i,t-j} + \epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
 \end{align}
-where $\kappa_j$ is the lag parameter of the observed variable, $r_{i,t}$ is the observed random variable at time $t$ depending on the previously realized values of $r_{i, t-j}$, $c_i$ is the mean constant and $\epsilon_{i,t}$ the white noise.
+where $\kappa_{i,j}$ is the lag parameter of the observed variable, $r_{i,t}$ is the observed random variable at time $t$ depending on the previously realized values of $r_{i, t-j}$, $c_i$ is the mean constant and $\epsilon_{i,t}$ the white noise.
 
 The MA process for stock $i$ is given by:
 \begin{align}
     r_{i,t}=c_i + \sum_{j=1}^x\mu_{i,j} \epsilon_{i,t-j} + \epsilon_{i,t},\quad \epsilon_{i,t} | I_{i,t-1} \sim N(0,{\sigma_{i,t}^2}) \label{ConditionalMeanEquation}
 \end{align}
-where $\mu_{i,j}$ is the lag parameter of the observed variable, $r_{i,t}$ is the observed random variable at time $t$ depending on the previously realized values of $\epsilon_{i,t-j}$, $c$ is the mean constant and $\epsilon_{i,t}$ the white noise.
+where $\mu_{i,j}$ is the lag parameter of the observed variable, $r_{i,t}$ is the observed random variable at time $t$ depending on the previously realized values of $\epsilon_{i,t-j}$, $c_i$ is the mean constant and $\epsilon_{i,t}$ the white noise.
 
 The combination of both the AR-process and MA-process, gives us the ARMA process for stock $i$ described by:
 \begin{align}
@@ -92,7 +92,7 @@ The combination of both the AR-process and MA-process, gives us the ARMA process
 \end{align}
 
 \subsubsection{The Conditional Variance Equation, GARCH($y,z$)}
-As financial data time series usually exhibit volatility clustering, as is the case with our data, showed in the last chapter. As a result, a model dealing with conditional heteroskedasticity should be considered. We use the GARCH model introduced by Bollerslev \cite{Bollerslev},which is a generalization of the ARCH model that was originally developed by Engle \cite{Engel}. The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
+Financial data time series usually exhibit volatility clustering, as is the case with our data, showed in the last chapter. As a result, a model dealing with conditional heteroskedasticity should be considered. We use the GARCH model introduced by Bollerslev \cite{Bollerslev}, which is a generalization of the ARCH model that was originally developed by Engle \cite{Engel}. The ARCH model allows for long lags in conditional variance and the GARCH model extends it in the way that it allows for both long lags in conditional variance and a more flexible lag structure.
 
 The GARCH($y$,$z$) has the conditional volatility equation given by:
 
@@ -147,7 +147,7 @@ The parameter constraints are:
 \subsection{Implementation of The Dynamic ARMA($w,x$)-GARCH($1,1$)}
 To forecast returns we will try to fit an ARMA model of order ($w,x$) with asymmetric generalized auto-regressive conditional hetereoscadasticity (GARCH) of order ($1$,$1$). The estimation of the ARMA($w,x$)-GARCH($1,1$) parameters is done in R, while the rest of the calculations in this paper is done in Python. The reason we chose to calculate the parameters of the ARMA($w,x$)-GARCH($1,1$) in R, is because there are currently no packages in Python supporting ARMA-GARCH, only AR-GARCH. 
 
-Implementing a dynamic ARMA-GARCH model, the first thing to be decided is the ARMA order. In other words, we have to decide what values $w$ and $x$ in the conditional mean equation (\ref{ConditionalMeanEquation}) should have. The ARMA-GARCH parameters and hence the maximum likelihood is calculated for all combinations of $w$ and $x$, using equation \ref{fullMaximumLikeARMA}, where $w\in[0,3]$ and $x\in[0,3]$. The final values of $w$ and $x$, the ARMA order, to use in our forecast is chosen based on the the Akaike information criterion (AIC). AIC is an estimator of the relative quality of statistical models for a given set of data. Given a collection of models for the data, AIC estimates the quality of each model, relative to each of the other models. Thus, AIC provides a means for model selection. The AIC of a given model is calculated using the following equation:
+When implementing a dynamic ARMA-GARCH model, the first thing to be decided is the ARMA order. In other words, we have to decide what values $w$ and $x$ in the conditional mean equation (\ref{ConditionalMeanEquation}) should have. The ARMA-GARCH parameters and hence the maximum likelihood is calculated for all combinations of $w$ and $x$, using equation \ref{fullMaximumLikeARMA}, where $w\in[0,3]$ and $x\in[0,3]$. The final values of $w$ and $x$, the ARMA order, to use in our forecast is chosen based on the the Akaike information criterion (AIC). AIC is an estimator of the relative quality of statistical models for a given set of data. Given a collection of models for the data, AIC estimates the quality of each model, relative to each of the other models. Thus, AIC provides a means for model selection. The AIC of a given model is calculated using the following equation:
 \begin{align}
     AIC_{i,t}=2k_i-2ln(L_{i,t})
 \end{align}
@@ -155,7 +155,7 @@ where $k$ is the number of estimated parameters and $L$ is the maximum value of 
 
 After the ARMA order is decided, equation (\ref{fullMaximumLike}) is solved. There is no guarantee that the maximum likelihood of the ARMA-GARCH will converge. To increase the probability of convergence, the algorithm in R tries four different solvers. If there is no convergence, the conditional mean parameters are found using plain vanilla ARMA (\ref{fullMaximumLikeARMA}) and not ARMA-GARCH (\ref{fullMaximumLike}). The maximum likelihood function of plain vanilla ARMA will almost always converge because it is linear. If the estimation of the plain vanilla ARMA does not converge, the process above is repeated with the ARMA order giving second best AIC, and so on, until convergence is achieved.
 
-As mentioned in the introduction to this chapter, the ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period using as a rolling window. The time step is one day and the information set sample, which the parameters are estimated from, are the past 250 daily returns. Furthermore, there are 105 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1700 trading days. The model setup results in a huge number of needed calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
+As mentioned in the introduction to this chapter, the ARMA($w,x$)-GARCH($1,1$) parameters are estimated based on the information set for each stock, $i$, for every time step, over the whole period using as a rolling window. The time step is one day ahead and the information set sample, which the parameters are estimated from, are the past 250 daily returns. Furthermore, there are 105 stocks, the period used as a rolling window is from January 2011 to September 2017, constituting about 1700 trading days. The model setup results in a huge number of required calculations, and as a consequence, we were granted access to the calculation cluster Solstorm belonging to the Department of Industrial Economics and Technology Management at NTNU. 
 
 One may argue that an information set bigger than 250 should be used, as the standard errors of the parameters are only valid asymptotically. The size of the information set, additional return forecasting model specification and other return forecasting models are further discussed in Chapter \ref{FutureWork}, Future Work.
 
@@ -179,7 +179,7 @@ The return forecasting model produces a series of return forecasting estimates. 
 \begin{align}
     \epsilon_{i,t}^{f} = r_{i,t}^{r} - r_{i,t}^{e}
 \end{align}
-where $\epsilon_{i,t}^{f}$ is the return forecasting error, the difference between the realized return, $r_{i,t}^{r}$, and the return forecasting estimate, $r_{i,t}^{e}$, for all stocks and all time steps. In order to assess the return forecasting accuracy and precision, we define two statistical metrics. 
+where $\epsilon_{i,t}^{f}$ is the return forecasting error, the difference between the realized return, $r_{i,t}^{r}$, and the return forecasting estimate, $r_{i,t}^{e}$, for all stocks and all days. In order to assess the return forecasting accuracy and precision, we define two statistical metrics. 
 
 \subsubsection{Mean Absolute Forecast Error}
 Firstly, as a statistical measure of accuracy for a portfolio, we define the mean absolute forecast error (MAFE). That is the annualized average total absolute forecast error of a portfolio. The mathematical expression is:
